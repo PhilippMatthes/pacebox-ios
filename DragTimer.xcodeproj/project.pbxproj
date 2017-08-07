@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */; };
+		BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A82B1F38BF8E000E3497 /* ViewController.swift */; };
+		BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A82D1F38BF8E000E3497 /* Main.storyboard */; };
+		BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A8301F38BF8E000E3497 /* Assets.xcassets */; };
+		BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */; };
+		BEE9A83F1F38BF8F000E3497 /* DragTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A83E1F38BF8F000E3497 /* DragTimerTests.swift */; };
+		BEE9A84A1F38BF8F000E3497 /* DragTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A8491F38BF8F000E3497 /* DragTimerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BEE9A83B1F38BF8F000E3497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEE9A81E1F38BF8E000E3497 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEE9A8251F38BF8E000E3497;
+			remoteInfo = DragTimer;
+		};
+		BEE9A8461F38BF8F000E3497 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEE9A81E1F38BF8E000E3497 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEE9A8251F38BF8E000E3497;
+			remoteInfo = DragTimer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BEE9A8261F38BF8E000E3497 /* DragTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BEE9A82B1F38BF8E000E3497 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BEE9A82E1F38BF8E000E3497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEE9A8301F38BF8E000E3497 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BEE9A8331F38BF8E000E3497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BEE9A8351F38BF8E000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE9A83A1F38BF8F000E3497 /* DragTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE9A83E1F38BF8F000E3497 /* DragTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragTimerTests.swift; sourceTree = "<group>"; };
+		BEE9A8401F38BF8F000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE9A8451F38BF8F000E3497 /* DragTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE9A8491F38BF8F000E3497 /* DragTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragTimerUITests.swift; sourceTree = "<group>"; };
+		BEE9A84B1F38BF8F000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEE9A8231F38BF8E000E3497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9A8371F38BF8F000E3497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9A8421F38BF8F000E3497 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BEE9A81D1F38BF8E000E3497 = {
+			isa = PBXGroup;
+			children = (
+				BEE9A8281F38BF8E000E3497 /* DragTimer */,
+				BEE9A83D1F38BF8F000E3497 /* DragTimerTests */,
+				BEE9A8481F38BF8F000E3497 /* DragTimerUITests */,
+				BEE9A8271F38BF8E000E3497 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BEE9A8271F38BF8E000E3497 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9A8261F38BF8E000E3497 /* DragTimer.app */,
+				BEE9A83A1F38BF8F000E3497 /* DragTimerTests.xctest */,
+				BEE9A8451F38BF8F000E3497 /* DragTimerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEE9A8281F38BF8E000E3497 /* DragTimer */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */,
+				BEE9A82B1F38BF8E000E3497 /* ViewController.swift */,
+				BEE9A82D1F38BF8E000E3497 /* Main.storyboard */,
+				BEE9A8301F38BF8E000E3497 /* Assets.xcassets */,
+				BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */,
+				BEE9A8351F38BF8E000E3497 /* Info.plist */,
+			);
+			path = DragTimer;
+			sourceTree = "<group>";
+		};
+		BEE9A83D1F38BF8F000E3497 /* DragTimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9A83E1F38BF8F000E3497 /* DragTimerTests.swift */,
+				BEE9A8401F38BF8F000E3497 /* Info.plist */,
+			);
+			path = DragTimerTests;
+			sourceTree = "<group>";
+		};
+		BEE9A8481F38BF8F000E3497 /* DragTimerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BEE9A8491F38BF8F000E3497 /* DragTimerUITests.swift */,
+				BEE9A84B1F38BF8F000E3497 /* Info.plist */,
+			);
+			path = DragTimerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BEE9A8251F38BF8E000E3497 /* DragTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE9A84E1F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimer" */;
+			buildPhases = (
+				BEE9A8221F38BF8E000E3497 /* Sources */,
+				BEE9A8231F38BF8E000E3497 /* Frameworks */,
+				BEE9A8241F38BF8E000E3497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DragTimer;
+			productName = DragTimer;
+			productReference = BEE9A8261F38BF8E000E3497 /* DragTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BEE9A8391F38BF8F000E3497 /* DragTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE9A8511F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimerTests" */;
+			buildPhases = (
+				BEE9A8361F38BF8F000E3497 /* Sources */,
+				BEE9A8371F38BF8F000E3497 /* Frameworks */,
+				BEE9A8381F38BF8F000E3497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEE9A83C1F38BF8F000E3497 /* PBXTargetDependency */,
+			);
+			name = DragTimerTests;
+			productName = DragTimerTests;
+			productReference = BEE9A83A1F38BF8F000E3497 /* DragTimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BEE9A8441F38BF8F000E3497 /* DragTimerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEE9A8541F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimerUITests" */;
+			buildPhases = (
+				BEE9A8411F38BF8F000E3497 /* Sources */,
+				BEE9A8421F38BF8F000E3497 /* Frameworks */,
+				BEE9A8431F38BF8F000E3497 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEE9A8471F38BF8F000E3497 /* PBXTargetDependency */,
+			);
+			name = DragTimerUITests;
+			productName = DragTimerUITests;
+			productReference = BEE9A8451F38BF8F000E3497 /* DragTimerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEE9A81E1F38BF8E000E3497 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Philipp Matthes";
+				TargetAttributes = {
+					BEE9A8251F38BF8E000E3497 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = S36925NV4E;
+						ProvisioningStyle = Automatic;
+					};
+					BEE9A8391F38BF8F000E3497 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = S36925NV4E;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BEE9A8251F38BF8E000E3497;
+					};
+					BEE9A8441F38BF8F000E3497 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = S36925NV4E;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BEE9A8251F38BF8E000E3497;
+					};
+				};
+			};
+			buildConfigurationList = BEE9A8211F38BF8E000E3497 /* Build configuration list for PBXProject "DragTimer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BEE9A81D1F38BF8E000E3497;
+			productRefGroup = BEE9A8271F38BF8E000E3497 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEE9A8251F38BF8E000E3497 /* DragTimer */,
+				BEE9A8391F38BF8F000E3497 /* DragTimerTests */,
+				BEE9A8441F38BF8F000E3497 /* DragTimerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEE9A8241F38BF8E000E3497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
+				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
+				BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9A8381F38BF8F000E3497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9A8431F38BF8F000E3497 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEE9A8221F38BF8E000E3497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */,
+				BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9A8361F38BF8F000E3497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE9A83F1F38BF8F000E3497 /* DragTimerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEE9A8411F38BF8F000E3497 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEE9A84A1F38BF8F000E3497 /* DragTimerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BEE9A83C1F38BF8F000E3497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEE9A8251F38BF8E000E3497 /* DragTimer */;
+			targetProxy = BEE9A83B1F38BF8F000E3497 /* PBXContainerItemProxy */;
+		};
+		BEE9A8471F38BF8F000E3497 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEE9A8251F38BF8E000E3497 /* DragTimer */;
+			targetProxy = BEE9A8461F38BF8F000E3497 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BEE9A82D1F38BF8E000E3497 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEE9A82E1F38BF8E000E3497 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEE9A8331F38BF8E000E3497 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BEE9A84C1F38BF8F000E3497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BEE9A84D1F38BF8F000E3497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BEE9A84F1F38BF8F000E3497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = DragTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.DragTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		BEE9A8501F38BF8F000E3497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = DragTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.DragTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BEE9A8521F38BF8F000E3497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = DragTimerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.DragTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DragTimer.app/DragTimer";
+			};
+			name = Debug;
+		};
+		BEE9A8531F38BF8F000E3497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = DragTimerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.DragTimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DragTimer.app/DragTimer";
+			};
+			name = Release;
+		};
+		BEE9A8551F38BF8F000E3497 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = DragTimerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.DragTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = DragTimer;
+			};
+			name = Debug;
+		};
+		BEE9A8561F38BF8F000E3497 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = S36925NV4E;
+				INFOPLIST_FILE = DragTimerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.DragTimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = DragTimer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEE9A8211F38BF8E000E3497 /* Build configuration list for PBXProject "DragTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE9A84C1F38BF8F000E3497 /* Debug */,
+				BEE9A84D1F38BF8F000E3497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEE9A84E1F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE9A84F1F38BF8F000E3497 /* Debug */,
+				BEE9A8501F38BF8F000E3497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BEE9A8511F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE9A8521F38BF8F000E3497 /* Debug */,
+				BEE9A8531F38BF8F000E3497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BEE9A8541F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEE9A8551F38BF8F000E3497 /* Debug */,
+				BEE9A8561F38BF8F000E3497 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BEE9A81E1F38BF8E000E3497 /* Project object */;
+}

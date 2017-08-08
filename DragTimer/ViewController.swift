@@ -27,7 +27,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let convertedSpeed = Double(round(1000 * location.speed * 3.6)/1000)
         
         DispatchQueue.main.async {
-            self.speedReplacementLabel.text = "\(convertedSpeed) km/h"
+            self.speedReplacementLabel.text = "\(convertedSpeed)"
         }
         
         let maxSpeed = self.speedLog.max()!

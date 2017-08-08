@@ -21,33 +21,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiV-H1-4HX">
-                                <rect key="frame" x="99" y="312.5" width="177" height="42"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="%Speed%">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="36"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%Max Speed%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wq1-0Z-cOQ">
-                                <rect key="frame" x="131.5" y="358" width="112" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5PX-Dc-8mM">
+                                <rect key="frame" x="16" y="244" width="343" height="149"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Max Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wq1-0Z-cOQ">
+                                        <rect key="frame" x="128" y="64" width="86" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXY-Si-F7g">
+                                <rect key="frame" x="0.0" y="82" width="375" height="56"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jK-Ot-oxy">
+                                        <rect key="frame" x="15" y="10" width="345" height="36"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiV-H1-4HX">
+                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="36"/>
+                                                <color key="backgroundColor" red="0.44330512152777779" green="0.87931315104166663" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Current Speed">
+                                                        <attributes>
+                                                            <font key="NSFont" size="20" name="Helvetica"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXY-ub-PCj">
+                                                <rect key="frame" x="130.5" y="0.0" width="214.5" height="36"/>
+                                                <color key="backgroundColor" red="0.44330512152777779" green="0.87931315104166663" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="km/h"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.85441080729166663" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="0.72909247300000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="3jK-Ot-oxy" secondAttribute="bottom" constant="10" id="28X-ql-bpz"/>
+                                    <constraint firstAttribute="trailing" secondItem="3jK-Ot-oxy" secondAttribute="trailing" constant="15" id="DW5-kg-0oG"/>
+                                    <constraint firstItem="3jK-Ot-oxy" firstAttribute="leading" secondItem="aXY-Si-F7g" secondAttribute="leading" constant="15" id="N0u-w8-NPD"/>
+                                    <constraint firstItem="3jK-Ot-oxy" firstAttribute="top" secondItem="aXY-Si-F7g" secondAttribute="top" constant="10" id="ZAZ-VK-vk8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="LiV-H1-4HX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5jN-qL-7mY"/>
-                            <constraint firstItem="wq1-0Z-cOQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHw-HF-X0x"/>
-                            <constraint firstItem="wq1-0Z-cOQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="35" id="mUa-6Z-pMk"/>
-                            <constraint firstItem="LiV-H1-4HX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vUL-eP-k4I"/>
+                            <constraint firstItem="aXY-Si-F7g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6N8-xi-bCa"/>
+                            <constraint firstAttribute="trailing" secondItem="aXY-Si-F7g" secondAttribute="trailing" id="Bos-1v-oAv"/>
+                            <constraint firstItem="aXY-Si-F7g" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="62" id="RXi-XS-qbE"/>
+                            <constraint firstItem="aXY-Si-F7g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jtO-xx-hM6"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="background" destination="8bC-Xf-vdC" id="4gE-Ui-ndY"/>
                         <outlet property="maxSpeedLabel" destination="wq1-0Z-cOQ" id="suk-Zr-NUE"/>

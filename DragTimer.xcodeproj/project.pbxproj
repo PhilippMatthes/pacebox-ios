@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE2E73371F39B43D009D3EC9 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE2E73361F39B43D009D3EC9 /* background.jpg */; };
 		BE2E73391F39BBF2009D3EC9 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */; };
 		BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */; };
 		BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A82B1F38BF8E000E3497 /* ViewController.swift */; };
@@ -36,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BE2E73361F39B43D009D3EC9 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = ../../background.jpg; sourceTree = "<group>"; };
 		BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = AppIcon/iTunesArtwork.png; sourceTree = SOURCE_ROOT; };
 		BEE9A8261F38BF8E000E3497 /* DragTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */,
 				BEE9A82B1F38BF8E000E3497 /* ViewController.swift */,
 				BEE9A82D1F38BF8E000E3497 /* Main.storyboard */,
-				BE2E73361F39B43D009D3EC9 /* background.jpg */,
 				BEE9A8301F38BF8E000E3497 /* Assets.xcassets */,
 				BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */,
 				BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */,
@@ -242,7 +239,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
-				BE2E73371F39B43D009D3EC9 /* background.jpg in Resources */,
 				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
 				BE2E73391F39BBF2009D3EC9 /* iTunesArtwork.png in Resources */,
 				BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */,

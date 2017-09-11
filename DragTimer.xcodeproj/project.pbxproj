@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73E74FF8BE86A8939980592E /* Pods_DragTimerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */; };
 		BE2E73391F39BBF2009D3EC9 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */; };
+		BE3703261F669F7F003306E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BE3703251F669F7F003306E8 /* Podfile */; };
+		BECDD7801F66AE6D00A98883 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECDD77F1F66AE6D00A98883 /* Charts.framework */; };
+		BEE35B111F669E1500F14771 /* Pods_DragTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003AACB093832422B6F0D78F /* Pods_DragTimer.framework */; };
 		BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */; };
 		BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A82B1F38BF8E000E3497 /* ViewController.swift */; };
 		BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A82D1F38BF8E000E3497 /* Main.storyboard */; };
 		BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A8301F38BF8E000E3497 /* Assets.xcassets */; };
 		BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */; };
-		BEE9A83F1F38BF8F000E3497 /* DragTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A83E1F38BF8F000E3497 /* DragTimerTests.swift */; };
-		BEE9A84A1F38BF8F000E3497 /* DragTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A8491F38BF8F000E3497 /* DragTimerUITests.swift */; };
+		F7E18D4AF4F5242683565A75 /* Pods_DragTimerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23AE2B1302D8DD183F008 /* Pods_DragTimerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +38,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		003AACB093832422B6F0D78F /* Pods_DragTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06914C21F591F61F6036C969 /* Pods-DragTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer.debug.xcconfig"; sourceTree = "<group>"; };
+		1422DFD49D507201F876B900 /* Pods-DragTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests.release.xcconfig"; sourceTree = "<group>"; };
+		39B23AE2B1302D8DD183F008 /* Pods_DragTimerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48F996B4D38167EB4E417732 /* Pods-DragTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer.release.xcconfig"; sourceTree = "<group>"; };
+		7CFB51F7EE1B15CD4AB45C75 /* Pods-DragTimerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5A932F611395331C08AE436 /* Pods-DragTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC4C3575CFB3281DD414B001 /* Pods-DragTimerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = AppIcon/iTunesArtwork.png; sourceTree = SOURCE_ROOT; };
+		BE3703251F669F7F003306E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		BEC4DF091F66A0A5009DBD6F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		BECDD77F1F66AE6D00A98883 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
+		BEE4FBA31F66A0310071FF77 /* SwiftCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCharts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphonesimulator/SwiftCharts/SwiftCharts.framework"; sourceTree = "<group>"; };
 		BEE9A8261F38BF8E000E3497 /* DragTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEE9A82B1F38BF8E000E3497 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,11 +60,7 @@
 		BEE9A8331F38BF8E000E3497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEE9A8351F38BF8E000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE9A83A1F38BF8F000E3497 /* DragTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEE9A83E1F38BF8F000E3497 /* DragTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragTimerTests.swift; sourceTree = "<group>"; };
-		BEE9A8401F38BF8F000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE9A8451F38BF8F000E3497 /* DragTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEE9A8491F38BF8F000E3497 /* DragTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragTimerUITests.swift; sourceTree = "<group>"; };
-		BEE9A84B1F38BF8F000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BECDD7801F66AE6D00A98883 /* Charts.framework in Frameworks */,
+				BEE35B111F669E1500F14771 /* Pods_DragTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E74FF8BE86A8939980592E /* Pods_DragTimerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,19 +85,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E18D4AF4F5242683565A75 /* Pods_DragTimerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DB24639FB97B9461A705D47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				06914C21F591F61F6036C969 /* Pods-DragTimer.debug.xcconfig */,
+				48F996B4D38167EB4E417732 /* Pods-DragTimer.release.xcconfig */,
+				A5A932F611395331C08AE436 /* Pods-DragTimerTests.debug.xcconfig */,
+				1422DFD49D507201F876B900 /* Pods-DragTimerTests.release.xcconfig */,
+				7CFB51F7EE1B15CD4AB45C75 /* Pods-DragTimerUITests.debug.xcconfig */,
+				AC4C3575CFB3281DD414B001 /* Pods-DragTimerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BEE9A81D1F38BF8E000E3497 = {
 			isa = PBXGroup;
 			children = (
 				BEE9A8281F38BF8E000E3497 /* DragTimer */,
-				BEE9A83D1F38BF8F000E3497 /* DragTimerTests */,
-				BEE9A8481F38BF8F000E3497 /* DragTimerUITests */,
 				BEE9A8271F38BF8E000E3497 /* Products */,
+				5DB24639FB97B9461A705D47 /* Pods */,
+				F6808707729C0ECF830E75B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,22 +139,18 @@
 			path = DragTimer;
 			sourceTree = "<group>";
 		};
-		BEE9A83D1F38BF8F000E3497 /* DragTimerTests */ = {
+		F6808707729C0ECF830E75B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BEE9A83E1F38BF8F000E3497 /* DragTimerTests.swift */,
-				BEE9A8401F38BF8F000E3497 /* Info.plist */,
+				BECDD77F1F66AE6D00A98883 /* Charts.framework */,
+				BEC4DF091F66A0A5009DBD6F /* Charts.framework */,
+				BEE4FBA31F66A0310071FF77 /* SwiftCharts.framework */,
+				BE3703251F669F7F003306E8 /* Podfile */,
+				003AACB093832422B6F0D78F /* Pods_DragTimer.framework */,
+				88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */,
+				39B23AE2B1302D8DD183F008 /* Pods_DragTimerUITests.framework */,
 			);
-			path = DragTimerTests;
-			sourceTree = "<group>";
-		};
-		BEE9A8481F38BF8F000E3497 /* DragTimerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				BEE9A8491F38BF8F000E3497 /* DragTimerUITests.swift */,
-				BEE9A84B1F38BF8F000E3497 /* Info.plist */,
-			);
-			path = DragTimerUITests;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,9 +160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEE9A84E1F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimer" */;
 			buildPhases = (
+				972C17DAAABC3B2A9ED6660F /* [CP] Check Pods Manifest.lock */,
 				BEE9A8221F38BF8E000E3497 /* Sources */,
 				BEE9A8231F38BF8E000E3497 /* Frameworks */,
 				BEE9A8241F38BF8E000E3497 /* Resources */,
+				0F6EAED7801DD9C5624999B8 /* [CP] Embed Pods Frameworks */,
+				A56670D76404A0B344540715 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEE9A8511F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimerTests" */;
 			buildPhases = (
+				21272176C7518243CC32052D /* [CP] Check Pods Manifest.lock */,
 				BEE9A8361F38BF8F000E3497 /* Sources */,
 				BEE9A8371F38BF8F000E3497 /* Frameworks */,
 				BEE9A8381F38BF8F000E3497 /* Resources */,
+				BAAEEC5A6E2FADD09A4A70AC /* [CP] Embed Pods Frameworks */,
+				08498313BA3DEEC599F0075E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +201,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEE9A8541F38BF8F000E3497 /* Build configuration list for PBXNativeTarget "DragTimerUITests" */;
 			buildPhases = (
+				3D75CAC3BF2EA65C2F23CE42 /* [CP] Check Pods Manifest.lock */,
 				BEE9A8411F38BF8F000E3497 /* Sources */,
 				BEE9A8421F38BF8F000E3497 /* Frameworks */,
 				BEE9A8431F38BF8F000E3497 /* Resources */,
+				F11DBE865E6A85CCF4E52A6C /* [CP] Embed Pods Frameworks */,
+				26B518CBADAC62F21907E106 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3703261F669F7F003306E8 /* Podfile in Resources */,
 				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
 				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
 				BE2E73391F39BBF2009D3EC9 /* iTunesArtwork.png in Resources */,
@@ -261,6 +296,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		08498313BA3DEEC599F0075E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0F6EAED7801DD9C5624999B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		21272176C7518243CC32052D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DragTimerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26B518CBADAC62F21907E106 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D75CAC3BF2EA65C2F23CE42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DragTimerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		972C17DAAABC3B2A9ED6660F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DragTimer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A56670D76404A0B344540715 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAAEEC5A6E2FADD09A4A70AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F11DBE865E6A85CCF4E52A6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BEE9A8221F38BF8E000E3497 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,7 +460,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEE9A83F1F38BF8F000E3497 /* DragTimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +467,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEE9A84A1F38BF8F000E3497 /* DragTimerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +602,7 @@
 		};
 		BEE9A84F1F38BF8F000E3497 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06914C21F591F61F6036C969 /* Pods-DragTimer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S36925NV4E;
@@ -433,6 +617,7 @@
 		};
 		BEE9A8501F38BF8F000E3497 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48F996B4D38167EB4E417732 /* Pods-DragTimer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S36925NV4E;
@@ -447,6 +632,7 @@
 		};
 		BEE9A8521F38BF8F000E3497 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5A932F611395331C08AE436 /* Pods-DragTimerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -462,6 +648,7 @@
 		};
 		BEE9A8531F38BF8F000E3497 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1422DFD49D507201F876B900 /* Pods-DragTimerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -477,6 +664,7 @@
 		};
 		BEE9A8551F38BF8F000E3497 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CFB51F7EE1B15CD4AB45C75 /* Pods-DragTimerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = S36925NV4E;
@@ -491,6 +679,7 @@
 		};
 		BEE9A8561F38BF8F000E3497 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC4C3575CFB3281DD414B001 /* Pods-DragTimerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = S36925NV4E;

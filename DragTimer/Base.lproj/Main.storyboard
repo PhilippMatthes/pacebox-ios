@@ -161,11 +161,23 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-Pf-bVX">
-                                <rect key="frame" x="16" y="224" width="288" height="332"/>
+                                <rect key="frame" x="16" y="224" width="288" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbT-Dh-CsW" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="4" y="5" width="280" height="322"/>
+                                        <rect key="frame" x="4" y="5" width="280" height="163"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWN-87-eEd">
+                                <rect key="frame" x="16" y="407" width="288" height="148"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4mx-nl-NJH" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="4" y="5" width="280" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -186,6 +198,8 @@
                         <outlet property="avgSpeedLabel" destination="Swj-1A-Q7j" id="wsp-bI-ucC"/>
                         <outlet property="background" destination="8bC-Xf-vdC" id="4gE-Ui-ndY"/>
                         <outlet property="currentSpeedBackground" destination="aXY-Si-F7g" id="HR1-Sv-zzK"/>
+                        <outlet property="heightLogChart" destination="4mx-nl-NJH" id="Kv5-hr-XjY"/>
+                        <outlet property="heightLogChartBackground" destination="dWN-87-eEd" id="Xax-57-KkR"/>
                         <outlet property="maxSpeedBackground" destination="5PX-Dc-8mM" id="6RE-Q5-GJI"/>
                         <outlet property="maxSpeedLabel" destination="wq1-0Z-cOQ" id="suk-Zr-NUE"/>
                         <outlet property="speedLogChart" destination="xbT-Dh-CsW" id="ceg-Lh-e5w"/>

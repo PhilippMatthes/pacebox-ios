@@ -33,6 +33,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     @IBOutlet weak var accelerationBackground: UIView!
     @IBOutlet weak var speedLogChart: LineChartView!
     @IBOutlet weak var speedLogChartBackground: UIView!
+    @IBOutlet weak var heightLogChart: LineChartView!
+    @IBOutlet weak var heightLogChartBackground: UIView!
     
     let manager = CLLocationManager()
     var speedLog = [Double]()
@@ -67,26 +69,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             self.currentAcceleration = Double(round(100 * exactAcceleration)/100)
         }
         
-        
+        // Update current speed
         let speed = self.currentLocation.speed
         if speed >= 0.0 {
             self.currentSpeed = speed
         }
         
+        // Update current height
         let height = self.currentLocation.altitude
         if height >= 0.0 {
             self.currentHeight = height
         }
         
+        // Update height log
         self.heightLog.insert(self.currentHeight, at: 0)
         if self.heightLog.count > self.drawRange {
             self.heightLog.remove(at: self.drawRange)
         }
         
+        // Update speed log
         self.speedLog.insert(self.currentSpeed, at: 0)
         if self.speedLog.count > self.drawRange {
             self.speedLog.remove(at: self.drawRange)
         }
+        
+        // Convert current speed and save
         self.convertedCurrentSpeed = Double(round(100 * self.currentSpeed * self.speedTypeCoefficient)/100)
         
         
@@ -98,10 +105,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.avgSpeed = self.speedLog.reduce(0, +) / Double(self.speedLog.count)
         self.convertedAvgSpeed = Double(round(100 * self.avgSpeed * self.speedTypeCoefficient)/100)
         
-        self.currentHorizontalAccuracy = self.currentLocation.horizontalAccuracy
+        self.currentHorizontalAccuracy = Double(round(100 * self.currentLocation.horizontalAccuracy)/100)
         
         self.refreshAllLabels()
-        self.updateGraph()
+        self.updateSpeedGraph()
+        self.updateHeightGraph()
         
         
     }
@@ -109,20 +117,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let test = ("Test1","Test2")
+        print(test.0)
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
+        self.setUpInterfaceDesign()
+        
+    }
+    
+    func setUpInterfaceDesign() {
         self.currentSpeedBackground.layer.cornerRadius = 10.0
         self.maxSpeedBackground.layer.cornerRadius = 10.0
         self.avgSpeedBackground.layer.cornerRadius = 10.0
         self.speedTypeBackground.layer.cornerRadius = 10.0
         self.accuracyBackground.layer.cornerRadius = 10.0
         self.speedLogChartBackground.layer.cornerRadius = 10.0
+        self.heightLogChartBackground.layer.cornerRadius = 10.0
         self.accelerationBackground.layer.cornerRadius = 10.0
-    
-
         
         gradientLayer.frame = self.view.bounds
         let color1 = UIColor(red: 1.0, green: 0.666, blue: 0, alpha: 1.0).cgColor as CGColor
@@ -130,9 +146,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         gradientLayer.colors = [color1, color2]
         gradientLayer.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
-        
-        
-        
     }
 
     
@@ -149,7 +162,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             preferredStyle: UIAlertControllerStyle.actionSheet
         )
         
-        // User selects km/h
         let speedTypeKphAction = UIAlertAction (
             title: "Metric (km/h)",
             style: UIAlertActionStyle.default
@@ -224,21 +236,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         })
     }
     
-    func updateGraph() {
+    func updateSpeedGraph() {
         self.speedLogChart.delegate = self
         
         var lineChartEntriesSpeed = [ChartDataEntry]()
-        var lineChartEntriesHeight = [ChartDataEntry]()
         
         for i in 0..<self.speedLog.count {
             let value = ChartDataEntry(x: Double(self.speedLog.count - i), y: self.speedLog[i]*self.speedTypeCoefficient)
             lineChartEntriesSpeed.insert(value, at: 0)
         }
-        
-        for i in 0..<self.heightLog.count {
-            let value = ChartDataEntry(x: Double(self.heightLog.count - i), y: self.heightLog[i])
-            lineChartEntriesHeight.append(value)
-        }
+
 
         let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: "Speed (in "+self.speedType+")")
         speedLine.drawCirclesEnabled = false
@@ -246,18 +253,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         speedLine.lineWidth = 2.0
         speedLine.drawFilledEnabled = true
         speedLine.colors = [NSUIColor.black]
-        
-        let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Height in m")
-        heightLine.drawCirclesEnabled = false
-        heightLine.drawCubicEnabled = true
-        heightLine.lineWidth = 1.0
-        heightLine.drawFilledEnabled = true
-        heightLine.colors = [NSUIColor.orange]
-        
+
         let data = LineChartData()
         
         data.addDataSet(speedLine)
-        data.addDataSet(heightLine)
         
         data.setDrawValues(false)
 
@@ -267,9 +266,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
         self.speedLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
     }
-
     
-
+    func updateHeightGraph() {
+        self.heightLogChart.delegate = self
+        
+        var lineChartEntriesHeight = [ChartDataEntry]()
+        
+        for i in 0..<self.heightLog.count {
+            let value = ChartDataEntry(x: Double(self.heightLog.count - i), y: self.heightLog[i])
+            lineChartEntriesHeight.insert(value, at: 0)
+        }
+        
+        let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Height in m")
+        heightLine.drawCirclesEnabled = false
+        heightLine.drawCubicEnabled = true
+        heightLine.lineWidth = 2.0
+        heightLine.drawFilledEnabled = true
+        heightLine.colors = [NSUIColor.orange]
+        
+        let data = LineChartData()
+        
+        data.addDataSet(heightLine)
+        
+        data.setDrawValues(false)
+        
+        self.heightLogChart.data = data
+        self.heightLogChart.chartDescription?.text = nil
+        self.heightLogChart.notifyDataSetChanged()
+        
+        self.heightLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
+        
+    }
 
 }
 

@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func pushNotification() {
         let notification = UILocalNotification()
         notification.alertAction = "Go back to App"
-        notification.alertBody = "DragTimer is now inactive."
+        notification.alertBody = "The app will not track your speed when closed."
         notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.shared.scheduleLocalNotification(notification)

@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--MainViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MainViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -161,11 +162,11 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rp5-Pf-bVX">
-                                <rect key="frame" x="16" y="224" width="288" height="175"/>
+                                <rect key="frame" x="16" y="394" width="288" height="161"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbT-Dh-CsW" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="4" y="5" width="280" height="163"/>
+                                        <rect key="frame" x="4" y="4" width="280" height="153"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -173,11 +174,11 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWN-87-eEd">
-                                <rect key="frame" x="16" y="407" width="288" height="148"/>
+                                <rect key="frame" x="16" y="224" width="288" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4mx-nl-NJH" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="4" y="5" width="280" height="138"/>
+                                        <rect key="frame" x="4" y="4" width="280" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -188,7 +189,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="accelerationBackground" destination="Hua-pX-HyW" id="jF7-Uf-T5D"/>
                         <outlet property="accelerationLabel" destination="BoM-MW-tkC" id="HJT-RH-aet"/>
@@ -207,11 +209,133 @@
                         <outlet property="speedReplacementLabel" destination="LiV-H1-4HX" id="JPF-eL-irl"/>
                         <outlet property="speedTypeBackground" destination="gLn-Qv-jyA" id="Ht0-zY-10q"/>
                         <outlet property="speedTypeButton" destination="cXY-ub-PCj" id="eNQ-Ev-H3Q"/>
+                        <segue destination="qYL-l3-9x0" kind="showDetail" identifier="showSpeedLogDetail" action="showViewController:sender:" id="d1J-mg-YAZ"/>
+                        <segue destination="PDu-DM-M8X" kind="show" identifier="showHeightLogDetail" id="A0J-ad-7Ji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127.5" y="36.971830985915496"/>
+            <point key="canvasLocation" x="-20.625" y="36.971830985915496"/>
+        </scene>
+        <!--SpeedLogDetailController-->
+        <scene sceneID="97q-Kg-TSb">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UXA-U8-0Vh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="SpeedLogDetailController" id="qYL-l3-9x0" customClass="SpeedLogDetailController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9BU-Cd-8mP"/>
+                        <viewControllerLayoutGuide type="bottom" id="THr-VB-ORG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oPo-rA-byk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZY-gK-gNV">
+                                <rect key="frame" x="16" y="52" width="288" height="508"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40g-MU-vNz" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="4" y="4" width="280" height="500"/>
+                                        <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="40g-MU-vNz" secondAttribute="trailing" constant="4" id="9r4-Ht-W16"/>
+                                    <constraint firstAttribute="bottom" secondItem="40g-MU-vNz" secondAttribute="bottom" constant="4" id="F9B-h1-HPK"/>
+                                    <constraint firstItem="40g-MU-vNz" firstAttribute="leading" secondItem="AZY-gK-gNV" secondAttribute="leading" constant="4" id="I5T-JB-Dur"/>
+                                    <constraint firstItem="40g-MU-vNz" firstAttribute="top" secondItem="AZY-gK-gNV" secondAttribute="top" constant="4" id="jZM-Bf-ZQs"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GC4-Rl-WpM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Detail View" id="EWC-Uc-hXm"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AZY-gK-gNV" firstAttribute="trailing" secondItem="oPo-rA-byk" secondAttribute="trailingMargin" id="A8j-VU-gH7"/>
+                            <constraint firstItem="THr-VB-ORG" firstAttribute="top" secondItem="AZY-gK-gNV" secondAttribute="bottom" constant="8" id="OWL-ST-OB4"/>
+                            <constraint firstItem="AZY-gK-gNV" firstAttribute="top" secondItem="GC4-Rl-WpM" secondAttribute="bottom" constant="8" id="RdP-fo-mri"/>
+                            <constraint firstItem="GC4-Rl-WpM" firstAttribute="top" secondItem="9BU-Cd-8mP" secondAttribute="bottom" id="Thd-a3-HD2"/>
+                            <constraint firstAttribute="trailing" secondItem="GC4-Rl-WpM" secondAttribute="trailing" id="Yph-JL-XjX"/>
+                            <constraint firstItem="AZY-gK-gNV" firstAttribute="leading" secondItem="oPo-rA-byk" secondAttribute="leadingMargin" id="foc-9v-oWP"/>
+                            <constraint firstItem="GC4-Rl-WpM" firstAttribute="leading" secondItem="oPo-rA-byk" secondAttribute="leading" id="hU0-Jv-4Cb"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="GC4-Rl-WpM" id="IHp-FQ-e1v"/>
+                        <outlet property="speedLogChart" destination="40g-MU-vNz" id="XJb-Yb-0vv"/>
+                        <outlet property="speedLogChartBackground" destination="AZY-gK-gNV" id="jwW-67-FIO"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-516" y="861"/>
+        </scene>
+        <!--HeightLogDetailController-->
+        <scene sceneID="QNK-gE-ow1">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ds8-vS-Pzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="HeightLogDetailController" id="PDu-DM-M8X" customClass="HeightLogDetailController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T91-Al-3rd"/>
+                        <viewControllerLayoutGuide type="bottom" id="mYf-py-S8h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d4B-T7-Ym9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFt-LI-dDF">
+                                <rect key="frame" x="16" y="52" width="288" height="508"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ztc-q1-SPP" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="4" y="4" width="280" height="500"/>
+                                        <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ztc-q1-SPP" secondAttribute="trailing" constant="4" id="940-Ps-tWC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ztc-q1-SPP" secondAttribute="bottom" constant="4" id="Hju-qs-Q5m"/>
+                                    <constraint firstItem="Ztc-q1-SPP" firstAttribute="top" secondItem="EFt-LI-dDF" secondAttribute="top" constant="4" id="gwe-KM-4aW"/>
+                                    <constraint firstItem="Ztc-q1-SPP" firstAttribute="leading" secondItem="EFt-LI-dDF" secondAttribute="leading" constant="4" id="vPJ-Fm-7cQ"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8G-HU-mpe">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Detail View" id="uPE-U7-KVm"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EFt-LI-dDF" firstAttribute="trailing" secondItem="d4B-T7-Ym9" secondAttribute="trailingMargin" id="0E7-EU-t5b"/>
+                            <constraint firstItem="EFt-LI-dDF" firstAttribute="top" secondItem="E8G-HU-mpe" secondAttribute="bottom" constant="8" id="4rA-du-D7d"/>
+                            <constraint firstItem="EFt-LI-dDF" firstAttribute="leading" secondItem="d4B-T7-Ym9" secondAttribute="leadingMargin" id="546-zx-QbD"/>
+                            <constraint firstAttribute="trailing" secondItem="E8G-HU-mpe" secondAttribute="trailing" id="9sQ-lY-ojH"/>
+                            <constraint firstItem="E8G-HU-mpe" firstAttribute="top" secondItem="T91-Al-3rd" secondAttribute="bottom" id="j5C-9R-2Pw"/>
+                            <constraint firstItem="E8G-HU-mpe" firstAttribute="leading" secondItem="d4B-T7-Ym9" secondAttribute="leading" id="plR-IT-3TX"/>
+                            <constraint firstItem="mYf-py-S8h" firstAttribute="top" secondItem="EFt-LI-dDF" secondAttribute="bottom" constant="8" id="zhx-Oh-T81"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="heightLogChart" destination="Ztc-q1-SPP" id="Kfo-s2-kd5"/>
+                        <outlet property="heightLogChartBackground" destination="EFt-LI-dDF" id="K2b-yR-ylb"/>
+                        <outlet property="navigationBar" destination="E8G-HU-mpe" id="w2b-YD-l9C"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="458" y="861"/>
         </scene>
     </scenes>
 </document>

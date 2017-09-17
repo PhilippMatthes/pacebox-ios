@@ -10,11 +10,10 @@ import UIKit
 import Charts
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate{
+class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate {
     
     let gradientLayer = CAGradientLayer()
     
-    // Speed label on main view for speed displaying
     @IBOutlet weak var speedReplacementLabel: UILabel!
     @IBOutlet var background: UIView!
     @IBOutlet weak var maxSpeedLabel: UILabel!
@@ -57,7 +56,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var speedType = "km/h"
     var speedTypeCoefficient = 3.6
     
-
+    weak var timer: Timer?
+    var startTime: Double = 0
+    var time: Double = 0
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -108,6 +110,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.currentHorizontalAccuracy = Double(round(100 * self.currentLocation.horizontalAccuracy)/100)
         
         self.refreshAllLabels()
+        self.saveVariables()
         self.updateSpeedGraph()
         self.updateHeightGraph()
         
@@ -128,6 +131,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
         self.setUpInterfaceDesign()
         
+        self.speedLogChart.delegate = self
+        self.heightLogChart.delegate = self
+        
+        let touchRecognizerSpeedLog = UITapGestureRecognizer(target: self, action:  #selector (self.speedLogPressed (_:)))
+        let touchRecognizerHeightLog = UITapGestureRecognizer(target: self, action:  #selector (self.heightLogPressed (_:)))
+        
+        speedLogChart.addGestureRecognizer(touchRecognizerSpeedLog)
+        heightLogChart.addGestureRecognizer(touchRecognizerHeightLog)
+        
+        
+    }
+    
+    func startTimerAndUpdateLabel() {
+        startTime = Date().timeIntervalSinceReferenceDate
+        timer = Timer.scheduledTimer(timeInterval: 0.05,
+                                     target: self,
+                                     selector: #selector(advanceTimer(timer:)),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
+    
+    func advanceTimer(timer: Timer) {
+        
+        //Total time since timer started, in seconds
+        time = Date().timeIntervalSinceReferenceDate - startTime
+        
+        //Convert the time to a string with 2 decimal places
+        let timeString = String(format: "%.2f", time)
+        
+        //Display the time string to a label in our view controller
+        print(timeString)
     }
     
     func setUpInterfaceDesign() {
@@ -140,12 +178,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.heightLogChartBackground.layer.cornerRadius = 10.0
         self.accelerationBackground.layer.cornerRadius = 10.0
         
-        gradientLayer.frame = self.view.bounds
+        setUpBackground(frame: self.view.bounds)
+    }
+    
+    func setUpBackground(frame: CGRect) {
+        gradientLayer.frame = frame
         let color1 = UIColor(red: 1.0, green: 0.666, blue: 0, alpha: 1.0).cgColor as CGColor
         let color2 = UIColor(red: 0.83, green: 0.10, blue: 0.10, alpha: 1.0).cgColor as CGColor
         gradientLayer.colors = [color1, color2]
         gradientLayer.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let screenSize = CGSize(width: size.width * 1.5, height: size.height * 1.5)
+        let screenOrigin = CGPoint(x: 0, y: 0)
+        let screenFrame = CGRect(origin: screenOrigin, size: screenSize)
+        if UIDevice.current.orientation.isLandscape {
+            self.setUpBackground(frame: screenFrame)
+        } else if UIDevice.current.orientation.isPortrait {
+            self.setUpBackground(frame: screenFrame)
+        }
     }
 
     
@@ -237,7 +290,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     func updateSpeedGraph() {
-        self.speedLogChart.delegate = self
         
         var lineChartEntriesSpeed = [ChartDataEntry]()
         
@@ -265,10 +317,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.speedLogChart.notifyDataSetChanged()
         
         self.speedLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
+        self.speedLogChart.leftAxis.axisMinimum = 0
+        self.speedLogChart.rightAxis.enabled = false
     }
     
     func updateHeightGraph() {
-        self.heightLogChart.delegate = self
         
         var lineChartEntriesHeight = [ChartDataEntry]()
         
@@ -295,7 +348,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.heightLogChart.notifyDataSetChanged()
         
         self.heightLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
+        self.heightLogChart.leftAxis.axisMinimum = 0
+        self.heightLogChart.rightAxis.enabled = false
         
+    }
+    
+    func saveVariables() {
+        UserDefaults.standard.set(self.speedLog, forKey: "speedLog")
+        UserDefaults.standard.set(self.speedTypeCoefficient, forKey: "speedTypeCoefficient")
+        UserDefaults.standard.set(self.speedType, forKey: "speedType")
+        UserDefaults.standard.set(self.drawRange, forKey: "drawRange")
+        UserDefaults.standard.set(self.heightLog, forKey: "heightLog")
+    }
+    
+    func speedLogPressed(_ sender:UITapGestureRecognizer) {
+        saveVariables()
+        performSegue(withIdentifier: "showSpeedLogDetail", sender: self)
+    }
+    
+    func heightLogPressed(_ sender:UITapGestureRecognizer) {
+        saveVariables()
+        performSegue(withIdentifier: "showHeightLogDetail", sender: self)
     }
 
 }

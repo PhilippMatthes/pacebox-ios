@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		73E74FF8BE86A8939980592E /* Pods_DragTimerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */; };
-		BE2E73391F39BBF2009D3EC9 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */; };
+		BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */; };
+		BE311AE31F6EBF0A00D33FD6 /* Fullsize.png in Resources */ = {isa = PBXBuildFile; fileRef = BE311AE21F6EBF0A00D33FD6 /* Fullsize.png */; };
+		BE311AE51F6ECB5C00D33FD6 /* HeightLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311AE41F6ECB5C00D33FD6 /* HeightLogDetailController.swift */; };
 		BE3703261F669F7F003306E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BE3703251F669F7F003306E8 /* Podfile */; };
 		BECDD7801F66AE6D00A98883 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECDD77F1F66AE6D00A98883 /* Charts.framework */; };
 		BEE35B111F669E1500F14771 /* Pods_DragTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003AACB093832422B6F0D78F /* Pods_DragTimer.framework */; };
@@ -47,7 +49,9 @@
 		88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A932F611395331C08AE436 /* Pods-DragTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC4C3575CFB3281DD414B001 /* Pods-DragTimerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iTunesArtwork.png; path = AppIcon/iTunesArtwork.png; sourceTree = SOURCE_ROOT; };
+		BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedLogDetailController.swift; sourceTree = "<group>"; };
+		BE311AE21F6EBF0A00D33FD6 /* Fullsize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fullsize.png; path = Applogo/Fullsize.png; sourceTree = SOURCE_ROOT; };
+		BE311AE41F6ECB5C00D33FD6 /* HeightLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightLogDetailController.swift; sourceTree = "<group>"; };
 		BE3703251F669F7F003306E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		BEC4DF091F66A0A5009DBD6F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
 		BECDD77F1F66AE6D00A98883 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
@@ -131,9 +135,11 @@
 				BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */,
 				BEE9A82B1F38BF8E000E3497 /* ViewController.swift */,
 				BEE9A82D1F38BF8E000E3497 /* Main.storyboard */,
+				BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */,
+				BE311AE41F6ECB5C00D33FD6 /* HeightLogDetailController.swift */,
 				BEE9A8301F38BF8E000E3497 /* Assets.xcassets */,
 				BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */,
-				BE2E73381F39BBF2009D3EC9 /* iTunesArtwork.png */,
+				BE311AE21F6EBF0A00D33FD6 /* Fullsize.png */,
 				BEE9A8351F38BF8E000E3497 /* Info.plist */,
 			);
 			path = DragTimer;
@@ -275,7 +281,7 @@
 				BE3703261F669F7F003306E8 /* Podfile in Resources */,
 				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
 				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
-				BE2E73391F39BBF2009D3EC9 /* iTunesArtwork.png in Resources */,
+				BE311AE31F6EBF0A00D33FD6 /* Fullsize.png in Resources */,
 				BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,7 +457,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE311AE51F6ECB5C00D33FD6 /* HeightLogDetailController.swift in Sources */,
 				BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */,
+				BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */,
 				BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,14 @@
 //
+//  AccelerationLogDetailController.swift
+//  DragTimer
+//
+//  Created by Philipp Matthes on 18.09.17.
+//  Copyright © 2017 Philipp Matthes. All rights reserved.
+//
+
+import Foundation
+
+//
 //  HeightLogDetailController.swift
 //  DragTimer
 //
@@ -10,23 +20,23 @@ import UIKit
 import Charts
 import CoreLocation
 
-class HeightLogDetailController: UIViewController, ChartViewDelegate {
+class AccelerationLogDetailController: UIViewController, ChartViewDelegate {
     
     
     
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var heightLogChartBackground: UIView!
-    @IBOutlet weak var heightLogChart: LineChartView!
+    @IBOutlet weak var accelerationLogChartBackground: UIView!
+    @IBOutlet weak var accelerationLogChart: LineChartView!
     
     let gradientLayer = CAGradientLayer()
     
-    var heightLog = [(Double, Double)]()
+    var accelerationLog = [(Double, Double)]()
     var drawRange = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpInterfaceDesign()
-        updateHeightGraph()
+        updateAccelerationGraph()
     }
     
     func setUpInterfaceDesign() {
@@ -38,7 +48,7 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         navigationItem.rightBarButtonItem = doneItem
         navigationBar.setItems([navigationItem], animated: false)
         
-        self.heightLogChartBackground.layer.cornerRadius = 10.0
+        self.accelerationLogChartBackground.layer.cornerRadius = 10.0
         
         setUpBackground(frame: self.view.bounds)
     }
@@ -69,35 +79,35 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateHeightGraph() {
+    func updateAccelerationGraph() {
         
         var lineChartEntriesHeight = [ChartDataEntry]()
         
-        for i in 0..<self.heightLog.count {
-            let value = ChartDataEntry(x: heightLog[i].0, y: self.heightLog[i].1)
+        for i in 0..<self.accelerationLog.count {
+            let value = ChartDataEntry(x: accelerationLog[i].0, y: self.accelerationLog[i].1)
             lineChartEntriesHeight.insert(value, at: 0)
         }
         
-        let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Height in m")
-        heightLine.drawCirclesEnabled = false
-        heightLine.drawCubicEnabled = true
-        heightLine.lineWidth = 2.0
-        heightLine.drawFilledEnabled = true
-        heightLine.colors = [NSUIColor.orange]
+        let accelerationLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Acceleration in g")
+        accelerationLine.drawCirclesEnabled = false
+        accelerationLine.drawCubicEnabled = true
+        accelerationLine.lineWidth = 2.0
+        accelerationLine.drawFilledEnabled = true
+        accelerationLine.colors = [NSUIColor.orange]
         
         let data = LineChartData()
         
-        data.addDataSet(heightLine)
+        data.addDataSet(accelerationLine)
         
         data.setDrawValues(false)
         
-        self.heightLogChart.data = data
-        self.heightLogChart.chartDescription?.text = nil
-        self.heightLogChart.notifyDataSetChanged()
+        self.accelerationLogChart.data = data
+        self.accelerationLogChart.chartDescription?.text = nil
+        self.accelerationLogChart.notifyDataSetChanged()
         
-        self.heightLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
-        self.heightLogChart.leftAxis.axisMinimum = 0
-        self.heightLogChart.rightAxis.enabled = false
+        self.accelerationLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
+        self.accelerationLogChart.leftAxis.axisMinimum = 0
+        self.accelerationLogChart.rightAxis.enabled = false
         
     }
     

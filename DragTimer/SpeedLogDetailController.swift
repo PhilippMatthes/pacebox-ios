@@ -1,5 +1,5 @@
 //
-//  HeightLogDetailController.swift
+//  speedLogDetailController.swift
 //  DragTimer
 //
 //  Created by Philipp Matthes on 17.09.17.
@@ -10,27 +10,27 @@ import UIKit
 import Charts
 import CoreLocation
 
-class HeightLogDetailController: UIViewController, ChartViewDelegate {
+class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     
-    
-    
+    @IBOutlet weak var speedLogChart: LineChartView!
+    @IBOutlet weak var speedLogChartBackground: UIView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var heightLogChartBackground: UIView!
-    @IBOutlet weak var heightLogChart: LineChartView!
     
     let gradientLayer = CAGradientLayer()
     
-    var heightLog = [(Double, Double)]()
+    var speedLog = [(Double, Double)]()
+    var speedType = String()
+    var speedTypeCoefficient = Double()
     var drawRange = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpInterfaceDesign()
-        updateHeightGraph()
+        updateSpeedGraph()
     }
     
     func setUpInterfaceDesign() {
-        
+
         self.view.addSubview(navigationBar)
         let navigationItem = UINavigationItem(title: "Detail View")
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.closeButtonPressed (_:)))
@@ -38,8 +38,8 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         navigationItem.rightBarButtonItem = doneItem
         navigationBar.setItems([navigationItem], animated: false)
         
-        self.heightLogChartBackground.layer.cornerRadius = 10.0
-        
+        self.speedLogChartBackground.layer.cornerRadius = 10.0
+
         setUpBackground(frame: self.view.bounds)
     }
     
@@ -69,36 +69,36 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateHeightGraph() {
+    func updateSpeedGraph() {
         
-        var lineChartEntriesHeight = [ChartDataEntry]()
+        var lineChartEntriesSpeed = [ChartDataEntry]()
         
-        for i in 0..<self.heightLog.count {
-            let value = ChartDataEntry(x: heightLog[i].0, y: self.heightLog[i].1)
-            lineChartEntriesHeight.insert(value, at: 0)
+        for i in 0..<self.speedLog.count {
+            let value = ChartDataEntry(x: speedLog[i].0, y: self.speedLog[i].1*self.speedTypeCoefficient)
+            lineChartEntriesSpeed.insert(value, at: 0)
         }
         
-        let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Height in m")
-        heightLine.drawCirclesEnabled = false
-        heightLine.drawCubicEnabled = true
-        heightLine.lineWidth = 2.0
-        heightLine.drawFilledEnabled = true
-        heightLine.colors = [NSUIColor.orange]
+        
+        let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: "Speed (in "+self.speedType+")")
+        speedLine.drawCirclesEnabled = false
+        speedLine.drawCubicEnabled = true
+        speedLine.lineWidth = 2.0
+        speedLine.drawFilledEnabled = true
+        speedLine.colors = [NSUIColor.black]
         
         let data = LineChartData()
         
-        data.addDataSet(heightLine)
+        data.addDataSet(speedLine)
         
         data.setDrawValues(false)
         
-        self.heightLogChart.data = data
-        self.heightLogChart.chartDescription?.text = nil
-        self.heightLogChart.notifyDataSetChanged()
+        self.speedLogChart.data = data
+        self.speedLogChart.chartDescription?.text = nil
+        self.speedLogChart.notifyDataSetChanged()
         
-        self.heightLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
-        self.heightLogChart.leftAxis.axisMinimum = 0
-        self.heightLogChart.rightAxis.enabled = false
-        
+        self.speedLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
+        self.speedLogChart.leftAxis.axisMinimum = 0
+        self.speedLogChart.rightAxis.enabled = false
     }
     
     func closeButtonPressed(_ sender:UITapGestureRecognizer){
@@ -117,8 +117,7 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         }
     }
     
-    
+
     
 }
-
 

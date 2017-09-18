@@ -11,6 +11,9 @@
 		BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */; };
 		BE311AE31F6EBF0A00D33FD6 /* Fullsize.png in Resources */ = {isa = PBXBuildFile; fileRef = BE311AE21F6EBF0A00D33FD6 /* Fullsize.png */; };
 		BE311AE51F6ECB5C00D33FD6 /* HeightLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311AE41F6ECB5C00D33FD6 /* HeightLogDetailController.swift */; };
+		BE311AE71F6FB1AC00D33FD6 /* settingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = BE311AE61F6FB1AC00D33FD6 /* settingsIcon.png */; };
+		BE311AE91F6FC7A500D33FD6 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */; };
+		BE311AEB1F6FF8D000D33FD6 /* AccelerationLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311AEA1F6FF8D000D33FD6 /* AccelerationLogDetailController.swift */; };
 		BE3703261F669F7F003306E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BE3703251F669F7F003306E8 /* Podfile */; };
 		BECDD7801F66AE6D00A98883 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECDD77F1F66AE6D00A98883 /* Charts.framework */; };
 		BEE35B111F669E1500F14771 /* Pods_DragTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003AACB093832422B6F0D78F /* Pods_DragTimer.framework */; };
@@ -52,6 +55,9 @@
 		BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedLogDetailController.swift; sourceTree = "<group>"; };
 		BE311AE21F6EBF0A00D33FD6 /* Fullsize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fullsize.png; path = Applogo/Fullsize.png; sourceTree = SOURCE_ROOT; };
 		BE311AE41F6ECB5C00D33FD6 /* HeightLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeightLogDetailController.swift; sourceTree = "<group>"; };
+		BE311AE61F6FB1AC00D33FD6 /* settingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settingsIcon.png; path = ../../../Downloads/settingsIcon.png; sourceTree = "<group>"; };
+		BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		BE311AEA1F6FF8D000D33FD6 /* AccelerationLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccelerationLogDetailController.swift; sourceTree = "<group>"; };
 		BE3703251F669F7F003306E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		BEC4DF091F66A0A5009DBD6F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
 		BECDD77F1F66AE6D00A98883 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
@@ -135,11 +141,14 @@
 				BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */,
 				BEE9A82B1F38BF8E000E3497 /* ViewController.swift */,
 				BEE9A82D1F38BF8E000E3497 /* Main.storyboard */,
+				BE311AEA1F6FF8D000D33FD6 /* AccelerationLogDetailController.swift */,
+				BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */,
 				BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */,
 				BE311AE41F6ECB5C00D33FD6 /* HeightLogDetailController.swift */,
 				BEE9A8301F38BF8E000E3497 /* Assets.xcassets */,
 				BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */,
 				BE311AE21F6EBF0A00D33FD6 /* Fullsize.png */,
+				BE311AE61F6FB1AC00D33FD6 /* settingsIcon.png */,
 				BEE9A8351F38BF8E000E3497 /* Info.plist */,
 			);
 			path = DragTimer;
@@ -281,6 +290,7 @@
 				BE3703261F669F7F003306E8 /* Podfile in Resources */,
 				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
 				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
+				BE311AE71F6FB1AC00D33FD6 /* settingsIcon.png in Resources */,
 				BE311AE31F6EBF0A00D33FD6 /* Fullsize.png in Resources */,
 				BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */,
 			);
@@ -458,6 +468,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE311AE51F6ECB5C00D33FD6 /* HeightLogDetailController.swift in Sources */,
+				BE311AEB1F6FF8D000D33FD6 /* AccelerationLogDetailController.swift in Sources */,
+				BE311AE91F6FC7A500D33FD6 /* SettingsController.swift in Sources */,
 				BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */,
 				BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */,
 				BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */,

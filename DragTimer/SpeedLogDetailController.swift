@@ -23,6 +23,8 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     var speedTypeCoefficient = Double()
     var drawRange = Int()
     
+    var previousViewController = ViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpInterfaceDesign()
@@ -81,7 +83,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         
         let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: "Speed (in "+self.speedType+")")
         speedLine.drawCirclesEnabled = false
-        speedLine.drawCubicEnabled = true
+        speedLine.mode = LineChartDataSet.Mode.horizontalBezier
         speedLine.lineWidth = 2.0
         speedLine.drawFilledEnabled = true
         speedLine.colors = [NSUIColor.black]
@@ -110,6 +112,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     }
     
     func performSegueToReturnBack()  {
+        previousViewController.startTimer()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {

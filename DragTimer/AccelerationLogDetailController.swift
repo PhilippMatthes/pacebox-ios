@@ -22,7 +22,7 @@ import CoreLocation
 
 class AccelerationLogDetailController: UIViewController, ChartViewDelegate {
     
-    
+    var previousViewController = ViewController()
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var accelerationLogChartBackground: UIView!
@@ -90,7 +90,7 @@ class AccelerationLogDetailController: UIViewController, ChartViewDelegate {
         
         let accelerationLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Acceleration in g")
         accelerationLine.drawCirclesEnabled = false
-        accelerationLine.drawCubicEnabled = true
+        accelerationLine.mode = LineChartDataSet.Mode.horizontalBezier
         accelerationLine.lineWidth = 2.0
         accelerationLine.drawFilledEnabled = true
         accelerationLine.colors = [NSUIColor.orange]
@@ -106,7 +106,6 @@ class AccelerationLogDetailController: UIViewController, ChartViewDelegate {
         self.accelerationLogChart.notifyDataSetChanged()
         
         self.accelerationLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
-        self.accelerationLogChart.leftAxis.axisMinimum = 0
         self.accelerationLogChart.rightAxis.enabled = false
         
     }
@@ -120,6 +119,7 @@ class AccelerationLogDetailController: UIViewController, ChartViewDelegate {
     }
     
     func performSegueToReturnBack()  {
+        previousViewController.startTimer()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {

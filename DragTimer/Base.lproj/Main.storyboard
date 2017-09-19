@@ -137,6 +137,41 @@
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.74847495719178081" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="tintColor" red="1" green="0.72909247300000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5va-10-gU9">
+                                                <rect key="frame" x="16" y="95" width="288" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJJ-Zo-rc8">
+                                                        <rect key="frame" x="127" y="10" width="29" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100.0" borderStyle="roundedRect" placeholder="100" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIQ-V4-ha2">
+                                                        <rect key="frame" x="8" y="10" width="111" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <connections>
+                                                            <action selector="lowSpeedField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="TB0-Lb-wkg"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="200.0" borderStyle="roundedRect" placeholder="100" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ext-ah-4bj">
+                                                        <rect key="frame" x="164" y="10" width="116" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <connections>
+                                                            <action selector="highSpeedField:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="vKL-Sd-TQT"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.74847495720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="1" green="0.72909247300000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWN-87-eEd">
                                                 <rect key="frame" x="16" y="530" width="288" height="162"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -170,6 +205,27 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.44330512150000001" green="0.87931315099999996" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </view>
+                                                </subviews>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTN-qQ-xra">
+                                                <rect key="frame" x="16" y="153" width="288" height="66"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QO-TN-KLL">
+                                                        <rect key="frame" x="4" y="4" width="280" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No time recorded yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLJ-bM-sY5">
+                                                        <rect key="frame" x="4" y="25" width="280" height="36"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -212,6 +268,8 @@
                         <outlet property="currentSpeedBackground" destination="aXY-Si-F7g" id="HR1-Sv-zzK"/>
                         <outlet property="heightLogChart" destination="4mx-nl-NJH" id="Kv5-hr-XjY"/>
                         <outlet property="heightLogChartBackground" destination="dWN-87-eEd" id="Xax-57-KkR"/>
+                        <outlet property="highSpeedField" destination="Ext-ah-4bj" id="aC7-45-X62"/>
+                        <outlet property="lowSpeedField" destination="NIQ-V4-ha2" id="eqI-2V-tbN"/>
                         <outlet property="maxSpeedBackground" destination="5PX-Dc-8mM" id="6RE-Q5-GJI"/>
                         <outlet property="maxSpeedLabel" destination="wq1-0Z-cOQ" id="suk-Zr-NUE"/>
                         <outlet property="scrollView" destination="yar-gR-kev" id="mzp-xH-WAT"/>
@@ -219,6 +277,9 @@
                         <outlet property="speedLogChart" destination="xbT-Dh-CsW" id="ceg-Lh-e5w"/>
                         <outlet property="speedLogChartBackground" destination="Rp5-Pf-bVX" id="P4b-XT-RRf"/>
                         <outlet property="speedReplacementLabel" destination="LiV-H1-4HX" id="JPF-eL-irl"/>
+                        <outlet property="speedSelectionBackground" destination="5va-10-gU9" id="UKf-RL-DNG"/>
+                        <outlet property="timeBackground" destination="cTN-qQ-xra" id="ylq-eq-Mnk"/>
+                        <outlet property="timeReplacementLabel" destination="cLJ-bM-sY5" id="hVU-Ly-CNq"/>
                         <segue destination="qYL-l3-9x0" kind="showDetail" identifier="showSpeedLogDetail" action="showViewController:sender:" id="d1J-mg-YAZ"/>
                         <segue destination="PDu-DM-M8X" kind="show" identifier="showHeightLogDetail" id="A0J-ad-7Ji"/>
                         <segue destination="2ZV-Rj-vcP" kind="show" identifier="showSettings" id="hZk-Df-334"/>
@@ -297,14 +358,14 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgG-ds-wJQ">
-                                                <rect key="frame" x="29" y="4" width="107" height="36"/>
+                                                <rect key="frame" x="63" y="31" width="40" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="25"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="60" minValue="5" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="xKq-5U-E7q">
-                                                <rect key="frame" x="2" y="7" width="161" height="31"/>
+                                                <rect key="frame" x="-2" y="7" width="170" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <connections>
                                                     <action selector="logSizeSliderValueChanged:" destination="2ZV-Rj-vcP" eventType="valueChanged" id="wsE-vG-AFe"/>
@@ -348,7 +409,6 @@
         <!--SpeedLogDetailController-->
         <scene sceneID="97q-Kg-TSb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UXA-U8-0Vh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="SpeedLogDetailController" id="qYL-l3-9x0" customClass="SpeedLogDetailController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9BU-Cd-8mP"/>
@@ -403,13 +463,13 @@
                         <outlet property="speedLogChartBackground" destination="AZY-gK-gNV" id="jwW-67-FIO"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UXA-U8-0Vh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1089" y="1166"/>
         </scene>
         <!--HeightLogDetailController-->
         <scene sceneID="QNK-gE-ow1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ds8-vS-Pzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="HeightLogDetailController" id="PDu-DM-M8X" customClass="HeightLogDetailController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T91-Al-3rd"/>
@@ -464,13 +524,13 @@
                         <outlet property="navigationBar" destination="E8G-HU-mpe" id="w2b-YD-l9C"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ds8-vS-Pzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-399" y="1165"/>
         </scene>
         <!--AccelerationLogDetailController-->
         <scene sceneID="Em6-5p-voX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7t3-ep-UXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="AccelerationLogDetailController" id="dOu-5K-Gs4" customClass="AccelerationLogDetailController" customModule="DragTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ocw-NH-i03"/>
@@ -525,6 +585,7 @@
                         <outlet property="navigationBar" destination="09c-J5-N7E" id="mit-I5-GLw"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7t3-ep-UXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="300" y="1165"/>
         </scene>

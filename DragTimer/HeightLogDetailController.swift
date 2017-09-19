@@ -18,6 +18,8 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var heightLogChartBackground: UIView!
     @IBOutlet weak var heightLogChart: LineChartView!
     
+    var previousViewController = ViewController()
+    
     let gradientLayer = CAGradientLayer()
     
     var heightLog = [(Double, Double)]()
@@ -80,7 +82,7 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         
         let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Height in m")
         heightLine.drawCirclesEnabled = false
-        heightLine.drawCubicEnabled = true
+        heightLine.mode = LineChartDataSet.Mode.horizontalBezier
         heightLine.lineWidth = 2.0
         heightLine.drawFilledEnabled = true
         heightLine.colors = [NSUIColor.orange]
@@ -96,7 +98,6 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         self.heightLogChart.notifyDataSetChanged()
         
         self.heightLogChart.setVisibleXRange(minXRange: 0, maxXRange: Double(self.drawRange))
-        self.heightLogChart.leftAxis.axisMinimum = 0
         self.heightLogChart.rightAxis.enabled = false
         
     }
@@ -110,6 +111,7 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
     }
     
     func performSegueToReturnBack()  {
+        previousViewController.startTimer()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {

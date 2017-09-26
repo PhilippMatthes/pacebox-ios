@@ -1,0 +1,6 @@
+framework module Pods_DragTimerTests {
+  umbrella header "Pods-DragTimerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

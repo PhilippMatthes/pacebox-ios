@@ -103,7 +103,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         self.speedLogChart.rightAxis.enabled = false
     }
     
-    func closeButtonPressed(_ sender:UITapGestureRecognizer){
+    @objc func closeButtonPressed(_ sender:UITapGestureRecognizer){
         performSegueToReturnBack()
     }
     

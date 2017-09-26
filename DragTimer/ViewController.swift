@@ -244,12 +244,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.highSpeedField.inputAccessoryView = doneToolbar
     }
     
-    func doneButtonAction() {
+    @objc func doneButtonAction() {
         self.lowSpeedField.resignFirstResponder()
         self.highSpeedField.resignFirstResponder()
     }
     
-    func advanceTimer(timer: Timer) {
+    @objc func advanceTimer(timer: Timer) {
         currentTime = Date().timeIntervalSinceReferenceDate - startTime
         if lowSpeed < highSpeed {
             checkForDragTime()
@@ -440,15 +440,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
     }
     
-    func speedLogPressed(_ sender:UITapGestureRecognizer) {
+    @objc func speedLogPressed(_ sender:UITapGestureRecognizer) {
         performSegue(withIdentifier: "showSpeedLogDetail", sender: self)
     }
     
-    func heightLogPressed(_ sender:UITapGestureRecognizer) {
+    @objc func heightLogPressed(_ sender:UITapGestureRecognizer) {
         performSegue(withIdentifier: "showHeightLogDetail", sender: self)
     }
     
-    func accelerationLogPressed(_ sender:UITapGestureRecognizer) {
+    @objc func accelerationLogPressed(_ sender:UITapGestureRecognizer) {
         performSegue(withIdentifier: "showAccelerationLogDetail", sender: self)
     }
     

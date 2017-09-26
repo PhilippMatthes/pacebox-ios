@@ -82,7 +82,7 @@ class SettingsController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func closeButtonPressed(_ sender:UITapGestureRecognizer){
+    @objc func closeButtonPressed(_ sender:UITapGestureRecognizer){
         performSegueToReturnBack()
     }
     

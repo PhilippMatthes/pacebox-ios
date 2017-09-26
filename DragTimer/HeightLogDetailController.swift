@@ -102,7 +102,7 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
         
     }
     
-    func closeButtonPressed(_ sender:UITapGestureRecognizer){
+    @objc func closeButtonPressed(_ sender:UITapGestureRecognizer){
         performSegueToReturnBack()
     }
     

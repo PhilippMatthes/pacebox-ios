@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound], categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge], categories: nil))
         
         application.beginBackgroundTask(withName: "showNotification", expirationHandler: nil)
         
@@ -50,10 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func pushNotification() {
         let notification = UILocalNotification()
-        notification.alertAction = "Go back to App"
-        notification.alertBody = "The app will not track your speed when closed."
+        notification.alertAction = "Go back to the DragTimer App"
+        notification.alertBody = "Goodbye! The app will not track your speed when closed."
         notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-        notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.shared.scheduleLocalNotification(notification)
     }
 

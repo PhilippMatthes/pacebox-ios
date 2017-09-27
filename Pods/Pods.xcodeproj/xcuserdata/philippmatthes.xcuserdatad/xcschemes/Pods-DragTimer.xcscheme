@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9FCE0CCCCF613E56FA3B0FC53B566B72"
+               BlueprintIdentifier = "2339D7502C84EC564944B63F80B97FFF"
                BuildableName = "Pods_DragTimer.framework"
                BlueprintName = "Pods-DragTimer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9FCE0CCCCF613E56FA3B0FC53B566B72"
+            BlueprintIdentifier = "2339D7502C84EC564944B63F80B97FFF"
             BuildableName = "Pods_DragTimer.framework"
             BlueprintName = "Pods-DragTimer"
             ReferencedContainer = "container:Pods.xcodeproj">

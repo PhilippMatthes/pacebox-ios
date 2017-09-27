@@ -36,7 +36,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         self.view.addSubview(navigationBar)
         let navigationItem = UINavigationItem(title: "Detail View")
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.closeButtonPressed (_:)))
-        doneItem.tintColor = UIColor.orange
+        doneItem.tintColor = Constants.designColor1
         navigationItem.rightBarButtonItem = doneItem
         navigationBar.setItems([navigationItem], animated: false)
         
@@ -47,9 +47,8 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     
     func setUpBackground(frame: CGRect) {
         gradientLayer.frame = frame
-        let color1 = UIColor(red: 1.0, green: 0.666, blue: 0, alpha: 1.0).cgColor as CGColor
-        let color2 = UIColor(red: 0.83, green: 0.10, blue: 0.10, alpha: 1.0).cgColor as CGColor
-        gradientLayer.colors = [color1, color2]
+        gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor,
+                                Constants.backgroundColor2.cgColor as CGColor]
         gradientLayer.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -113,6 +112,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     
     func performSegueToReturnBack()  {
         previousViewController.startTimer()
+        previousViewController.startSpeedometer()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {

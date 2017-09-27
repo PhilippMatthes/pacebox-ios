@@ -10,37 +10,37 @@ import UIKit
 import Charts
 import CoreLocation
 import CoreMotion
+import BRYXBanner
 
 class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate, UIScrollViewDelegate {
+    
+    var banner = Banner()
     
     let gradientLayer = CAGradientLayer()
     
     var motionManager = CMMotionManager()
     
+    @IBOutlet weak var speedTypeLabel: UILabel!
+    @IBOutlet weak var speedometerView: UIView!
     @IBOutlet weak var lowSpeedField: UITextField!
     @IBOutlet weak var highSpeedField: UITextField!
-    @IBOutlet weak var speedSelectionBackground: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var speedReplacementLabel: UILabel!
     @IBOutlet var background: UIView!
     @IBOutlet weak var maxSpeedLabel: UILabel!
     @IBOutlet weak var accuracyLabel: UILabel!
     @IBOutlet weak var accuracyBackground: UIView!
     @IBOutlet weak var settingsBackground: UIView!
-    @IBOutlet weak var maxSpeedBackground: UIView!
-    @IBOutlet weak var currentSpeedBackground: UIView!
     @IBOutlet weak var accelerationLabel: UILabel!
     @IBOutlet weak var accelerationBackground: UIView!
     @IBOutlet weak var speedLogChart: LineChartView!
-    @IBOutlet weak var speedLogChartBackground: UIView!
-    @IBOutlet weak var heightLogChart: LineChartView!
-    @IBOutlet weak var heightLogChartBackground: UIView!
-    @IBOutlet weak var accelerationLogChart: LineChartView!
-    @IBOutlet weak var accelerationLogChartBackground: UIView!
     @IBOutlet weak var timeBackground: UIView!
     @IBOutlet weak var timeReplacementLabel: UILabel!
+    @IBOutlet weak var savedMeasurementsButtonBackground: UIView!
+    @IBOutlet weak var saveButtonBackground: UIView!
     
     let manager = CLLocationManager()
+    
+    var speedo = Speedometer()
     
     var speedLog = [(Double, Double)]()
     var heightLog = [(Double, Double)]()
@@ -60,15 +60,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var currentHorizontalAccuracy = 5 as Double
     var currentGForce = 1 as Double
     
-    var lowSpeed = 100 as Double
-    var highSpeed = 200 as Double
+    var lowSpeed = Double()
+    var highSpeed = Double()
     
-    var drawRange = 60
+    var drawRange = Int()
     
-    var speedType = "km/h"
-    var speedTypeCoefficient = 3.6 as Double
+    var speedType = String()
+    var speedTypeCoefficient = Double()
     
     weak var timer: Timer?
+    weak var speedometerTimer: Timer?
     var startTime: Double = 0
     var currentTime: Double = 0
     
@@ -77,22 +78,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var dragTime = Double()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadSettings()
+        
+        self.view.addSubview(speedLogChart)
+        
+        setUpSpeedometer()
         setUpLocationManager()
         setUpInterfaceDesign()
         setUpBackground(frame: self.view.bounds)
         setUpDoneButton()
         setUpChartView()
-        setUpScrollView()
         startTimer()
+        startSpeedometer()
         setUpMotionManager()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         updateGraphs = false
         timer?.invalidate()
+        speedometerTimer?.invalidate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +110,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         // Dispose of any resources that can be recreated.
     }
     
+    func loadSettings() {
+        lowSpeed = UserDefaults.standard.object(forKey: "lowSpeed") as? Double ?? 100.0
+        highSpeed = UserDefaults.standard.object(forKey: "highSpeed") as? Double ?? 200.0
+        speedType = UserDefaults.standard.object(forKey: "speedType") as? String ?? "km/h"
+        speedTypeCoefficient = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Double ?? 3.6
+        drawRange = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Int ?? 60
+    }
+    
+    func setUpSpeedometer() {
+        // Create a new CircleView
+        speedo = Speedometer(frame: speedometerView.frame)
+        
+        speedometerView.addSubview(speedo)
+
+    }
+    
     func setUpMotionManager() {
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data,error) in
@@ -113,64 +135,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         }
     }
     
-    func setUpScrollView() {
-        scrollView.delegate = self
-        scrollView.delaysContentTouches = true
-        //        scrollView.isUserInteractionEnabled = true
-        //        scrollView.isExclusiveTouch = true
-        scrollView.canCancelContentTouches = true
-        
-        scrollView.addSubview(speedLogChartBackground)
-        scrollView.addSubview(heightLogChartBackground)
-        scrollView.addSubview(settingsBackground)
-        scrollView.addSubview(accelerationLogChartBackground)
-        scrollView.addSubview(speedSelectionBackground)
-    }
     
     func setUpInterfaceDesign() {
-        self.currentSpeedBackground.layer.cornerRadius = 10.0
-        self.maxSpeedBackground.layer.cornerRadius = 10.0
-        self.settingsBackground.layer.cornerRadius = 10.0
-        self.accuracyBackground.layer.cornerRadius = 10.0
-        self.speedLogChartBackground.layer.cornerRadius = 10.0
-        self.heightLogChartBackground.layer.cornerRadius = 10.0
-        self.accelerationBackground.layer.cornerRadius = 10.0
-        self.accelerationLogChartBackground.layer.cornerRadius = 10.0
-        self.speedSelectionBackground.layer.cornerRadius = 10.0
-        self.timeBackground.layer.cornerRadius = 10.0
+        self.maxSpeedLabel.textColor = UIColor.gray
+        self.speedTypeLabel.textColor = UIColor.gray
+        self.speedReplacementLabel.textColor = UIColor.white
+        self.settingsBackground.layer.cornerRadius = Constants.cornerRadius
+        self.accuracyBackground.layer.cornerRadius = Constants.cornerRadius
+        self.accelerationBackground.layer.cornerRadius = Constants.cornerRadius
+        self.timeBackground.layer.cornerRadius = Constants.cornerRadius
+        self.savedMeasurementsButtonBackground.layer.cornerRadius = Constants.cornerRadius
+        self.saveButtonBackground.layer.cornerRadius = Constants.cornerRadius
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func setUpBackground(frame: CGRect) {
         gradientLayer.frame = frame
-        let color1 = UIColor(red: 1.0, green: 0.666, blue: 0, alpha: 1.0).cgColor as CGColor
-        let color2 = UIColor(red: 0.83, green: 0.10, blue: 0.10, alpha: 1.0).cgColor as CGColor
-        gradientLayer.colors = [color1, color2]
+        gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor, Constants.backgroundColor2.cgColor as CGColor]
         gradientLayer.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func setUpChartView() {
         speedLogChart.delegate = self
-        heightLogChart.delegate = self
-        accelerationLogChart.delegate = self
         
         speedLogChart.chartDescription?.text = nil
         speedLogChart.leftAxis.axisMinimum = 0
         speedLogChart.rightAxis.enabled = false
-        
-        heightLogChart.chartDescription?.text = nil
-        heightLogChart.rightAxis.enabled = false
-        
-        accelerationLogChart.chartDescription?.text = nil
-        accelerationLogChart.rightAxis.enabled = false
+        speedLogChart.leftAxis.enabled = false
+        speedLogChart.xAxis.enabled = false
+        speedLogChart.drawBordersEnabled = false
+        speedLogChart.legend.enabled = false
+        speedLogChart.isUserInteractionEnabled = false
         
         let touchRecognizerSpeedLog = UITapGestureRecognizer(target: self, action:  #selector (self.speedLogPressed (_:)))
-        let touchRecognizerHeightLog = UITapGestureRecognizer(target: self, action:  #selector (self.heightLogPressed (_:)))
-        let touchRecognizerAccelerationLog = UITapGestureRecognizer(target: self, action:  #selector (self.accelerationLogPressed (_:)))
         
         speedLogChart.addGestureRecognizer(touchRecognizerSpeedLog)
-        heightLogChart.addGestureRecognizer(touchRecognizerHeightLog)
-        accelerationLogChart.addGestureRecognizer(touchRecognizerAccelerationLog)
     }
     
     func startTimer() {
@@ -182,7 +185,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                                      repeats: true)
     }
     
+    func startSpeedometer() {
+        startTime = Date().timeIntervalSinceReferenceDate - currentTime
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                     target: self,
+                                     selector: #selector(advanceSpeedometerTimer(timer:)),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let speed = locations[0].speed - 1.0
+        if speed >= 0.0 {
+            currentSpeed = speed
+            connectionEstablished()
+        }
+        else {
+            connectionLost()
+        }
         if updateGraphs {
             self.locations = locations
             currentLocation = self.locations[0]
@@ -208,9 +228,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             }
             // Update acceleration log
             accelerationLog.insert((currentTime, currentGForce), at: 0)
-            while speedLog.count > drawRange {
-                speedLog.remove(at: drawRange)
+            while accelerationLog.count > drawRange {
+                accelerationLog.remove(at: drawRange)
             }
+            if var dragLogLastTime = dragLog.first?.0 {
+                while dragLogLastTime < currentTime - Double(drawRange) && dragLog.count > 0 {
+                    dragLogLastTime = dragLog.removeFirst().0
+                }
+            }
+            
             // Convert current speed and save
             convertedCurrentSpeed = Double(round(100 * currentSpeed * speedTypeCoefficient)/100)
             let max = speedLog.max(by: {$0.1 < $1.1 })!.1
@@ -219,10 +245,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             }
             convertedMaxSpeed = Double(round(100 * maxSpeed * speedTypeCoefficient)/100)
             currentHorizontalAccuracy = Double(round(100 * currentLocation.horizontalAccuracy)/100)
+            
             refreshAllLabels()
             updateSpeedGraph()
-            updateHeightGraph()
-            updateAccelerationGraph()
         }
     }
     
@@ -231,7 +256,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         doneToolbar.barStyle       = UIBarStyle.default
         let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewController.doneButtonAction))
-        done.tintColor = UIColor.orange
+        done.tintColor = Constants.designColor1
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)
@@ -253,6 +278,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         currentTime = Date().timeIntervalSinceReferenceDate - startTime
         if lowSpeed < highSpeed {
             checkForDragTime()
+        }
+    }
+    
+    @objc func advanceSpeedometerTimer(timer: Timer) {
+        if updateGraphs {
+            var percentage = Double()
+            if maxSpeed != 0.0 {
+                percentage = currentSpeed/maxSpeed
+            }
+            else {
+                percentage = 0.0
+            }
+            speedo.animateCircle(duration: 1.0, newPercentage: percentage)
         }
     }
     
@@ -333,8 +371,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func refreshAllLabels() {
         DispatchQueue.main.async(execute:  {
-            self.speedReplacementLabel.text = "\(self.convertedCurrentSpeed) "+self.speedType
-            self.maxSpeedLabel.text = "\(self.convertedMaxSpeed) "+self.speedType
+            self.speedReplacementLabel.text = "\(self.convertedCurrentSpeed)"
+            self.maxSpeedLabel.text = "Max: \(self.convertedMaxSpeed) "
             self.accuracyLabel.text = "\(self.currentHorizontalAccuracy) m"
             self.accelerationLabel.text = "\(self.currentGForce) g"
             self.timeReplacementLabel.text = "\(self.dragTime) s"
@@ -345,6 +383,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
         var lineChartEntriesSpeed = [ChartDataEntry]()
         var lineChartEntriesDrag = [ChartDataEntry]()
+        var lineChartEntriesHeight = [ChartDataEntry]()
         
         for i in 0..<self.speedLog.count {
             let value = ChartDataEntry(x: speedLog[i].0, y: speedLog[i].1*speedTypeCoefficient)
@@ -357,25 +396,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             lineChartEntriesDrag.insert(value, at: 0)
         }
         
+        for i in 0..<self.heightLog.count {
+            let value = ChartDataEntry(x: heightLog[i].0, y: self.heightLog[i].1)
+            lineChartEntriesHeight.insert(value, at: 0)
+        }
         
-        let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: "Speed (in "+speedType+")")
+        
+        let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: nil)
         speedLine.drawCirclesEnabled = false
         speedLine.mode = LineChartDataSet.Mode.horizontalBezier
-        speedLine.lineWidth = 1.0
+        speedLine.lineWidth = 5.0
         speedLine.drawFilledEnabled = true
-        speedLine.colors = [NSUIColor.orange]
+        speedLine.fill = Fill(CGColor: Constants.graphColor.cgColor as CGColor)
+        speedLine.colors = [Constants.graphColor]
         
-        let dragLine = LineChartDataSet(values: lineChartEntriesDrag, label: String(lowSpeed)+" to "+String(highSpeed)+" "+speedType)
+        let dragLine = LineChartDataSet(values: lineChartEntriesDrag, label: nil)
         dragLine.drawCirclesEnabled = false
         dragLine.mode = LineChartDataSet.Mode.horizontalBezier
-        dragLine.lineWidth = 1.0
-        dragLine.drawFilledEnabled = true
-        dragLine.colors = [NSUIColor.black]
+        dragLine.lineWidth = 5.0
+        dragLine.drawFilledEnabled = false
+        dragLine.fill = Fill(CGColor: Constants.graphColor.cgColor as CGColor)
+        dragLine.colors = [Constants.graphColor]
+        
+        let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: nil)
+        heightLine.drawCirclesEnabled = false
+        heightLine.mode = LineChartDataSet.Mode.horizontalBezier
+        heightLine.lineWidth = 1.0
+        heightLine.drawFilledEnabled = true
+        heightLine.fill = Fill(CGColor: Constants.graphColor.cgColor as CGColor)
+        heightLine.colors = [Constants.graphColor]
         
         let data = LineChartData()
         
         data.addDataSet(speedLine)
         data.addDataSet(dragLine)
+        data.addDataSet(heightLine)
         
         data.setDrawValues(false)
         
@@ -384,76 +439,82 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
     }
     
-    func updateHeightGraph() {
-        
-        var lineChartEntriesHeight = [ChartDataEntry]()
-        
-        for i in 0..<self.heightLog.count {
-            let value = ChartDataEntry(x: heightLog[i].0, y: self.heightLog[i].1)
-            lineChartEntriesHeight.insert(value, at: 0)
+    
+    func connectionLost() {
+        accuracyLabel.text = "n/a"
+        speedReplacementLabel.text = "n/a"
+        accelerationLabel.text = "n/a"
+        if updateGraphs {
+            banner.dismiss()
+            banner = Banner(title: "Speed not trackable", subtitle: "The movement sensor sent erroneous values. Try moving or reestablishing your GPS connection.", image: UIImage(named: "gpsIcon"), backgroundColor: Constants.designColor2)
+            banner.dismissesOnTap = true
+            banner.position = BannerPosition.bottom
+            banner.show()
+            speedo.animateCircle(duration: 5.0, newPercentage: 1.0)
         }
-        
-        let heightLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Height in m")
-        heightLine.drawCirclesEnabled = false
-        heightLine.mode = LineChartDataSet.Mode.horizontalBezier
-        heightLine.lineWidth = 1.0
-        heightLine.drawFilledEnabled = true
-        heightLine.colors = [NSUIColor.orange]
-        
-        let data = LineChartData()
-        
-        data.addDataSet(heightLine)
-        
-        data.setDrawValues(false)
-        
-        heightLogChart.data = data
-        self.heightLogChart.notifyDataSetChanged()
-        
-        
+        updateGraphs = false
     }
     
-    func updateAccelerationGraph() {
-        
-        var lineChartEntriesHeight = [ChartDataEntry]()
-        
-        for i in 0..<self.accelerationLog.count {
-            let value = ChartDataEntry(x: accelerationLog[i].0, y: self.accelerationLog[i].1)
-            lineChartEntriesHeight.insert(value, at: 0)
+    func connectionEstablished() {
+        if !updateGraphs {
+            banner.dismiss()
+            banner = Banner(title: "Speed trackable", subtitle: "Your speed will be tracked now.", image: UIImage(named: "gpsIcon"), backgroundColor: Constants.designColor1)
+            banner.dismissesOnTap = true
+            banner.position = BannerPosition.bottom
+            banner.show(duration: 3.0)
         }
-        
-        let accelerationLine = LineChartDataSet(values: lineChartEntriesHeight, label: "Acceleration in g")
-        accelerationLine.drawCirclesEnabled = false
-        accelerationLine.mode = LineChartDataSet.Mode.horizontalBezier
-        accelerationLine.lineWidth = 1.0
-        accelerationLine.drawFilledEnabled = true
-        accelerationLine.colors = [NSUIColor.orange]
-        
-        let data = LineChartData()
-        
-        data.addDataSet(accelerationLine)
-        
-        data.setDrawValues(false)
-        
-        accelerationLogChart.data = data
-        self.accelerationLogChart.notifyDataSetChanged()
-        
-        
+        updateGraphs = true
+    }
+    
+    func saveCurrentTime() {
+        var measurements = [Measurement]()
+        if let decoded = UserDefaults.standard.object(forKey: "measurements") as? NSData {
+            let array = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as! [Measurement]
+            measurements = array
+        }
+        let currentDate = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
+        let currentMeasurement = Measurement(time: dragTime,
+                                             speedLog: speedLog,
+                                             heightLog: heightLog,
+                                             accelerationLog: accelerationLog,
+                                             lowSpeed: lowSpeed,
+                                             highSpeed: highSpeed,
+                                             speedTypeCoefficient: speedTypeCoefficient,
+                                             speedType: speedType,
+                                             date: currentDate)
+        measurements += [currentMeasurement]
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: measurements)
+        UserDefaults.standard.set(encodedData, forKey: "measurements")
     }
     
     @objc func speedLogPressed(_ sender:UITapGestureRecognizer) {
-        performSegue(withIdentifier: "showSpeedLogDetail", sender: self)
+        if speedLog.count > 0 {
+            performSegue(withIdentifier: "showSpeedLogDetail", sender: self)
+        }
     }
     
     @objc func heightLogPressed(_ sender:UITapGestureRecognizer) {
-        performSegue(withIdentifier: "showHeightLogDetail", sender: self)
+        if heightLog.count > 0 {
+            performSegue(withIdentifier: "showHeightLogDetail", sender: self)
+        }
     }
     
     @objc func accelerationLogPressed(_ sender:UITapGestureRecognizer) {
-        performSegue(withIdentifier: "showAccelerationLogDetail", sender: self)
+        if accelerationLog.count > 0 {
+            performSegue(withIdentifier: "showAccelerationLogDetail", sender: self)
+        }
+    }
+    
+    @IBAction func savedMeasurementsButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "showSavedMeasurements", sender: self)
     }
     
     @IBAction func settingsButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "showSettings", sender: self)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        saveCurrentTime()
     }
     
     @IBAction func highSpeedField(_ sender: UITextField) {
@@ -480,23 +541,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSpeedLogDetail" {
             let vc = segue.destination as! SpeedLogDetailController
-            vc.previousViewController = self
-            
+            vc.previousViewController = self            
             vc.speedLog = self.speedLog
             vc.speedType = self.speedType
             vc.speedTypeCoefficient = self.speedTypeCoefficient
-            vc.drawRange = self.drawRange
-        }
-        if segue.identifier == "showHeightLogDetail" {
-            let vc = segue.destination as! HeightLogDetailController
-            vc.previousViewController = self
-            vc.heightLog = self.heightLog
-            vc.drawRange = self.drawRange
-        }
-        if segue.identifier == "showAccelerationLogDetail" {
-            let vc = segue.destination as! AccelerationLogDetailController
-            vc.previousViewController = self
-            vc.accelerationLog = self.accelerationLog
             vc.drawRange = self.drawRange
         }
         if segue.identifier == "showSettings" {
@@ -505,6 +553,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             vc.drawRange = self.drawRange
             vc.speedTypeCoefficient = self.speedTypeCoefficient
             vc.speedType = self.speedType
+        }
+        if segue.identifier == "showSavedMeasurements" {
+            let vc = segue.destination as! SavedMeasurementsController
+            vc.previousViewController = self
         }
     }
 

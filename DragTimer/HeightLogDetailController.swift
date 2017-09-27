@@ -112,6 +112,7 @@ class HeightLogDetailController: UIViewController, ChartViewDelegate {
     
     func performSegueToReturnBack()  {
         previousViewController.startTimer()
+        previousViewController.startSpeedometer()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {

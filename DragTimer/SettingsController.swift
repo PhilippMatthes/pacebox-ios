@@ -37,19 +37,19 @@ class SettingsController: UIViewController {
     
     func setUpInterfaceDesign() {
         
-        self.speedTypeButtonBackground.layer.cornerRadius = 10.0
-        self.speedTypeBackground.layer.cornerRadius = 10.0
-        self.logSizeBackground.layer.cornerRadius = 10.0
-        self.logSizeSliderBackground.layer.cornerRadius = 10.0
+        self.speedTypeButtonBackground.layer.cornerRadius = Constants.cornerRadius
+        self.speedTypeBackground.layer.cornerRadius = Constants.cornerRadius
+        self.logSizeBackground.layer.cornerRadius = Constants.cornerRadius
+        self.logSizeSliderBackground.layer.cornerRadius = Constants.cornerRadius
         
         self.view.addSubview(navigationBar)
         let navigationItem = UINavigationItem(title: "Settings")
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.closeButtonPressed (_:)))
-        doneItem.tintColor = UIColor.orange
+        doneItem.tintColor = Constants.designColor1
         navigationItem.rightBarButtonItem = doneItem
         navigationBar.setItems([navigationItem], animated: false)
         
-        logSizeSlider.tintColor = UIColor.orange
+        logSizeSlider.tintColor = Constants.designColor1
         
         setUpBackground(frame: self.view.bounds)
         
@@ -58,9 +58,8 @@ class SettingsController: UIViewController {
     
     func setUpBackground(frame: CGRect) {
         gradientLayer.frame = frame
-        let color1 = UIColor(red: 1.0, green: 0.666, blue: 0, alpha: 1.0).cgColor as CGColor
-        let color2 = UIColor(red: 0.83, green: 0.10, blue: 0.10, alpha: 1.0).cgColor as CGColor
-        gradientLayer.colors = [color1, color2]
+        gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor,
+                                Constants.backgroundColor2.cgColor as CGColor]
         gradientLayer.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -170,11 +169,20 @@ class SettingsController: UIViewController {
         refreshAllLabels()
     }
     
+    func saveSettings() {
+        UserDefaults.standard.set(drawRange, forKey: "drawRange")
+        UserDefaults.standard.set(speedTypeCoefficient, forKey: "speedTypeCoefficient")
+        UserDefaults.standard.set(speedType, forKey: "speedType")
+    }
+    
     func performSegueToReturnBack()  {
         previousViewController.startTimer()
+        previousViewController.startSpeedometer()
         previousViewController.drawRange = drawRange
+        previousViewController.speedTypeLabel.text = speedType
         previousViewController.speedTypeCoefficient = speedTypeCoefficient
         previousViewController.speedType = speedType
+        saveSettings()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
             

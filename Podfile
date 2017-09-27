@@ -5,6 +5,7 @@
 target 'DragTimer' do
 use_frameworks!
 pod 'Charts'
+pod 'BRYXBanner'
 
   target 'DragTimerTests' do
     inherit! :search_paths

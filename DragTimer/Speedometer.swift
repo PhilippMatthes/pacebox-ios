@@ -11,14 +11,19 @@ import GLKit
 
 class Speedometer: UIView {
     
-    var percentage = Double()
+    var outerEndPercentage = Double()
+    var innerStartPercentage = Double()
+    var innerEndPercentage = Double()
     var circleLayer: CAShapeLayer!
+    var innerCircleLayer: CAShapeLayer!
     let margin = 30
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
-        percentage = 0
+        outerEndPercentage = 0
+        innerEndPercentage = 0
+        innerStartPercentage = 0
         
         // Use UIBezierPath as an easy way to create the CGPath for the layer.
         // The path should be the entire circle.
@@ -50,38 +55,67 @@ class Speedometer: UIView {
         gradient.mask = circleLayer
         
         layer.addSublayer(gradient)
+        
+        let innerCirclePath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 0), radius: frame.size.width/2 - 40, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        // Setup the CAShapeLayer with the path, colors, and line width
+        innerCircleLayer = CAShapeLayer()
+        innerCircleLayer.lineCap = kCALineCapRound
+        innerCircleLayer.path = innerCirclePath.cgPath
+        innerCircleLayer.fillColor = UIColor.clear.cgColor
+        innerCircleLayer.strokeColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0).cgColor as CGColor
+        innerCircleLayer.lineWidth = 5
+        
+        let innerTranslation = CATransform3DMakeTranslation(frame.width/2 - frame.minX, frame.height/2 - frame.minY, 0)
+        let innerRotation = CATransform3DMakeRotation(CGFloat(Double.pi/2), 0, 0, 1.0)
+        
+        // Don't draw the circle initially
+        innerCircleLayer.strokeEnd = 1.0
+        innerCircleLayer.transform = CATransform3DConcat(innerRotation, innerTranslation)
 
-        
-        
-        // Add the circleLayer to the view's layer's sublayers
-//        layer.addSublayer(circleLayer)
+        layer.addSublayer(innerCircleLayer)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func animateCircle(duration: TimeInterval, newPercentage: Double) {
-        // We want to animate the strokeEnd property of the circleLayer
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
+    func animateCircle(duration: TimeInterval, currentSpeed: Double, maxSpeed: Double, highSpeed: Double, lowSpeed: Double, speedTypeCoefficient: Double) {
         
-        // Set the animation duration appropriately
-        animation.duration = duration
+        let convertedCurrentSpeed = currentSpeed * speedTypeCoefficient
+        let convertedMaxSpeed = maxSpeed * speedTypeCoefficient
+        let outerStrokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let innerStrokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        let innerStrokeStartAnimation = CABasicAnimation(keyPath: "strokeStart")
         
-        // Animate from 0 (no circle) to 1 (full circle)
-        animation.fromValue = percentage
-        animation.toValue = newPercentage
-        percentage = newPercentage
+        let speedometerMaxValue = max(max(convertedCurrentSpeed, convertedMaxSpeed),highSpeed)
         
-        // Do a linear animation (i.e. the speed of the animation stays the same)
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        outerStrokeEndAnimation.duration = duration
+        innerStrokeEndAnimation.duration = duration
+        innerStrokeStartAnimation.duration = duration
         
-        // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
-        // right value when the animation ends.
-        circleLayer.strokeEnd = CGFloat(newPercentage)
+        outerStrokeEndAnimation.fromValue = outerEndPercentage
+        outerEndPercentage = convertedCurrentSpeed/speedometerMaxValue
+        outerStrokeEndAnimation.toValue = outerEndPercentage
         
-        // Do the actual animation
-        circleLayer.add(animation, forKey: "animateCircle")
+        innerStrokeEndAnimation.fromValue = innerEndPercentage
+        innerEndPercentage = highSpeed/speedometerMaxValue
+        innerStrokeEndAnimation.toValue = innerEndPercentage
+        
+        innerStrokeStartAnimation.fromValue = innerStartPercentage
+        innerStartPercentage = lowSpeed/speedometerMaxValue
+        innerStrokeStartAnimation.toValue = innerStartPercentage
+        
+        outerStrokeEndAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        innerStrokeEndAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        innerStrokeStartAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        
+        circleLayer.strokeEnd = CGFloat(outerEndPercentage)
+        innerCircleLayer.strokeEnd = CGFloat(innerEndPercentage)
+        innerCircleLayer.strokeStart = CGFloat(innerStartPercentage)
+
+        circleLayer.add(outerStrokeEndAnimation, forKey: "outerStrokeEndAnimation")
+        innerCircleLayer.add(innerStrokeEndAnimation, forKey: "innerStrokeEndAnimation")
+        innerCircleLayer.add(innerStrokeStartAnimation, forKey: "innerStrokeStartAnimation")
     }
     
 

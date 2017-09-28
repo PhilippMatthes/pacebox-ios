@@ -19,6 +19,7 @@ class SavedMeasurementsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.layoutIfNeeded()
         
         setUpInterfaceDesign()
         
@@ -47,7 +48,6 @@ class SavedMeasurementsController: UITableViewController {
     }
     
     func setUpInterfaceDesign() {
-        self.view.addSubview(navigationBar)
         let navigationItem = UINavigationItem(title: "Saved Times")
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector (self.doneButtonPressed (_:)))
         let editItem = editButtonItem
@@ -81,6 +81,7 @@ class SavedMeasurementsController: UITableViewController {
         cell.timeLabel.text = String(describing: measurement.time!) + "s"
         cell.speedLabel.text = String(describing: measurement.lowSpeed!) + " to " + String(describing: measurement.highSpeed!) + " " + measurement.speedType!
         cell.dateLabel.text = measurement.date!
+        cell.backgroundColor = Constants.designColor1
         
         return cell
     }
@@ -94,6 +95,10 @@ class SavedMeasurementsController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
         setUpInterfaceDesign()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(self.measurements[indexPath.row])
     }
     
     @objc func doneButtonPressed(_ sender:UITapGestureRecognizer){

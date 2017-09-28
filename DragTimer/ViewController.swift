@@ -77,13 +77,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     var dragTime = Double()
     
+    var notificationFired = false
+    var connectionEstablishedNotificationFired = false
+    var noConnectionNotificationFired = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.layoutIfNeeded()
         loadSettings()
-        
-        self.view.addSubview(speedLogChart)
-        
         setUpSpeedometer()
         setUpLocationManager()
         setUpInterfaceDesign()
@@ -111,8 +113,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     func loadSettings() {
-        lowSpeed = UserDefaults.standard.object(forKey: "lowSpeed") as? Double ?? 100.0
-        highSpeed = UserDefaults.standard.object(forKey: "highSpeed") as? Double ?? 200.0
+        lowSpeed = UserDefaults.standard.object(forKey: "lowSpeed") as? Double ?? 0.0
+        highSpeed = UserDefaults.standard.object(forKey: "highSpeed") as? Double ?? 100.0
         speedType = UserDefaults.standard.object(forKey: "speedType") as? String ?? "km/h"
         speedTypeCoefficient = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Double ?? 3.6
         drawRange = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Int ?? 60
@@ -161,7 +163,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func setUpChartView() {
         speedLogChart.delegate = self
-        
         speedLogChart.chartDescription?.text = nil
         speedLogChart.leftAxis.axisMinimum = 0
         speedLogChart.rightAxis.enabled = false
@@ -195,13 +196,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let speed = locations[0].speed - 1.0
+        let speed = locations[0].speed
         if speed >= 0.0 {
             currentSpeed = speed
-            connectionEstablished()
+            updateGraphs = true
+            fireConnectionNotification(title: "Connection established!",
+                                       subtitle: "We have a nice and clean GPS connection. Your speed will now be tracked.",
+                                       connection: true,
+                                       backgroundColor: Constants.designColor1)
         }
         else {
-            connectionLost()
+            updateGraphs = false
+            fireConnectionNotification(title: "No Connection!",
+                                       subtitle: "Your sensor couldn't calculate your speed. We'll wait for a stable GPS connection.",
+                                       connection: false,
+                                       backgroundColor: Constants.designColor2)
         }
         if updateGraphs {
             self.locations = locations
@@ -282,16 +291,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     @objc func advanceSpeedometerTimer(timer: Timer) {
-        if updateGraphs {
-            var percentage = Double()
-            if maxSpeed != 0.0 {
-                percentage = currentSpeed/maxSpeed
-            }
-            else {
-                percentage = 0.0
-            }
-            speedo.animateCircle(duration: 1.0, newPercentage: percentage)
-        }
+            speedo.animateCircle(duration: 1.0,
+                                 currentSpeed: currentSpeed,
+                                 maxSpeed: maxSpeed,
+                                 highSpeed: highSpeed,
+                                 lowSpeed: lowSpeed,
+                                 speedTypeCoefficient: speedTypeCoefficient)
     }
     
     func checkForDragTime() {
@@ -358,17 +363,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         manager.startUpdatingLocation()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let screenSize = CGSize(width: size.width * 1.5, height: size.height * 1.5)
-        let screenOrigin = CGPoint(x: 0, y: 0)
-        let screenFrame = CGRect(origin: screenOrigin, size: screenSize)
-        if UIDevice.current.orientation.isLandscape {
-            setUpBackground(frame: screenFrame)
-        } else if UIDevice.current.orientation.isPortrait {
-            setUpBackground(frame: screenFrame)
-        }
-    }
-    
     func refreshAllLabels() {
         DispatchQueue.main.async(execute:  {
             self.speedReplacementLabel.text = "\(self.convertedCurrentSpeed)"
@@ -385,19 +379,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         var lineChartEntriesDrag = [ChartDataEntry]()
         var lineChartEntriesHeight = [ChartDataEntry]()
         
+        let maxSpeed = speedLog.max(by: {$0.1 < $1.1 })!.1
+        let minSpeed = speedLog.min(by: {$0.1 < $1.1 })!.1
+        let maxHeight = heightLog.max(by: {$0.1 < $1.1 })!.1
+        let minHeight = heightLog.min(by: {$0.1 < $1.1 })!.1
+        
         for i in 0..<self.speedLog.count {
-            let value = ChartDataEntry(x: speedLog[i].0, y: speedLog[i].1*speedTypeCoefficient)
+            let speed = speedLog[i].1*speedTypeCoefficient
+            var speedNormalized = Double()
+            if maxSpeed == minSpeed { speedNormalized = 0.0 }
+            else { speedNormalized = (speed-minSpeed)/(maxSpeed-minSpeed) }
+            let value = ChartDataEntry(x: speedLog[i].0, y: speedNormalized)
             lineChartEntriesSpeed.insert(value, at: 0)
         }
         
         let dragLogLength = self.dragLog.count
         for i in 0..<dragLogLength {
-            let value = ChartDataEntry(x: dragLog[dragLogLength-i-1].0, y: dragLog[dragLogLength-i-1].1*speedTypeCoefficient)
+            let speed = dragLog[dragLogLength-i-1].1*speedTypeCoefficient
+            var speedNormalized = Double()
+            if maxSpeed == minSpeed { speedNormalized = 0.0 }
+            else { speedNormalized = (speed-minSpeed)/(maxSpeed-minSpeed) }
+            let value = ChartDataEntry(x: dragLog[dragLogLength-i-1].0, y: speedNormalized)
             lineChartEntriesDrag.insert(value, at: 0)
         }
         
         for i in 0..<self.heightLog.count {
-            let value = ChartDataEntry(x: heightLog[i].0, y: self.heightLog[i].1)
+            let height = self.heightLog[i].1
+            var heightNormalized = Double()
+            if maxHeight == minHeight { heightNormalized = 0.0 }
+            else { heightNormalized = (height-minHeight)/(maxHeight-minHeight) }
+            let value = ChartDataEntry(x: heightLog[i].0, y: heightNormalized)
             lineChartEntriesHeight.insert(value, at: 0)
         }
         
@@ -439,31 +450,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
     }
     
-    
-    func connectionLost() {
-        accuracyLabel.text = "n/a"
-        speedReplacementLabel.text = "n/a"
-        accelerationLabel.text = "n/a"
-        if updateGraphs {
+    func fireConnectionNotification(title: String, subtitle: String, connection: Bool, backgroundColor: UIColor) {
+        if !notificationFired {
             banner.dismiss()
-            banner = Banner(title: "Speed not trackable", subtitle: "The movement sensor sent erroneous values. Try moving or reestablishing your GPS connection.", image: UIImage(named: "gpsIcon"), backgroundColor: Constants.designColor2)
+            banner = Banner(title: title, subtitle: subtitle, image: UIImage(named: "gpsIcon"), backgroundColor: backgroundColor)
             banner.dismissesOnTap = true
             banner.position = BannerPosition.bottom
-            banner.show()
-            speedo.animateCircle(duration: 5.0, newPercentage: 1.0)
+            if connection {
+                if !connectionEstablishedNotificationFired {
+                    banner.show(duration: 3.0)
+                    noConnectionNotificationFired = false
+                    connectionEstablishedNotificationFired = true
+                }
+            }
+            else {
+                if !noConnectionNotificationFired {
+                    accuracyLabel.text = "n/a"
+                    speedReplacementLabel.text = "n/a"
+                    accelerationLabel.text = "n/a"
+                    banner.show()
+                    speedo.animateCircle(duration: 3.0,
+                                         currentSpeed: 100,
+                                         maxSpeed: 100,
+                                         highSpeed: 100,
+                                         lowSpeed: 0,
+                                         speedTypeCoefficient: speedTypeCoefficient)
+                    noConnectionNotificationFired = true
+                    connectionEstablishedNotificationFired = false
+                }
+            }
+            notificationFired = true
+            let delayInSeconds = 5.0
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                self.notificationFired = false
+            }
         }
-        updateGraphs = false
-    }
-    
-    func connectionEstablished() {
-        if !updateGraphs {
-            banner.dismiss()
-            banner = Banner(title: "Speed trackable", subtitle: "Your speed will be tracked now.", image: UIImage(named: "gpsIcon"), backgroundColor: Constants.designColor1)
-            banner.dismissesOnTap = true
-            banner.position = BannerPosition.bottom
-            banner.show(duration: 3.0)
-        }
-        updateGraphs = true
     }
     
     func saveCurrentTime() {
@@ -519,34 +540,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     @IBAction func highSpeedField(_ sender: UITextField) {
         if let input = Double(sender.text!) {
-            highSpeed = input
-            highSpeedField.text = String(highSpeed)
+            if input > lowSpeed {
+                highSpeed = input
+            }
         }
-        else {
-            highSpeedField.text = String(highSpeed)
-        }
+        highSpeedField.text = String(highSpeed)
     }
     
     @IBAction func lowSpeedField(_ sender: UITextField) {
         if let input = Double(sender.text!) {
-            lowSpeed = input
-            lowSpeedField.text = String(lowSpeed)
+            if input < highSpeed {
+                lowSpeed = input
+            }
         }
-        else {
-            lowSpeedField.text = String(lowSpeed)
-        }
+        lowSpeedField.text = String(lowSpeed)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSpeedLogDetail" {
-            let vc = segue.destination as! SpeedLogDetailController
-            vc.previousViewController = self            
-            vc.speedLog = self.speedLog
-            vc.speedType = self.speedType
-            vc.speedTypeCoefficient = self.speedTypeCoefficient
-            vc.drawRange = self.drawRange
-        }
         if segue.identifier == "showSettings" {
             let vc = segue.destination as! SettingsController
             vc.previousViewController = self

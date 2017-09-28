@@ -64,17 +64,6 @@ class SettingsController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let screenSize = CGSize(width: size.width * 1.5, height: size.height * 1.5)
-        let screenOrigin = CGPoint(x: 0, y: 0)
-        let screenFrame = CGRect(origin: screenOrigin, size: screenSize)
-        if UIDevice.current.orientation.isLandscape {
-            self.setUpBackground(frame: screenFrame)
-        } else if UIDevice.current.orientation.isPortrait {
-            self.setUpBackground(frame: screenFrame)
-        }
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

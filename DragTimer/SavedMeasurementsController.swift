@@ -16,6 +16,7 @@ class SavedMeasurementsController: UITableViewController {
     let gradientLayer = CAGradientLayer()
     var previousViewController = ViewController()
     var measurements = [Measurement]()
+    var selector = IndexPath()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class SavedMeasurementsController: UITableViewController {
 
         if let decoded = UserDefaults.standard.object(forKey: "measurements") as? NSData {
             let array = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as! [Measurement]
-            measurements = array
+            measurements = array.reversed()
         }
         
         setUpBackground(frame: self.view.bounds)
@@ -49,7 +50,7 @@ class SavedMeasurementsController: UITableViewController {
     
     func setUpInterfaceDesign() {
         let navigationItem = UINavigationItem(title: "Saved Times")
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector (self.doneButtonPressed (_:)))
+        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.doneButtonPressed (_:)))
         let editItem = editButtonItem
         editItem.tintColor = Constants.designColor1
         doneItem.tintColor = Constants.designColor1
@@ -81,7 +82,7 @@ class SavedMeasurementsController: UITableViewController {
         cell.timeLabel.text = String(describing: measurement.time!) + "s"
         cell.speedLabel.text = String(describing: measurement.lowSpeed!) + " to " + String(describing: measurement.highSpeed!) + " " + measurement.speedType!
         cell.dateLabel.text = measurement.date!
-        cell.backgroundColor = Constants.designColor1
+        cell.backgroundColor = UIColor.white
         
         return cell
     }
@@ -98,7 +99,8 @@ class SavedMeasurementsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(self.measurements[indexPath.row])
+        selector = indexPath
+        performSegue(withIdentifier: "showSavedMeasurementDetailView", sender: self)
     }
     
     @objc func doneButtonPressed(_ sender:UITapGestureRecognizer){
@@ -116,6 +118,17 @@ class SavedMeasurementsController: UITableViewController {
             nav.popViewController(animated: true)
         } else {
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSavedMeasurementDetailView" {
+            let vc = segue.destination as! SpeedLogDetailController
+            let selectedMeasurement = measurements[selector.row]
+            vc.drawRange = selectedMeasurement.drawRange!
+            vc.speedLog = selectedMeasurement.speedLog!
+            vc.speedType = selectedMeasurement.speedType!
+            vc.speedTypeCoefficient = selectedMeasurement.speedTypeCoefficient!
         }
     }
     

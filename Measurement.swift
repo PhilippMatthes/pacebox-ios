@@ -19,6 +19,7 @@ class Measurement: NSObject, NSCoding  {
     var speedTypeCoefficient: Double?
     var speedType: String?
     var date: String?
+    var drawRange: Int?
     
     init(time: Double,
          speedLog: [(Double, Double)],
@@ -28,7 +29,8 @@ class Measurement: NSObject, NSCoding  {
          highSpeed: Double,
          speedTypeCoefficient: Double,
          speedType: String,
-         date: String) {
+         date: String,
+         drawRange: Int) {
         self.time = time
         self.speedLog = speedLog
         self.heightLog = heightLog
@@ -38,6 +40,7 @@ class Measurement: NSObject, NSCoding  {
         self.speedTypeCoefficient = speedTypeCoefficient
         self.speedType = speedType
         self.date = date
+        self.drawRange = drawRange
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
@@ -51,7 +54,8 @@ class Measurement: NSObject, NSCoding  {
             let highSpeed = aDecoder.decodeObject(forKey: "highSpeed") as? Double,
             let speedTypeCoefficient = aDecoder.decodeObject(forKey: "speedTypeCoefficient") as? Double,
             let speedType = aDecoder.decodeObject(forKey: "speedType") as? String,
-            let date = aDecoder.decodeObject(forKey: "date") as? String
+            let date = aDecoder.decodeObject(forKey: "date") as? String,
+            let drawRange = aDecoder.decodeObject(forKey: "drawRange") as? Int
         else {
             return nil
         }
@@ -63,7 +67,8 @@ class Measurement: NSObject, NSCoding  {
                   highSpeed: highSpeed,
                   speedTypeCoefficient: speedTypeCoefficient,
                   speedType: speedType,
-                  date: date)
+                  date: date,
+                  drawRange: drawRange)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -77,5 +82,6 @@ class Measurement: NSObject, NSCoding  {
         aCoder.encode(speedTypeCoefficient, forKey: "speedTypeCoefficient")
         aCoder.encode(speedType, forKey: "speedType")
         aCoder.encode(date, forKey: "date")
+        aCoder.encode(drawRange, forKey: "drawRange")
     }
 }

@@ -12,9 +12,14 @@ import CoreLocation
 
 class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     
+//    @IBOutlet weak var speedLogChart: LineChartView!
+//    @IBOutlet weak var speedLogChartBackground: UIView!
+//    @IBOutlet weak var navigationBar: UINavigationBar!
+    
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var speedLogChart: LineChartView!
     @IBOutlet weak var speedLogChartBackground: UIView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     let gradientLayer = CAGradientLayer()
     
@@ -22,8 +27,6 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     var speedType = String()
     var speedTypeCoefficient = Double()
     var drawRange = Int()
-    
-    var previousViewController = ViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +77,8 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         speedLine.mode = LineChartDataSet.Mode.horizontalBezier
         speedLine.lineWidth = 2.0
         speedLine.drawFilledEnabled = true
-        speedLine.colors = [NSUIColor.black]
+        speedLine.colors = [Constants.designColor1,
+                            Constants.designColor2]
         
         let data = LineChartData()
         
@@ -100,8 +104,6 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     }
     
     func performSegueToReturnBack()  {
-        previousViewController.startTimer()
-        previousViewController.startSpeedometer()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)
         } else {

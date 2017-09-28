@@ -171,10 +171,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         speedLogChart.drawBordersEnabled = false
         speedLogChart.legend.enabled = false
         speedLogChart.isUserInteractionEnabled = false
-        
-        let touchRecognizerSpeedLog = UITapGestureRecognizer(target: self, action:  #selector (self.speedLogPressed (_:)))
-        
-        speedLogChart.addGestureRecognizer(touchRecognizerSpeedLog)
     }
     
     func startTimer() {
@@ -502,40 +498,70 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                                              highSpeed: highSpeed,
                                              speedTypeCoefficient: speedTypeCoefficient,
                                              speedType: speedType,
-                                             date: currentDate)
+                                             date: currentDate,
+                                             drawRange: drawRange)
         measurements += [currentMeasurement]
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: measurements)
         UserDefaults.standard.set(encodedData, forKey: "measurements")
     }
     
-    @objc func speedLogPressed(_ sender:UITapGestureRecognizer) {
-        if speedLog.count > 0 {
-            performSegue(withIdentifier: "showSpeedLogDetail", sender: self)
-        }
-    }
-    
-    @objc func heightLogPressed(_ sender:UITapGestureRecognizer) {
-        if heightLog.count > 0 {
-            performSegue(withIdentifier: "showHeightLogDetail", sender: self)
-        }
-    }
-    
-    @objc func accelerationLogPressed(_ sender:UITapGestureRecognizer) {
-        if accelerationLog.count > 0 {
-            performSegue(withIdentifier: "showAccelerationLogDetail", sender: self)
-        }
-    }
     
     @IBAction func savedMeasurementsButtonPressed(_ sender: UIButton) {
+        animateButtonReleaseOff(background: savedMeasurementsButtonBackground)
         performSegue(withIdentifier: "showSavedMeasurements", sender: self)
     }
     
-    @IBAction func settingsButtonPressed(_ sender: Any) {
+
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "showSettings", sender: self)
+        animateButtonReleaseOff(background: settingsBackground)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        animateButtonReleaseOff(background: saveButtonBackground)
         saveCurrentTime()
+    }
+    
+    @IBAction func saveButtonTouchDown(_ sender: UIButton) {
+        animateButtonPressOn(background: saveButtonBackground)
+    }
+    
+    @IBAction func listButtonTouchDown(_ sender: UIButton) {
+        animateButtonPressOn(background: savedMeasurementsButtonBackground)
+    }
+    
+    
+    @IBAction func highSpeedTouchDown(_ sender: UITextField) {
+        animateButtonPressOn(background: sender)
+    }
+    
+    @IBAction func lowSpeedTouchDown(_ sender: UITextField) {
+        animateButtonPressOn(background: sender)
+    }
+    @IBAction func settingsButtonTouchDown(_ sender: UIButton) {
+        animateButtonPressOn(background: settingsBackground)
+    }
+    
+    func animateButtonPressOn(background: UIView) {
+        let borderWidth:CABasicAnimation = CABasicAnimation(keyPath: "borderWidth")
+        borderWidth.fromValue = 0
+        borderWidth.toValue = 3.0
+        borderWidth.duration = 0.1
+        background.layer.borderWidth = 0.0
+        background.layer.borderColor = Constants.designColor1.cgColor as CGColor
+        background.layer.add(borderWidth, forKey: "Width")
+        background.layer.borderWidth = 3.0
+    }
+    
+    func animateButtonReleaseOff(background: UIView) {
+        let borderWidth:CABasicAnimation = CABasicAnimation(keyPath: "borderWidth")
+        borderWidth.fromValue = 3.0
+        borderWidth.toValue = 0
+        borderWidth.duration = 0.1
+        background.layer.borderWidth = 3.0
+        background.layer.borderColor = Constants.designColor1.cgColor as CGColor
+        background.layer.add(borderWidth, forKey: "Width")
+        background.layer.borderWidth = 0.0
     }
     
     @IBAction func highSpeedField(_ sender: UITextField) {
@@ -544,6 +570,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                 highSpeed = input
             }
         }
+        animateButtonReleaseOff(background: sender)
         highSpeedField.text = String(highSpeed)
     }
     
@@ -553,6 +580,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                 lowSpeed = input
             }
         }
+        animateButtonReleaseOff(background: sender)
         lowSpeedField.text = String(lowSpeed)
     }
     

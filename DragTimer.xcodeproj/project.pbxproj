@@ -10,7 +10,6 @@
 		BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */; };
 		BE311AE91F6FC7A500D33FD6 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */; };
 		BE33A6A61F7E9BEF001818DB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE33A6A51F7E9BEF001818DB /* Measurement.swift */; };
-		BE33A6A81F7E9C2A001818DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BE33A6A71F7E9C2A001818DB /* README.md */; };
 		BE3703261F669F7F003306E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BE3703251F669F7F003306E8 /* Podfile */; };
 		BE6A3BA51F7A7EF600643483 /* MeasurementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A3BA41F7A7EF600643483 /* MeasurementCell.swift */; };
 		BE6A3BA71F7A857300643483 /* SavedMeasurementsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A3BA61F7A857300643483 /* SavedMeasurementsController.swift */; };
@@ -54,7 +53,7 @@
 		BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedLogDetailController.swift; sourceTree = "<group>"; };
 		BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		BE33A6A51F7E9BEF001818DB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
-		BE33A6A71F7E9C2A001818DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BE33A6A91F7E9CBF001818DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		BE3703251F669F7F003306E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE6A3BA41F7A7EF600643483 /* MeasurementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementCell.swift; sourceTree = "<group>"; };
 		BE6A3BA61F7A857300643483 /* SavedMeasurementsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMeasurementsController.swift; sourceTree = "<group>"; };
@@ -143,7 +142,6 @@
 				BE6A3BAE1F7B973000643483 /* DataHandler.swift */,
 				BE6A3BA41F7A7EF600643483 /* MeasurementCell.swift */,
 				BE33A6A51F7E9BEF001818DB /* Measurement.swift */,
-				BE33A6A71F7E9C2A001818DB /* README.md */,
 				BE6A3BA61F7A857300643483 /* SavedMeasurementsController.swift */,
 				BEE9A82D1F38BF8E000E3497 /* Main.storyboard */,
 				BE8ED3A21F7C2C6F0085F60A /* Constants.swift */,
@@ -153,6 +151,7 @@
 				BEE9A8301F38BF8E000E3497 /* Assets.xcassets */,
 				BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */,
 				BEE9A8351F38BF8E000E3497 /* Info.plist */,
+				BE33A6A91F7E9CBF001818DB /* README.md */,
 			);
 			path = DragTimer;
 			sourceTree = "<group>";
@@ -290,7 +289,6 @@
 			files = (
 				BE3703261F669F7F003306E8 /* Podfile in Resources */,
 				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
-				BE33A6A81F7E9C2A001818DB /* README.md in Resources */,
 				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
 				BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */,
 			);

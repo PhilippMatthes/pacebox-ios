@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		73E74FF8BE86A8939980592E /* Pods_DragTimerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */; };
 		BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */; };
 		BE311AE91F6FC7A500D33FD6 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */; };
+		BE33A6A61F7E9BEF001818DB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE33A6A51F7E9BEF001818DB /* Measurement.swift */; };
+		BE33A6A81F7E9C2A001818DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BE33A6A71F7E9C2A001818DB /* README.md */; };
 		BE3703261F669F7F003306E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BE3703251F669F7F003306E8 /* Podfile */; };
 		BE6A3BA51F7A7EF600643483 /* MeasurementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A3BA41F7A7EF600643483 /* MeasurementCell.swift */; };
 		BE6A3BA71F7A857300643483 /* SavedMeasurementsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A3BA61F7A857300643483 /* SavedMeasurementsController.swift */; };
-		BE6A3BAB1F7A88ED00643483 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A3BAA1F7A88ED00643483 /* Measurement.swift */; };
 		BE6A3BAF1F7B973000643483 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6A3BAE1F7B973000643483 /* DataHandler.swift */; };
 		BE8ED3A31F7C2C6F0085F60A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8ED3A21F7C2C6F0085F60A /* Constants.swift */; };
 		BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */; };
@@ -21,11 +21,9 @@
 		BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A82D1F38BF8E000E3497 /* Main.storyboard */; };
 		BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A8301F38BF8E000E3497 /* Assets.xcassets */; };
 		BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE9A8321F38BF8E000E3497 /* LaunchScreen.storyboard */; };
-		BEF374F21F7BB56600088070 /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF374F31F7BB56600088070 /* BRYXBanner.framework */; };
 		BEF374F51F7BC00300088070 /* Speedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF374F41F7BC00300088070 /* Speedometer.swift */; };
 		BEF8ACD91F7A3B64008F052D /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC4DF091F66A0A5009DBD6F /* Charts.framework */; };
 		EF4CA4A53BFC3B19FF6CFE66 /* Pods_DragTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 003AACB093832422B6F0D78F /* Pods_DragTimer.framework */; };
-		F7E18D4AF4F5242683565A75 /* Pods_DragTimerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23AE2B1302D8DD183F008 /* Pods_DragTimerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,18 +47,17 @@
 		003AACB093832422B6F0D78F /* Pods_DragTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06914C21F591F61F6036C969 /* Pods-DragTimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer.debug.xcconfig"; sourceTree = "<group>"; };
 		1422DFD49D507201F876B900 /* Pods-DragTimerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests.release.xcconfig"; sourceTree = "<group>"; };
-		39B23AE2B1302D8DD183F008 /* Pods_DragTimerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48F996B4D38167EB4E417732 /* Pods-DragTimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimer/Pods-DragTimer.release.xcconfig"; sourceTree = "<group>"; };
 		7CFB51F7EE1B15CD4AB45C75 /* Pods-DragTimerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTimerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A932F611395331C08AE436 /* Pods-DragTimerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerTests/Pods-DragTimerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC4C3575CFB3281DD414B001 /* Pods-DragTimerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTimerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DragTimerUITests/Pods-DragTimerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BE311ADE1F6E946800D33FD6 /* SpeedLogDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedLogDetailController.swift; sourceTree = "<group>"; };
 		BE311AE81F6FC7A500D33FD6 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		BE33A6A51F7E9BEF001818DB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		BE33A6A71F7E9C2A001818DB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BE3703251F669F7F003306E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE6A3BA41F7A7EF600643483 /* MeasurementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementCell.swift; sourceTree = "<group>"; };
 		BE6A3BA61F7A857300643483 /* SavedMeasurementsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMeasurementsController.swift; sourceTree = "<group>"; };
-		BE6A3BAA1F7A88ED00643483 /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Measurement.swift; path = ../Measurement.swift; sourceTree = "<group>"; };
 		BE6A3BAE1F7B973000643483 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		BE8ED3A21F7C2C6F0085F60A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BEC4DF091F66A0A5009DBD6F /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../Library/Developer/Xcode/DerivedData/DragTimer-drznlbltrrtgliguksuvcdhfelzd/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
@@ -75,7 +72,6 @@
 		BEE9A8351F38BF8E000E3497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE9A83A1F38BF8F000E3497 /* DragTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE9A8451F38BF8F000E3497 /* DragTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DragTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEF374F31F7BB56600088070 /* BRYXBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BRYXBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF374F41F7BC00300088070 /* Speedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speedometer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEF374F21F7BB56600088070 /* BRYXBanner.framework in Frameworks */,
 				BEF8ACD91F7A3B64008F052D /* Charts.framework in Frameworks */,
 				EF4CA4A53BFC3B19FF6CFE66 /* Pods_DragTimer.framework in Frameworks */,
 			);
@@ -94,7 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73E74FF8BE86A8939980592E /* Pods_DragTimerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7E18D4AF4F5242683565A75 /* Pods_DragTimerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,9 +140,10 @@
 			children = (
 				BEE9A8291F38BF8E000E3497 /* AppDelegate.swift */,
 				BEE9A82B1F38BF8E000E3497 /* ViewController.swift */,
-				BE6A3BAA1F7A88ED00643483 /* Measurement.swift */,
 				BE6A3BAE1F7B973000643483 /* DataHandler.swift */,
 				BE6A3BA41F7A7EF600643483 /* MeasurementCell.swift */,
+				BE33A6A51F7E9BEF001818DB /* Measurement.swift */,
+				BE33A6A71F7E9C2A001818DB /* README.md */,
 				BE6A3BA61F7A857300643483 /* SavedMeasurementsController.swift */,
 				BEE9A82D1F38BF8E000E3497 /* Main.storyboard */,
 				BE8ED3A21F7C2C6F0085F60A /* Constants.swift */,
@@ -166,14 +160,11 @@
 		F6808707729C0ECF830E75B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BEF374F31F7BB56600088070 /* BRYXBanner.framework */,
 				BECDD77F1F66AE6D00A98883 /* Charts.framework */,
 				BEC4DF091F66A0A5009DBD6F /* Charts.framework */,
 				BEE4FBA31F66A0310071FF77 /* SwiftCharts.framework */,
 				BE3703251F669F7F003306E8 /* Podfile */,
 				003AACB093832422B6F0D78F /* Pods_DragTimer.framework */,
-				88F0DE703FA802687DEAD439 /* Pods_DragTimerTests.framework */,
-				39B23AE2B1302D8DD183F008 /* Pods_DragTimerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,6 +290,7 @@
 			files = (
 				BE3703261F669F7F003306E8 /* Podfile in Resources */,
 				BEE9A8341F38BF8E000E3497 /* LaunchScreen.storyboard in Resources */,
+				BE33A6A81F7E9C2A001818DB /* README.md in Resources */,
 				BEE9A8311F38BF8E000E3497 /* Assets.xcassets in Resources */,
 				BEE9A82F1F38BF8E000E3497 /* Main.storyboard in Resources */,
 			);
@@ -479,10 +471,10 @@
 			files = (
 				BEF374F51F7BC00300088070 /* Speedometer.swift in Sources */,
 				BE311AE91F6FC7A500D33FD6 /* SettingsController.swift in Sources */,
+				BE33A6A61F7E9BEF001818DB /* Measurement.swift in Sources */,
 				BEE9A82C1F38BF8E000E3497 /* ViewController.swift in Sources */,
 				BE6A3BAF1F7B973000643483 /* DataHandler.swift in Sources */,
 				BE6A3BA71F7A857300643483 /* SavedMeasurementsController.swift in Sources */,
-				BE6A3BAB1F7A88ED00643483 /* Measurement.swift in Sources */,
 				BE311ADF1F6E946800D33FD6 /* SpeedLogDetailController.swift in Sources */,
 				BEE9A82A1F38BF8E000E3497 /* AppDelegate.swift in Sources */,
 				BE6A3BA51F7A7EF600643483 /* MeasurementCell.swift in Sources */,

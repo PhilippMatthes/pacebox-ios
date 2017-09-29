@@ -1,4 +1,8 @@
+
+
 # DragTimer
+
+![Supported Platforms](https://img.shields.io/badge/Platform-iOS-lightgrey.svg) ![Release](https://img.shields.io/badge/Release-0.1.0-blue.svg) ![Build](https://img.shields.io/badge/Build-passing-green.svg) ![AppStore](https://img.shields.io/badge/App%20Store-not%20released-red.svg)
 
 This iOS app can track your speed, average speed, acceleration, height and precisely count your drag times. Time correction is supported as well!
 

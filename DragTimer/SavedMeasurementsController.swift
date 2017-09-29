@@ -125,10 +125,21 @@ class SavedMeasurementsController: UITableViewController {
         if segue.identifier == "showSavedMeasurementDetailView" {
             let vc = segue.destination as! SpeedLogDetailController
             let selectedMeasurement = measurements[selector.row]
-            vc.drawRange = selectedMeasurement.drawRange!
+            vc.time = selectedMeasurement.time!
+            vc.correctedTime = selectedMeasurement.correctedTime!
             vc.speedLog = selectedMeasurement.speedLog!
-            vc.speedType = selectedMeasurement.speedType!
+            vc.heightLog = selectedMeasurement.heightLog!
+            vc.accelerationLog = selectedMeasurement.accelerationLog!
+            vc.dragLog = selectedMeasurement.dragLog!
+            vc.lowSpeed = selectedMeasurement.lowSpeed!
+            vc.highSpeed = selectedMeasurement.highSpeed!
             vc.speedTypeCoefficient = selectedMeasurement.speedTypeCoefficient!
+            vc.speedType = selectedMeasurement.speedType!
+            vc.weight = selectedMeasurement.weight!
+            vc.weightType = selectedMeasurement.weightType!
+            vc.weightTypeCoefficient = selectedMeasurement.weightTypeCoefficient!
+            vc.date = selectedMeasurement.date!
+            vc.drawRange = selectedMeasurement.drawRange!
         }
     }
     

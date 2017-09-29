@@ -28,6 +28,8 @@ class SettingsController: UIViewController {
     
     var speedType = String()
     var speedTypeCoefficient = Double()
+    var weightType = String()
+    var weightTypeCoefficient = Double()
     var drawRange = Int()
     
     override func viewDidLoad() {
@@ -79,7 +81,7 @@ class SettingsController: UIViewController {
     }
     
     func refreshAllLabels() {
-        speedTypeButton.setTitle(speedType, for: .normal)
+        speedTypeButton.setTitle(speedType + " - " + weightType, for: .normal)
         logSizeSliderLabel.text = String(drawRange)
         logSizeSlider.value = Float(drawRange)
     }
@@ -93,42 +95,58 @@ class SettingsController: UIViewController {
                 )
         
                 let speedTypeKphAction = UIAlertAction (
-                    title: "Metric (km/h)",
+                    title: "Metric (km/h - kg)",
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
                     self.speedType = "km/h"
                     self.speedTypeCoefficient = 3.6
+                    
+                    self.weightType = "kg"
+                    self.weightTypeCoefficient = 1.0
+                    
                     self.refreshAllLabels()
                 }
         
                 let speedTypeMphAction = UIAlertAction (
-                    title: "Imperialistic (mph)",
+                    title: "Imperialistic (mph - lbs)",
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
                     self.speedType = "mph"
                     self.speedTypeCoefficient = 2.23694
+                    
+                    self.weightType = "lbs"
+                    self.weightTypeCoefficient = 2.20462
+                    
                     self.refreshAllLabels()
                 }
         
                 let speedTypeMpsAction = UIAlertAction (
-                    title: "Native (m/s)",
+                    title: "Native (m/s - kg)",
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
                     self.speedType = "m/s"
                     self.speedTypeCoefficient = 1.0
+                    
+                    self.weightType = "kg"
+                    self.weightTypeCoefficient = 1.0
+                    
                     self.refreshAllLabels()
                 }
         
                 let speedTypeKnotsAction = UIAlertAction (
-                    title: "Aeronautical (kn)",
+                    title: "Aeronautical (kn - lbs)",
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
                     self.speedType = "kn"
                     self.speedTypeCoefficient = 1.94384
+                    
+                    self.weightType = "lbs"
+                    self.weightTypeCoefficient = 2.20462
+                    
                     self.refreshAllLabels()
                 }
         
@@ -153,6 +171,7 @@ class SettingsController: UIViewController {
                 
                 self.present(alertController, animated: true, completion: nil)
     }
+    
     @IBAction func logSizeSliderValueChanged(_ sender: UISlider) {
         drawRange = Int(sender.value)
         refreshAllLabels()
@@ -162,6 +181,11 @@ class SettingsController: UIViewController {
         UserDefaults.standard.set(drawRange, forKey: "drawRange")
         UserDefaults.standard.set(speedTypeCoefficient, forKey: "speedTypeCoefficient")
         UserDefaults.standard.set(speedType, forKey: "speedType")
+        UserDefaults.standard.set(speedType, forKey: "speedType")
+        UserDefaults.standard.set(speedTypeCoefficient, forKey: "speedTypeCoefficient")
+        UserDefaults.standard.set(weightType, forKey: "weightType")
+        UserDefaults.standard.set(weightTypeCoefficient, forKey: "weightTypeCoefficient")
+        UserDefaults.standard.set(previousViewController.weight, forKey: "weight")
     }
     
     func performSegueToReturnBack()  {
@@ -171,6 +195,9 @@ class SettingsController: UIViewController {
         previousViewController.speedTypeLabel.text = speedType
         previousViewController.speedTypeCoefficient = speedTypeCoefficient
         previousViewController.speedType = speedType
+        previousViewController.weightType = weightType
+        previousViewController.weightTypeCoefficient = weightTypeCoefficient
+        previousViewController.weightField.text = String(Int(Double(round(100 * previousViewController.weight * weightTypeCoefficient)/100))) + " " + weightType
         saveSettings()
         if let nav = self.navigationController {
             nav.popViewController(animated: true)

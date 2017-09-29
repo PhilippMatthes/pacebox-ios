@@ -37,6 +37,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     @IBOutlet weak var timeReplacementLabel: UILabel!
     @IBOutlet weak var savedMeasurementsButtonBackground: UIView!
     @IBOutlet weak var saveButtonBackground: UIView!
+    @IBOutlet weak var weightField: UITextField!
     
     let manager = CLLocationManager()
     
@@ -63,10 +64,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var lowSpeed = Double()
     var highSpeed = Double()
     
+    
     var drawRange = Int()
     
     var speedType = String()
     var speedTypeCoefficient = Double()
+    
+    var weight = Double()
+    var weightType = String()
+    var weightTypeCoefficient = Double()
     
     weak var timer: Timer?
     weak var speedometerTimer: Timer?
@@ -76,6 +82,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var updateGraphs = Bool()
     
     var dragTime = Double()
+    var correctedDragTime = Double()
     
     var notificationFired = false
     var connectionEstablishedNotificationFired = false
@@ -117,7 +124,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         highSpeed = UserDefaults.standard.object(forKey: "highSpeed") as? Double ?? 100.0
         speedType = UserDefaults.standard.object(forKey: "speedType") as? String ?? "km/h"
         speedTypeCoefficient = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Double ?? 3.6
-        drawRange = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Int ?? 60
+        weight = UserDefaults.standard.object(forKey: "weight") as? Double ?? 1500.0
+        weightType = UserDefaults.standard.object(forKey: "weightType") as? String ?? "kg"
+        weightTypeCoefficient = UserDefaults.standard.object(forKey: "weightTypeCoefficient") as? Double ?? 1.0
+        drawRange = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Int ?? 120
+        
+        speedTypeLabel.text = speedType
+        lowSpeedField.text = String(lowSpeed)
+        highSpeedField.text = String(highSpeed)
+        weightField.text = String(Int(Double(round(100 * weight * weightTypeCoefficient)/100))) + " " + weightType
+        
     }
     
     func setUpSpeedometer() {
@@ -272,11 +288,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
         self.lowSpeedField.inputAccessoryView = doneToolbar
         self.highSpeedField.inputAccessoryView = doneToolbar
+        self.weightField.inputAccessoryView = doneToolbar
     }
     
     @objc func doneButtonAction() {
         self.lowSpeedField.resignFirstResponder()
         self.highSpeedField.resignFirstResponder()
+        self.weightField.resignFirstResponder()
     }
     
     @objc func advanceTimer(timer: Timer) {
@@ -300,6 +318,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         var lowerBoundFound = false
         var currentIndex = 0
         var tempDragLog = [(Double, Double)]()
+        var tempHeightLog = [(Double, Double)]()
         
         while !upperBoundFound || !lowerBoundFound {
             
@@ -307,9 +326,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                 return
             }
             
-            if  speedLog[currentIndex].1 * speedTypeCoefficient >= highSpeed {
-                if tempDragLog.count > 0 {
+            if speedLog[currentIndex].1 * speedTypeCoefficient >= highSpeed {
+                while tempDragLog.count > 0 {
                     tempDragLog.remove(at: 0)
+                    tempHeightLog.remove(at: 0)
                 }
                 upperBoundFound = true
             }
@@ -320,6 +340,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             
             if upperBoundFound {
                 tempDragLog.insert(speedLog[currentIndex], at: 0)
+                tempHeightLog.insert(heightLog[currentIndex], at: 0)
             }
             
             currentIndex += 1
@@ -345,9 +366,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         let lowerTime = (v0*t1-v1*t0+(lowSpeed/speedTypeCoefficient)*t0-(lowSpeed/speedTypeCoefficient)*t1)/(v0-v1)
         let upperTime = (v2*t3-v3*t2+(highSpeed/speedTypeCoefficient)*t2-(highSpeed/speedTypeCoefficient)*t3)/(v2-v3)
         
-        let correctedTime = upperTime - lowerTime
-        if !correctedTime.isNaN {
-            dragTime = Double(round(100 * correctedTime)/100)
+        let estimatedTime = upperTime - lowerTime
+        
+        let h0 = tempHeightLog[0].1
+        let h1 = tempHeightLog.popLast()!.1
+        let hDelta = h1 - h0
+        
+        let ePotDelta = (weight/weightTypeCoefficient) * 9.81 * hDelta
+        let eKin0 = 0.5 * (weight/weightTypeCoefficient) * pow(lowSpeed, 2)
+        let eKin1 = 0.5 * (weight/weightTypeCoefficient) * pow(highSpeed, 2)
+        let eKinDelta = eKin1 - eKin0
+        
+        let estimatedCorrectedTime = ((eKinDelta - ePotDelta) / (eKinDelta)) * estimatedTime
+        
+        if !estimatedTime.isNaN && !estimatedCorrectedTime.isNaN {
+            dragTime = Double(round(100 * estimatedTime)/100)
+            correctedDragTime = Double(round(100 * estimatedCorrectedTime)/100)
             refreshAllLabels()
         }
     }
@@ -365,7 +399,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             self.maxSpeedLabel.text = "Max: \(self.convertedMaxSpeed) "
             self.accuracyLabel.text = "\(self.currentHorizontalAccuracy) m"
             self.accelerationLabel.text = "\(self.currentGForce) g"
-            self.timeReplacementLabel.text = "\(self.dragTime) s"
+            if (self.dragTime == 0.0) {
+                self.timeReplacementLabel.text = "n/a (n/a)"
+            }
+            else {
+                self.timeReplacementLabel.text = "\(self.dragTime)s (\(self.correctedDragTime)s)"
+            }
         })
     }
     
@@ -490,14 +529,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             measurements = array
         }
         let currentDate = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
-        let currentMeasurement = Measurement(time: dragTime,
+        let currentMeasurement = Measurement(identifier: String(measurements.count),
+                                             time: dragTime,
+                                             correctedTime: self.correctedDragTime,
                                              speedLog: speedLog,
                                              heightLog: heightLog,
                                              accelerationLog: accelerationLog,
+                                             dragLog: dragLog,
                                              lowSpeed: lowSpeed,
                                              highSpeed: highSpeed,
                                              speedTypeCoefficient: speedTypeCoefficient,
                                              speedType: speedType,
+                                             weight: weight,
+                                             weightType: weightType,
+                                             weightTypeCoefficient: weightTypeCoefficient,
                                              date: currentDate,
                                              drawRange: drawRange)
         measurements += [currentMeasurement]
@@ -567,23 +612,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     @IBAction func highSpeedField(_ sender: UITextField) {
         if let input = Double(sender.text!) {
             if input > lowSpeed {
+                if input != highSpeed {
+                    correctedDragTime = 0.0
+                    dragTime = 0.0
+                    timeReplacementLabel.text = "n/a (n/a)"
+                }
                 highSpeed = input
             }
         }
         animateButtonReleaseOff(background: sender)
         highSpeedField.text = String(highSpeed)
+        UserDefaults.standard.set(highSpeed, forKey: "highSpeed")
     }
     
     @IBAction func lowSpeedField(_ sender: UITextField) {
         if let input = Double(sender.text!) {
             if input < highSpeed {
+                if input != lowSpeed {
+                    correctedDragTime = 0.0
+                    dragTime = 0.0
+                    timeReplacementLabel.text = "n/a (n/a)"
+                }
                 lowSpeed = input
             }
         }
         animateButtonReleaseOff(background: sender)
         lowSpeedField.text = String(lowSpeed)
+        UserDefaults.standard.set(lowSpeed, forKey: "lowSpeed")
     }
     
+    @IBAction func weightField(_ sender: UITextField) {
+        if let input = Double(sender.text!) {
+            if input > 0.0 {
+                weight = Double(round(100 * input/weightTypeCoefficient)/100)
+            }
+        }
+        animateButtonReleaseOff(background: sender)
+        UserDefaults.standard.set(weight, forKey: "weight")
+        weightField.text = String(Int(Double(round(100 * weight * weightTypeCoefficient)/100))) + " " + weightType
+    }
+    
+    @IBAction func weightFieldTouchDown(_ sender: UITextField) {
+        animateButtonPressOn(background: sender)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSettings" {
@@ -592,6 +663,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             vc.drawRange = self.drawRange
             vc.speedTypeCoefficient = self.speedTypeCoefficient
             vc.speedType = self.speedType
+            vc.weightTypeCoefficient = self.weightTypeCoefficient
+            vc.weightType = self.weightType
         }
         if segue.identifier == "showSavedMeasurements" {
             let vc = segue.destination as! SavedMeasurementsController

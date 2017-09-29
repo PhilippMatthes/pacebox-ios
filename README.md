@@ -41,7 +41,7 @@ pod update
 
 ## Authors
 
-* **Philipp Matthes** - *Initial work* - [PurpleBooth](https://github.com/philippmatthes)
+* **Philipp Matthes** - *Initial work* - [Homepage](https://philippmatth.es)
 
 See also the list of [contributors](https://github.com/philippmatthes/dragtimer/contributors) who participated in this project.
 

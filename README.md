@@ -38,6 +38,8 @@ cd dragtimer
 pod update
 ```
 
+Start Xcode, plug your phone in. You may need to authorize your Apple ID. Select your device from the list of simulators. Click on the run icon to build the app on your device. After this is finished, you may need to authorize your Apple ID on your iDevice again. Now you can run the app on your device.
+
 ## Built With
 
 * [Charts for iOS](https://github.com/danielgindi/Charts) - Charts Framework

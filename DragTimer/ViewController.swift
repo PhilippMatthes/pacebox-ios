@@ -88,10 +88,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var connectionEstablishedNotificationFired = false
     var noConnectionNotificationFired = false
     
+    var currentMeasurement: Measurement?
+    var currentMeasurementIdentifier = Int()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layoutIfNeeded()
+        currentMeasurementIdentifier = countSavedMeasurements()
         loadSettings()
         setUpSpeedometer()
         setUpLocationManager()
@@ -213,14 +217,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             currentSpeed = speed
             updateGraphs = true
             fireConnectionNotification(title: "Connection established!",
-                                       subtitle: "We have a nice and clean GPS connection. Your speed will now be tracked.",
+                                       subtitle: nil,
                                        connection: true,
                                        backgroundColor: Constants.designColor1)
         }
         else {
             updateGraphs = false
             fireConnectionNotification(title: "No Connection!",
-                                       subtitle: "Your sensor couldn't calculate your speed. We'll wait for a stable GPS connection.",
+                                       subtitle: nil,
                                        connection: false,
                                        backgroundColor: Constants.designColor2)
         }
@@ -383,6 +387,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             dragTime = Double(round(100 * estimatedTime)/100)
             correctedDragTime = Double(round(100 * estimatedCorrectedTime)/100)
             refreshAllLabels()
+            updateCurrentMeasurement()
         }
     }
     
@@ -485,7 +490,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         
     }
     
-    func fireConnectionNotification(title: String, subtitle: String, connection: Bool, backgroundColor: UIColor) {
+    func fireConnectionNotification(title: String, subtitle: String?, connection: Bool, backgroundColor: UIColor) {
         if !notificationFired {
             banner.dismiss()
             banner = Banner(title: title, subtitle: subtitle, image: UIImage(named: "gpsIcon"), backgroundColor: backgroundColor)
@@ -521,15 +526,52 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             }
         }
     }
+    func fireNoMeasurementNotification() {
+        banner.dismiss()
+        banner = Banner(title: "No time recorded yet.", subtitle: nil, image: UIImage(named: "TimeIcon"), backgroundColor: Constants.backgroundColor2)
+        banner.dismissesOnTap = true
+        banner.position = BannerPosition.bottom
+        banner.show(duration: 2.0)
+    }
     
-    func saveCurrentTime() {
-        var measurements = [Measurement]()
+    func fireTimeSavedNotification() {
+        banner.dismiss()
+        banner = Banner(title: "Time saved.", subtitle: nil, image: UIImage(named: "TimeIcon"), backgroundColor: Constants.backgroundColor1)
+        banner.dismissesOnTap = true
+        banner.position = BannerPosition.bottom
+        banner.show(duration: 2.0)
+    }
+    
+    func countSavedMeasurements() -> Int {
         if let decoded = UserDefaults.standard.object(forKey: "measurements") as? NSData {
             let array = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as! [Measurement]
-            measurements = array
+            return array.count
         }
+        return 0
+    }
+    
+    func saveCurrentTime() {
+        if let _ = currentMeasurement {
+            var measurements = [Measurement]()
+            if let decoded = UserDefaults.standard.object(forKey: "measurements") as? NSData {
+                let array = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as! [Measurement]
+                measurements = array
+            }
+        
+            measurements += [currentMeasurement!]
+            let encodedData = NSKeyedArchiver.archivedData(withRootObject: measurements)
+            UserDefaults.standard.set(encodedData, forKey: "measurements")
+            fireTimeSavedNotification()
+        }
+        else {
+            fireNoMeasurementNotification()
+        }
+    }
+    
+    func updateCurrentMeasurement() {
+        currentMeasurementIdentifier += 1
         let currentDate = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium, timeStyle: .short)
-        let currentMeasurement = Measurement(identifier: String(measurements.count),
+        currentMeasurement = Measurement(identifier: String(currentMeasurementIdentifier),
                                              time: dragTime,
                                              correctedTime: self.correctedDragTime,
                                              speedLog: speedLog,
@@ -545,9 +587,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                                              weightTypeCoefficient: weightTypeCoefficient,
                                              date: currentDate,
                                              drawRange: drawRange)
-        measurements += [currentMeasurement]
-        let encodedData = NSKeyedArchiver.archivedData(withRootObject: measurements)
-        UserDefaults.standard.set(encodedData, forKey: "measurements")
+        
     }
     
     
@@ -616,6 +656,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                     correctedDragTime = 0.0
                     dragTime = 0.0
                     timeReplacementLabel.text = "n/a (n/a)"
+                    currentMeasurement = nil
                 }
                 highSpeed = input
             }
@@ -632,6 +673,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                     correctedDragTime = 0.0
                     dragTime = 0.0
                     timeReplacementLabel.text = "n/a (n/a)"
+                    currentMeasurement = nil
                 }
                 lowSpeed = input
             }

@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var customizedLaunchScreenView: UIView?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge], categories: nil))
+//        application.registerUserNotificationSettings(UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge], categories: nil))
         
-        application.beginBackgroundTask(withName: "showNotification", expirationHandler: nil)
+//        application.beginBackgroundTask(withName: "showNotification", expirationHandler: nil)
+        
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-5941274384378366~3686328024")
         
         return true
     }
@@ -33,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        pushNotification()
+//        pushNotification()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -48,13 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func pushNotification() {
-        let notification = UILocalNotification()
-        notification.alertAction = "Go back to the DragTimer App"
-        notification.alertBody = "Goodbye! The app will not track your speed when closed."
-        notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-        UIApplication.shared.scheduleLocalNotification(notification)
-    }
+//    func pushNotification() {
+//        let notification = UILocalNotification()
+//        notification.alertAction = "Go back to the DragTimer App"
+//        notification.alertBody = "Goodbye! The app will not track your speed when closed."
+//        notification.fireDate = NSDate(timeIntervalSinceNow: 10) as Date
+//        UIApplication.shared.scheduleLocalNotification(notification)
+//    }
 
 
 }

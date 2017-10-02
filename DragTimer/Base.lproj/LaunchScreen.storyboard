@@ -21,12 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-OJ-3kj">
-                                <rect key="frame" x="142" y="266" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="n1o-yc-0cv">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n1o-yc-0cv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tuB-wF-hrc"/>
+                            <constraint firstItem="n1o-yc-0cv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xwy-Kj-s6G"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="Ze5-6b-2t3" id="hiA-yH-lWf"/>

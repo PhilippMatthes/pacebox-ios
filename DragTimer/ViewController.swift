@@ -11,15 +11,13 @@ import Charts
 import CoreLocation
 import CoreMotion
 import BRYXBanner
+import GoogleMobileAds
 
-class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate, UIScrollViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate, CAAnimationDelegate, UIGestureRecognizerDelegate, GADBannerViewDelegate {
     
-    var banner = Banner()
     
-    let gradientLayer = CAGradientLayer()
-    
-    var motionManager = CMMotionManager()
-    
+    // MARK: Outlets
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var speedTypeLabel: UILabel!
     @IBOutlet weak var speedometerView: UIView!
     @IBOutlet weak var lowSpeedField: UITextField!
@@ -39,18 +37,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     @IBOutlet weak var saveButtonBackground: UIView!
     @IBOutlet weak var weightField: UITextField!
     
+    // MARK: Variables
     let manager = CLLocationManager()
-    
     var speedo = Speedometer()
-    
     var speedLog = [(Double, Double)]()
     var heightLog = [(Double, Double)]()
     var accelerationLog = [(Double, Double)]()
     var dragLog = [(Double, Double)]()
-    
     var locations = [CLLocation]()
     var currentLocation = CLLocation()
-    
     var currentSpeed = 0 as Double
     var currentHeight = 0 as Double
     var convertedCurrentSpeed = 0 as Double
@@ -60,43 +55,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var convertedAvgSpeed = 0 as Double
     var currentHorizontalAccuracy = 5 as Double
     var currentGForce = 1 as Double
-    
     var lowSpeed = Double()
     var highSpeed = Double()
-    
-    
     var drawRange = Int()
-    
     var speedType = String()
     var speedTypeCoefficient = Double()
-    
     var weight = Double()
     var weightType = String()
     var weightTypeCoefficient = Double()
-    
     weak var timer: Timer?
     weak var speedometerTimer: Timer?
     var startTime: Double = 0
     var currentTime: Double = 0
-    
     var updateGraphs = Bool()
-    
     var dragTime = Double()
     var correctedDragTime = Double()
-    
     var notificationFired = false
     var connectionEstablishedNotificationFired = false
     var noConnectionNotificationFired = false
-    
     var currentMeasurement: Measurement?
     var currentMeasurementIdentifier = Int()
-    
+    var banner = Banner()
+    let gradientLayer = CAGradientLayer()
+    var motionManager = CMMotionManager()
+    var hudViewActive = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layoutIfNeeded()
         currentMeasurementIdentifier = countSavedMeasurements()
         loadSettings()
+        setUpAdView()
         setUpSpeedometer()
         setUpLocationManager()
         setUpInterfaceDesign()
@@ -106,6 +95,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         startTimer()
         startSpeedometer()
         setUpMotionManager()
+    }
+    
+    func setUpAdView() {
+        self.view.addSubview(bannerView)
+        bannerView.adUnitID = "ca-app-pub-5941274384378366/3140722486"
+        bannerView.rootViewController = self
+        let requestAd: GADRequest = GADRequest()
+        requestAd.testDevices = [kGADSimulatorID]
+        bannerView.load(requestAd)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -121,6 +120,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func loadSettings() {
@@ -141,12 +144,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     func setUpSpeedometer() {
-        // Create a new CircleView
         speedo = Speedometer(frame: speedometerView.frame)
-        
         speedometerView.addSubview(speedo)
-
     }
+   
     
     func setUpMotionManager() {
         motionManager.accelerometerUpdateInterval = 0.2
@@ -169,11 +170,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.savedMeasurementsButtonBackground.layer.cornerRadius = Constants.cornerRadius
         self.saveButtonBackground.layer.cornerRadius = Constants.cornerRadius
     }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
+
     func setUpBackground(frame: CGRect) {
         gradientLayer.frame = frame
         gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor, Constants.backgroundColor2.cgColor as CGColor]
@@ -491,11 +488,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     func fireConnectionNotification(title: String, subtitle: String?, connection: Bool, backgroundColor: UIColor) {
-        if !notificationFired {
+        if !notificationFired && !hudViewActive {
             banner.dismiss()
             banner = Banner(title: title, subtitle: subtitle, image: UIImage(named: "gpsIcon"), backgroundColor: backgroundColor)
+            banner.titleLabel.font = Constants.font
             banner.dismissesOnTap = true
-            banner.position = BannerPosition.bottom
+            banner.position = BannerPosition.top
             if connection {
                 if !connectionEstablishedNotificationFired {
                     banner.show(duration: 3.0)
@@ -526,19 +524,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             }
         }
     }
+    
     func fireNoMeasurementNotification() {
         banner.dismiss()
-        banner = Banner(title: "No time recorded yet.", subtitle: nil, image: UIImage(named: "TimeIcon"), backgroundColor: Constants.backgroundColor2)
+        banner = Banner(title: "No time recorded yet.", subtitle: nil, image: UIImage(named: "ListIcon"), backgroundColor: Constants.backgroundColor2)
+        banner.titleLabel.font = Constants.font
         banner.dismissesOnTap = true
-        banner.position = BannerPosition.bottom
+        banner.position = BannerPosition.top
         banner.show(duration: 2.0)
     }
     
     func fireTimeSavedNotification() {
         banner.dismiss()
-        banner = Banner(title: "Time saved.", subtitle: nil, image: UIImage(named: "TimeIcon"), backgroundColor: Constants.backgroundColor1)
+        banner = Banner(title: "Time saved.", subtitle: nil, image: UIImage(named: "CheckIcon"), backgroundColor: Constants.backgroundColor1)
+        banner.titleLabel.font = Constants.font
         banner.dismissesOnTap = true
-        banner.position = BannerPosition.bottom
+        banner.position = BannerPosition.top
         banner.show(duration: 2.0)
     }
     
@@ -620,9 +621,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         animateButtonPressOn(background: sender)
     }
     
+    
     @IBAction func lowSpeedTouchDown(_ sender: UITextField) {
         animateButtonPressOn(background: sender)
     }
+    
     @IBAction func settingsButtonTouchDown(_ sender: UIButton) {
         animateButtonPressOn(background: settingsBackground)
     }
@@ -698,6 +701,83 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         animateButtonPressOn(background: sender)
     }
     
+    
+    @IBAction func switchToHUDView(_ sender: UISwipeGestureRecognizer) {
+        if !hudViewActive {
+            animateHide(view: speedLogChart)
+            animateHide(view: timeBackground)
+            animateHide(view: accuracyBackground)
+            animateHide(view: settingsBackground)
+            animateHide(view: saveButtonBackground)
+            animateHide(view: savedMeasurementsButtonBackground)
+            animateHide(view: accelerationBackground)
+            animateHide(view: accuracyLabel)
+            animateHide(view: timeReplacementLabel)
+            animateHide(view: accelerationLabel)
+            animateHide(view: weightField)
+            animateHide(view: lowSpeedField)
+            animateHide(view: highSpeedField)
+            animateHide(view: maxSpeedLabel)
+            animateHide(view: bannerView)
+            var transform = CGAffineTransform.identity
+            transform = transform.rotated(by: -CGFloat(Double.pi)/2)
+            transform = transform.scaledBy(x: -1, y: 1)
+            UIView.animate(withDuration: 0.2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
+                self.speedometerView.transform = transform
+            }, completion: nil)
+            animateBackground(fromColors: [Constants.backgroundColor1.cgColor as CGColor,
+                                           Constants.backgroundColor2.cgColor as CGColor],
+                              toColors: [Constants.backgroundColorDark1.cgColor as CGColor,
+                                         Constants.backgroundColorDark2.cgColor as CGColor], duration: 1.0)
+            hudViewActive = true
+        }
+    }
+    @IBAction func switchToNormalView(_ sender: UISwipeGestureRecognizer) {
+        if hudViewActive {
+            animateShow(view: bannerView)
+            animateShow(view: speedLogChart)
+            animateShow(view: timeBackground)
+            animateShow(view: accuracyBackground)
+            animateShow(view: settingsBackground)
+            animateShow(view: saveButtonBackground)
+            animateShow(view: savedMeasurementsButtonBackground)
+            animateShow(view: accelerationBackground)
+            animateShow(view: accuracyLabel)
+            animateShow(view: timeReplacementLabel)
+            animateShow(view: accelerationLabel)
+            animateShow(view: weightField)
+            animateShow(view: lowSpeedField)
+            animateShow(view: highSpeedField)
+            animateShow(view: maxSpeedLabel)
+            var transform = CGAffineTransform.identity
+            transform = transform.rotated(by: 0)
+            transform = transform.scaledBy(x: 1, y: 1)
+            UIView.animate(withDuration: 0.2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
+                self.speedometerView.transform = transform
+            }, completion: nil)
+            animateBackground(fromColors: [Constants.backgroundColorDark1.cgColor as CGColor,
+                                           Constants.backgroundColorDark2.cgColor as CGColor],
+                              toColors: [Constants.backgroundColor1.cgColor as CGColor,
+                                         Constants.backgroundColor2.cgColor as CGColor], duration: 1.0)
+            hudViewActive = false
+        }
+    }
+    
+    func animateBackground(fromColors: [CGColor], toColors: [CGColor], duration: CFTimeInterval){
+        
+        let animation : CABasicAnimation = CABasicAnimation(keyPath: "colors")
+        
+        animation.fromValue = fromColors
+        animation.toValue = toColors
+        animation.duration = duration
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.delegate = self
+        
+        self.gradientLayer.add(animation, forKey: "animateGradient")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSettings" {
             let vc = segue.destination as! SettingsController
@@ -713,7 +793,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             vc.previousViewController = self
         }
     }
-
+    
+    func animateHide(view: UIView) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
+            view.alpha = 0
+        }, completion: { _ in
+            view.isHidden = true
+        })
+    }
+    
+    func animateShow(view: UIView) {
+        view.isHidden = false
+        UIView.animate(withDuration: 0.2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
+            view.alpha = 1
+        }, completion: nil)
+    }
+    
 
 }
 

@@ -34,6 +34,8 @@ class SettingsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         setUpInterfaceDesign()
     }
     
@@ -73,6 +75,9 @@ class SettingsController: UIViewController {
     }
     
     @objc func closeButtonPressed(_ sender:UITapGestureRecognizer){
+        performSegueToReturnBack()
+    }
+    @IBAction func userSwipedDown(_ sender: UISwipeGestureRecognizer) {
         performSegueToReturnBack()
     }
     

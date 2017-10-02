@@ -132,7 +132,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: "Speed in "+speedType!)
         speedLine.drawCirclesEnabled = false
         speedLine.mode = LineChartDataSet.Mode.horizontalBezier
-        speedLine.lineWidth = 5.0
+        speedLine.lineWidth = 2.0
         speedLine.drawFilledEnabled = true
         speedLine.fill = Fill(CGColor: Constants.designColor1.cgColor as CGColor)
         speedLine.colors = [Constants.designColor1]
@@ -140,7 +140,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         let dragLine = LineChartDataSet(values: lineChartEntriesDrag, label: String(lowSpeed!)+" to "+String(highSpeed!)+" "+speedType!)
         dragLine.drawCirclesEnabled = false
         dragLine.mode = LineChartDataSet.Mode.horizontalBezier
-        dragLine.lineWidth = 5.0
+        dragLine.lineWidth = 2.0
         dragLine.drawFilledEnabled = true
         dragLine.fill = Fill(CGColor: Constants.designColor2.cgColor as CGColor)
         dragLine.colors = [Constants.designColor2]
@@ -194,6 +194,11 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         let h1 = heightLog.popLast()!.1
         let heightDelta = h1 - h0
         heightDeltaLabel.text = "Height delta: "+String(Double(round(100*heightDelta)/100))+" m"
+    }
+    
+    
+    @IBAction func userSwipedDown(_ sender: UISwipeGestureRecognizer) {
+        performSegueToReturnBack()
     }
     
     func performSegueToReturnBack()  {

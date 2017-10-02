@@ -41,13 +41,13 @@ class Speedometer: UIView {
         
         // Don't draw the circle initially
         circleLayer.strokeEnd = 0.0
-        let translation = CATransform3DMakeTranslation(frame.width/2 - frame.minX + 40, frame.height/2 - frame.minY + 80, 0)
+        let translation = CATransform3DMakeTranslation(frame.width/2 - frame.minX + 80, frame.height/2 - frame.minY + 160, 0)
         let rotation = CATransform3DMakeRotation(CGFloat(Double.pi/2), 0, 0, 1.0)
         circleLayer.transform = CATransform3DConcat(rotation, translation)
         
         
         let gradient = CAGradientLayer()
-        gradient.frame = CGRect(x: -40, y: -80, width: frame.width+40, height: frame.height+40)
+        gradient.frame = CGRect(x: -80, y: -160, width: frame.width+80, height: frame.height+80)
         gradient.colors = [Constants.designColor1.cgColor as CGColor,
                            Constants.designColor2.cgColor as CGColor]
         gradient.startPoint = CGPoint(x: 0, y: 1)

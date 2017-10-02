@@ -1,4 +1,8 @@
+
+
 # DragTimer
+
+![Supported Platforms](https://img.shields.io/badge/Platform-iOS-lightgrey.svg) ![Release](https://img.shields.io/badge/Release-0.1.0-blue.svg) ![Build](https://img.shields.io/badge/Build-passing-green.svg) ![AppStore](https://img.shields.io/badge/App%20Store-not%20released-red.svg)
 
 This iOS app can track your speed, average speed, acceleration, height and precisely count your drag times. Time correction is supported as well!
 
@@ -33,6 +37,8 @@ Update pod dependencies
 cd dragtimer
 pod update
 ```
+
+Start Xcode, plug your phone in. You may need to authorize your Apple ID. Select your device from the list of simulators. Click on the run icon to build the app on your device. After this is finished, you may need to authorize your Apple ID on your iDevice again. Now you can run the app on your device.
 
 ## Built With
 

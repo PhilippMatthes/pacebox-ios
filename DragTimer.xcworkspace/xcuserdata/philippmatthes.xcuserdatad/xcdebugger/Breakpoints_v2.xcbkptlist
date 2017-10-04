@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/SpeedLogDetailController.swift"
-            timestampString = "528643657.680163"
+            timestampString = "528649588.65619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683066"
+            timestampString = "528802419.359308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "ViewController"
             landmarkType = "3">
             <Locations>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683239"
+            timestampString = "528802419.361534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "checkForDragTime()"
             landmarkType = "7">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683385"
+            timestampString = "528802419.36313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "479"
-            endingLineNumber = "479"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "updateSpeedGraph()"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683536"
+            timestampString = "528802419.364351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "checkForDragTime()"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683697"
+            timestampString = "528802419.365431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683824"
+            timestampString = "528802419.366521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "793"
-            endingLineNumber = "793"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,11 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.683971"
+            timestampString = "528802419.367724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "569"
-            endingLineNumber = "569"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
             landmarkName = "saveCurrentTime()"
             landmarkType = "7">
          </BreakpointContent>
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.684156"
+            timestampString = "528802419.368927"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "562"
-            endingLineNumber = "562"
+            startingLineNumber = "602"
+            endingLineNumber = "602"
             landmarkName = "saveCurrentTime()"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.684371"
+            timestampString = "528802419.369996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "632"
+            endingLineNumber = "632"
             landmarkName = "updateCurrentMeasurement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.684738"
+            timestampString = "528802419.371112"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.684869"
+            timestampString = "528802419.372937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.684996"
+            timestampString = "528802419.374691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -344,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.685114"
+            timestampString = "528802419.376472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -360,11 +360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.685241"
+            timestampString = "528802419.378307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -376,13 +376,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.685363"
+            timestampString = "528802419.380273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
-            landmarkName = "ViewController"
-            landmarkType = "3">
+            startingLineNumber = "633"
+            endingLineNumber = "633"
+            landmarkName = "updateCurrentMeasurement()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -392,13 +392,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922075"
+            timestampString = "528649588.657254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "DataHandler"
-            landmarkType = "3">
+            landmarkName = "store(log:identifier:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -408,13 +408,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922155"
+            timestampString = "528649588.657295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
-            landmarkName = "DataHandler"
-            landmarkType = "3">
+            landmarkName = "store(log:identifier:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -456,13 +456,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922229"
+            timestampString = "528649588.657333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "DataHandler"
-            landmarkType = "3">
+            landmarkName = "store(log:identifier:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -472,13 +472,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922302"
+            timestampString = "528649588.657371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "DataHandler"
-            landmarkType = "3">
+            landmarkName = "store(log:identifier:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -488,12 +488,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922375"
+            timestampString = "528649588.657408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "store(log:identifier:)"
+            landmarkName = "load(logName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -504,12 +504,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922448"
+            timestampString = "528649588.657446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "store(log:identifier:)"
+            landmarkName = "load(logName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -520,12 +520,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922518"
+            timestampString = "528649588.657484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
-            landmarkName = "store(log:identifier:)"
+            landmarkName = "load(logName:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -583,12 +583,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922567"
+            timestampString = "528649588.657554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "store(log:identifier:)"
+            landmarkName = "load(logName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -599,13 +599,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922608"
+            timestampString = "528649588.657626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "DataHandler"
-            landmarkType = "3">
+            landmarkName = "load(logName:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -615,13 +615,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922648"
+            timestampString = "528649588.65775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
-            landmarkName = "DataHandler"
-            landmarkType = "3">
+            landmarkName = "load(logName:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -631,7 +631,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/DataHandler.swift"
-            timestampString = "528638574.922687"
+            timestampString = "528649588.657825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -855,11 +855,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.685943"
+            timestampString = "528802419.38247"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -903,11 +903,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.686097"
+            timestampString = "528802419.384312"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "523"
-            endingLineNumber = "523"
+            startingLineNumber = "563"
+            endingLineNumber = "563"
             landmarkName = "fireConnectionNotification(title:subtitle:connection:backgroundColor:)"
             landmarkType = "7">
             <Locations>
@@ -967,11 +967,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "528643657.68622"
+            timestampString = "528802419.386228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "561"
-            endingLineNumber = "561"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
             landmarkName = "saveCurrentTime()"
             landmarkType = "7">
          </BreakpointContent>

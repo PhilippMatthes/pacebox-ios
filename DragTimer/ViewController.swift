@@ -36,6 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     @IBOutlet weak var savedMeasurementsButtonBackground: UIView!
     @IBOutlet weak var saveButtonBackground: UIView!
     @IBOutlet weak var weightField: UITextField!
+    @IBOutlet weak var timeIndicationLabel: UILabel!
     
     // MARK: Variables
     let manager = CLLocationManager()
@@ -65,6 +66,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     var weightTypeCoefficient = Double()
     weak var timer: Timer?
     weak var speedometerTimer: Timer?
+    weak var visualTimer: Timer?
     var startTime: Double = 0
     var currentTime: Double = 0
     var updateGraphs = Bool()
@@ -79,6 +81,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     let gradientLayer = CAGradientLayer()
     var motionManager = CMMotionManager()
     var hudViewActive = false
+    var currentTimeIndication = 0.00
+    var visualTimerIsRunning = false
+    var previousSpeed = 0.0
+    var speedLogDataAvailable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,6 +169,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.maxSpeedLabel.textColor = UIColor.gray
         self.speedTypeLabel.textColor = UIColor.gray
         self.speedReplacementLabel.textColor = UIColor.white
+        self.timeIndicationLabel.textColor = UIColor.white
         self.settingsBackground.layer.cornerRadius = Constants.cornerRadius
         self.accuracyBackground.layer.cornerRadius = Constants.cornerRadius
         self.accelerationBackground.layer.cornerRadius = Constants.cornerRadius
@@ -188,6 +195,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         speedLogChart.drawBordersEnabled = false
         speedLogChart.legend.enabled = false
         speedLogChart.isUserInteractionEnabled = false
+        speedLogChart.isHidden = true
+        speedLogChart.alpha = 0.0
     }
     
     func startTimer() {
@@ -209,6 +218,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if !speedLogDataAvailable {
+            speedLogDataAvailable = true
+            animateShow(view: speedLogChart)
+        }
+        previousSpeed = currentSpeed
         let speed = locations[0].speed
         if speed >= 0.0 {
             currentSpeed = speed
@@ -303,6 +317,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         if lowSpeed < highSpeed {
             checkForDragTime()
         }
+        if currentSpeed*speedTypeCoefficient > lowSpeed && currentSpeed*speedTypeCoefficient <= highSpeed {
+            if !visualTimerIsRunning && previousSpeed*speedTypeCoefficient <= lowSpeed{
+                startVisualTimer()
+                visualTimerIsRunning = true
+            }
+        }
+        else {
+            if visualTimerIsRunning {
+                stopVisualTimer()
+                visualTimerIsRunning = false
+            }
+        }
+    }
+    
+    func startVisualTimer() {
+        currentTimeIndication = 0.00
+        visualTimer = Timer.scheduledTimer(timeInterval: 0.07, target: self, selector: #selector(self.incrementVisualTimeLabel), userInfo: nil, repeats: true)
+    }
+    
+    @objc func incrementVisualTimeLabel() {
+        currentTimeIndication = Double(round((currentTimeIndication + 0.07) * 100)/100)
+        self.timeIndicationLabel.text = String(currentTimeIndication) + " s"
+    }
+    
+    func stopVisualTimer() {
+        visualTimer?.invalidate()
+        self.timeIndicationLabel.text = String(dragTime) + " s"
     }
     
     @objc func advanceSpeedometerTimer(timer: Timer) {
@@ -406,6 +447,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             }
             else {
                 self.timeReplacementLabel.text = "\(self.dragTime)s (\(self.correctedDragTime)s)"
+                self.timeIndicationLabel.text = "\(self.dragTime) s"
             }
         })
     }
@@ -453,7 +495,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: nil)
         speedLine.drawCirclesEnabled = false
         speedLine.mode = LineChartDataSet.Mode.horizontalBezier
-        speedLine.lineWidth = 5.0
+        speedLine.lineWidth = 3.0
         speedLine.drawFilledEnabled = true
         speedLine.fill = Fill(CGColor: Constants.graphColor.cgColor as CGColor)
         speedLine.colors = [Constants.graphColor]
@@ -461,7 +503,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         let dragLine = LineChartDataSet(values: lineChartEntriesDrag, label: nil)
         dragLine.drawCirclesEnabled = false
         dragLine.mode = LineChartDataSet.Mode.horizontalBezier
-        dragLine.lineWidth = 5.0
+        dragLine.lineWidth = 3.0
         dragLine.drawFilledEnabled = false
         dragLine.fill = Fill(CGColor: Constants.graphColor.cgColor as CGColor)
         dragLine.colors = [Constants.graphColor]
@@ -527,7 +569,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func fireNoMeasurementNotification() {
         banner.dismiss()
-        banner = Banner(title: "No time recorded yet.", subtitle: nil, image: UIImage(named: "ListIcon"), backgroundColor: Constants.backgroundColor2)
+        banner = Banner(title: "No time recorded yet.", subtitle: nil, image: UIImage(named: "ListIcon"), backgroundColor: Constants.designColor1)
         banner.titleLabel.font = Constants.font
         banner.dismissesOnTap = true
         banner.position = BannerPosition.top
@@ -536,7 +578,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func fireTimeSavedNotification() {
         banner.dismiss()
-        banner = Banner(title: "Time saved.", subtitle: nil, image: UIImage(named: "CheckIcon"), backgroundColor: Constants.backgroundColor1)
+        banner = Banner(title: "Time saved.", subtitle: nil, image: UIImage(named: "CheckIcon"), backgroundColor: Constants.designColor2)
         banner.titleLabel.font = Constants.font
         banner.dismissesOnTap = true
         banner.position = BannerPosition.top
@@ -713,6 +755,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             animateHide(view: accelerationBackground)
             animateHide(view: accuracyLabel)
             animateHide(view: timeReplacementLabel)
+            animateHide(view: timeIndicationLabel)
             animateHide(view: accelerationLabel)
             animateHide(view: weightField)
             animateHide(view: lowSpeedField)
@@ -744,6 +787,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             animateShow(view: accelerationBackground)
             animateShow(view: accuracyLabel)
             animateShow(view: timeReplacementLabel)
+            animateShow(view: timeIndicationLabel)
             animateShow(view: accelerationLabel)
             animateShow(view: weightField)
             animateShow(view: lowSpeedField)

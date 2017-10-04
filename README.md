@@ -2,7 +2,7 @@
 
 # DragTimer
 
-![Supported Platforms](https://img.shields.io/badge/Platform-iOS-lightgrey.svg) ![Release](https://img.shields.io/badge/Release-0.1.0-blue.svg) ![Build](https://img.shields.io/badge/Build-passing-green.svg) ![AppStore](https://img.shields.io/badge/App%20Store-not%20released-red.svg)
+![Supported Platforms](https://img.shields.io/badge/Platform-iOS-lightgrey.svg) ![Release](https://img.shields.io/badge/Release-1.1.0-blue.svg) ![Build](https://img.shields.io/badge/Build-passing-green.svg) ![AppStore](https://img.shields.io/badge/App%20Store-released-green.svg)
 
 This iOS app can track your speed, average speed, acceleration, height and precisely count your drag times. Time correction is supported as well!
 
@@ -10,11 +10,13 @@ This iOS app can track your speed, average speed, acceleration, height and preci
 
 ## Getting Started
 
+[You can download this app on the iOS App Store.](https://itunes.apple.com/us/app/gps-drag-timer/id1291956466?mt=8) 
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-This App is currently in development. This means, you cannot download it yet via the iOS App Store. You will need the following:
+If you want to download the project and modify it, those are things you'll need:
 
 ```
 - A mac running on sierra
@@ -51,6 +53,4 @@ Start Xcode, plug your phone in. You may need to authorize your Apple ID. Select
 
 See also the list of [contributors](https://github.com/philippmatthes/dragtimer/contributors) who participated in this project.
 
-## License
 
-This project is not yet licensed under any license.

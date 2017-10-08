@@ -20,6 +20,7 @@ struct Constants {
     static let designColor1 = UIColor(rgb: 0xee0979, alpha: 1.0)
     static let designColor2 = UIColor(rgb: 0xff6a00, alpha: 1.0)
     static let graphColor = UIColor(rgb: 0xffffff, alpha: 0.25)
+    static let interfaceColor = UIColor(rgb: 0xffffff, alpha: 0.75)
     
     static let font = UIFont(name: "Futura", size: 22.0)
     

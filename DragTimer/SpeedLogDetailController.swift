@@ -63,8 +63,19 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         navigationItem.rightBarButtonItem = doneItem
         navigationBar.setItems([navigationItem], animated: false)
         
-        self.speedLogChartBackground.layer.cornerRadius = Constants.cornerRadius
-        dataBackground.layer.cornerRadius = Constants.cornerRadius
+        let backgrounds = [speedLogChartBackground,
+                           dataBackground]
+        
+        for background in backgrounds {
+            background?.layer.cornerRadius = Constants.cornerRadius
+            background?.dropShadow(color: UIColor.black,
+                                   opacity: 0.3,
+                                   offSet: CGSize(),
+                                   radius: 7,
+                                   scale: true)
+            background?.layer.backgroundColor = Constants.interfaceColor.cgColor
+        }
+        
         speedLogChart.delegate = self
         speedLogChart.chartDescription?.text = nil
         speedLogChart.leftAxis.axisMinimum = 0
@@ -165,6 +176,12 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         
         
         speedLogChart.data = data
+        let xMax = dragLog.last!.0 + (dragLog.last!.0 - dragLog.first!.0) * 0.2
+        var xMin = dragLog.first!.0 - (dragLog.last!.0 - dragLog.first!.0) * 0.2
+        if xMin < 0 {
+            xMin = 0
+        }
+        speedLogChart.setVisibleXRange(minXRange: xMin, maxXRange: xMax)
         self.speedLogChart.notifyDataSetChanged()
     }
     

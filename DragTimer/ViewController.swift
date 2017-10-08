@@ -17,6 +17,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     
     // MARK: Outlets
+    
+    @IBOutlet weak var accuracyConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var accelerationConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var settingsConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var speedTypeLabel: UILabel!
     @IBOutlet weak var speedometerView: UIView!
@@ -91,7 +98,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         view.layoutIfNeeded()
         currentMeasurementIdentifier = countSavedMeasurements()
         loadSettings()
-        setUpAdView()
         setUpSpeedometer()
         setUpLocationManager()
         setUpInterfaceDesign()
@@ -103,12 +109,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         setUpMotionManager()
     }
     
+    func shouldShowAds() -> Bool {
+        let showAdsDate = UserDefaults.standard.object(forKey: "showAdsDate") as? Date ?? Date()
+        let timeFromDate = showAdsDate.seconds(from: Date())
+        if timeFromDate > 0 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func setUpNoAdView() {
+        bannerView.isHidden = true
+        accuracyConstraint.constant = 8.0
+        settingsConstraint.constant = 8.0
+        accelerationConstraint.constant = 8.0
+    }
+    
     func setUpAdView() {
+        accuracyConstraint.constant = 58.0
+        settingsConstraint.constant = 58.0
+        accelerationConstraint.constant = 58.0
+        bannerView.isHidden = false
         self.view.addSubview(bannerView)
         bannerView.adUnitID = "ca-app-pub-5941274384378366/3140722486"
         bannerView.rootViewController = self
         let requestAd: GADRequest = GADRequest()
-        requestAd.testDevices = [kGADSimulatorID]
+//        requestAd.testDevices = [kGADSimulatorID]
         bannerView.load(requestAd)
         
     }
@@ -121,6 +149,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         updateGraphs = true
+        let showAds = shouldShowAds()
+        if showAds {
+            setUpAdView()
+        }
+        else {
+            setUpNoAdView()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,7 +176,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         weightType = UserDefaults.standard.object(forKey: "weightType") as? String ?? "kg"
         weightTypeCoefficient = UserDefaults.standard.object(forKey: "weightTypeCoefficient") as? Double ?? 1.0
         drawRange = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Int ?? 120
-        
         speedTypeLabel.text = speedType
         lowSpeedField.text = String(lowSpeed)
         highSpeedField.text = String(highSpeed)
@@ -170,12 +204,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         self.speedTypeLabel.textColor = UIColor.gray
         self.speedReplacementLabel.textColor = UIColor.white
         self.timeIndicationLabel.textColor = UIColor.white
-        self.settingsBackground.layer.cornerRadius = Constants.cornerRadius
-        self.accuracyBackground.layer.cornerRadius = Constants.cornerRadius
-        self.accelerationBackground.layer.cornerRadius = Constants.cornerRadius
-        self.timeBackground.layer.cornerRadius = Constants.cornerRadius
-        self.savedMeasurementsButtonBackground.layer.cornerRadius = Constants.cornerRadius
-        self.saveButtonBackground.layer.cornerRadius = Constants.cornerRadius
+        let backgrounds = [settingsBackground,
+                           accuracyBackground,
+                           accelerationBackground,
+                           timeBackground,
+                           savedMeasurementsButtonBackground,
+                           saveButtonBackground,
+                           weightField,
+                           lowSpeedField,
+                           highSpeedField]
+        for background in backgrounds {
+            background?.layer.cornerRadius = Constants.cornerRadius
+            background?.dropShadow(color: UIColor.black,
+                                   opacity: 0.3,
+                                   offSet: CGSize(),
+                                   radius: 7,
+                                   scale: true)
+            background?.layer.backgroundColor = Constants.interfaceColor.cgColor
+        }
     }
 
     func setUpBackground(frame: CGRect) {
@@ -234,7 +280,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         }
         else {
             updateGraphs = false
-            fireConnectionNotification(title: "No Connection!",
+            fireConnectionNotification(title: "No GPS Connection!",
                                        subtitle: nil,
                                        connection: false,
                                        backgroundColor: Constants.designColor2)
@@ -744,7 +790,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
     
-    @IBAction func switchToHUDView(_ sender: UISwipeGestureRecognizer) {
+    
+    @IBAction func userSwipedLeft(_ sender: UISwipeGestureRecognizer) {
         if !hudViewActive {
             animateHide(view: speedLogChart)
             animateHide(view: timeBackground)
@@ -761,7 +808,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             animateHide(view: lowSpeedField)
             animateHide(view: highSpeedField)
             animateHide(view: maxSpeedLabel)
-            animateHide(view: bannerView)
+            if shouldShowAds() {
+                animateHide(view: bannerView)
+            }
             var transform = CGAffineTransform.identity
             transform = transform.rotated(by: -CGFloat(Double.pi)/2)
             transform = transform.scaledBy(x: -1, y: 1)
@@ -774,10 +823,55 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                                          Constants.backgroundColorDark2.cgColor as CGColor], duration: 1.0)
             hudViewActive = true
         }
+        else {
+            switchToNormalView()
+        }
     }
-    @IBAction func switchToNormalView(_ sender: UISwipeGestureRecognizer) {
+    
+    @IBAction func userSwipedRight(_ sender: UISwipeGestureRecognizer) {
+        if !hudViewActive {
+            animateHide(view: speedLogChart)
+            animateHide(view: timeBackground)
+            animateHide(view: accuracyBackground)
+            animateHide(view: settingsBackground)
+            animateHide(view: saveButtonBackground)
+            animateHide(view: savedMeasurementsButtonBackground)
+            animateHide(view: accelerationBackground)
+            animateHide(view: accuracyLabel)
+            animateHide(view: timeReplacementLabel)
+            animateHide(view: timeIndicationLabel)
+            animateHide(view: accelerationLabel)
+            animateHide(view: weightField)
+            animateHide(view: lowSpeedField)
+            animateHide(view: highSpeedField)
+            animateHide(view: maxSpeedLabel)
+            if shouldShowAds() {
+                animateHide(view: bannerView)
+            }
+            var transform = CGAffineTransform.identity
+            transform = transform.rotated(by: CGFloat(Double.pi)/2)
+            transform = transform.scaledBy(x: -1, y: 1)
+            UIView.animate(withDuration: 0.2, delay: 0, options: [UIViewAnimationOptions.curveEaseOut], animations: {
+                self.speedometerView.transform = transform
+            }, completion: nil)
+            animateBackground(fromColors: [Constants.backgroundColor1.cgColor as CGColor,
+                                           Constants.backgroundColor2.cgColor as CGColor],
+                              toColors: [Constants.backgroundColorDark1.cgColor as CGColor,
+                                         Constants.backgroundColorDark2.cgColor as CGColor], duration: 1.0)
+            hudViewActive = true
+        }
+        else {
+            switchToNormalView()
+        }
+    }
+    
+    
+    
+    func switchToNormalView() {
         if hudViewActive {
-            animateShow(view: bannerView)
+            if shouldShowAds() {
+                animateShow(view: bannerView)
+            }
             animateShow(view: speedLogChart)
             animateShow(view: timeBackground)
             animateShow(view: accuracyBackground)
@@ -854,5 +948,61 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     }
     
 
+}
+
+extension UIView {
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offSet
+        self.layer.shadowRadius = radius
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+}
+
+extension Date {
+    /// Returns the amount of years from another date
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
+    }
+    /// Returns the amount of months from another date
+    func months(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
+    }
+    /// Returns the amount of weeks from another date
+    func weeks(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.weekOfMonth], from: date, to: self).weekOfMonth ?? 0
+    }
+    /// Returns the amount of days from another date
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+    }
+    /// Returns the amount of hours from another date
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+    }
+    /// Returns the amount of minutes from another date
+    func minutes(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
+    }
+    /// Returns the amount of seconds from another date
+    func seconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
+    }
+    /// Returns the a custom time interval description from another date
+    func offset(from date: Date) -> String {
+        if years(from: date)   > 0 { return "\(years(from: date))y"   }
+        if months(from: date)  > 0 { return "\(months(from: date))M"  }
+        if weeks(from: date)   > 0 { return "\(weeks(from: date))w"   }
+        if days(from: date)    > 0 { return "\(days(from: date))d"    }
+        if hours(from: date)   > 0 { return "\(hours(from: date))h"   }
+        if minutes(from: date) > 0 { return "\(minutes(from: date))m" }
+        if seconds(from: date) > 0 { return "\(seconds(from: date))s" }
+        return ""
+    }
 }
 

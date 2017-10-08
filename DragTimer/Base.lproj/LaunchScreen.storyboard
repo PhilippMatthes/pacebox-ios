@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Futura.ttc">
+            <string>Futura-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--LaunchScreenController-->
         <scene sceneID="EHf-IW-A2E">
@@ -21,24 +26,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="n1o-yc-0cv">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-er-UdI">
+                                <rect key="frame" x="8" y="162.5" width="304" height="243.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A50-rm-ZI8">
+                                        <rect key="frame" x="0.0" y="60" width="304" height="82"/>
+                                        <string key="text">Never let this App distract you from traffic. Do not use this App when driving a vehicle. Do not endanger any person or property when using this App. Always adhere to traffic regulations and the given speed limit. Do not provoke or start any races outside a closed race track. The developer and publisher of this App is neither responsible for any damages that were caused nor illegal actions that were done whilst using this App.</string>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYo-fY-MzL">
+                                        <rect key="frame" x="0.0" y="40" width="304" height="12"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CautionIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7XL-gG-zEI">
+                                        <rect key="frame" x="135.5" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="TXX-Nj-qMp"/>
+                                            <constraint firstAttribute="height" constant="32" id="mdM-8S-5LL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-1a-MpA">
+                                        <rect key="frame" x="0.0" y="150" width="304" height="93.5"/>
+                                        <mutableString key="text">Lassen Sie sich niemals durch diese App vom Verkehr ablenken. Nutzen Sie diese App nicht, wenn Sie ein Fahrzeug steueren. Gefährden Sie niemals Personen oder Sachgut beim Nutzen dieser App. Befolgen Sie immer die Verkehrsregeln und das geltende Geschwindigkeitslimit. Provozieren oder tätigen Sie keine Rennen außerhalb einer Geschlossenen Rennstrecke. Der Entwickler und Herausgeber dieser App ist weder für jegliche Schäden, noch für illegale oder illegitime Aktionen die während der Benutzung dieser App entstehen verantwortlich.</mutableString>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="A50-rm-ZI8" firstAttribute="top" secondItem="vYo-fY-MzL" secondAttribute="bottom" constant="8" id="4ZX-6h-Pcg"/>
+                                    <constraint firstItem="7XL-gG-zEI" firstAttribute="centerX" secondItem="Rez-er-UdI" secondAttribute="centerX" id="7Pm-9L-dRX"/>
+                                    <constraint firstItem="nYn-1a-MpA" firstAttribute="top" secondItem="A50-rm-ZI8" secondAttribute="bottom" constant="8" id="9ge-00-9Hc"/>
+                                    <constraint firstAttribute="trailing" secondItem="vYo-fY-MzL" secondAttribute="trailing" id="ACr-Ag-gHO"/>
+                                    <constraint firstItem="nYn-1a-MpA" firstAttribute="leading" secondItem="Rez-er-UdI" secondAttribute="leading" id="Bsc-Pb-nkg"/>
+                                    <constraint firstItem="A50-rm-ZI8" firstAttribute="leading" secondItem="Rez-er-UdI" secondAttribute="leading" id="L3N-OA-3Ch"/>
+                                    <constraint firstItem="vYo-fY-MzL" firstAttribute="top" secondItem="7XL-gG-zEI" secondAttribute="bottom" constant="8" id="OoL-FT-rkR"/>
+                                    <constraint firstItem="nYn-1a-MpA" firstAttribute="top" secondItem="A50-rm-ZI8" secondAttribute="bottom" constant="8" id="PwG-TF-9fh"/>
+                                    <constraint firstItem="vYo-fY-MzL" firstAttribute="top" secondItem="7XL-gG-zEI" secondAttribute="bottom" constant="8" id="Sru-YZ-Gyc"/>
+                                    <constraint firstAttribute="trailing" secondItem="nYn-1a-MpA" secondAttribute="trailing" id="U8i-Db-Pz4"/>
+                                    <constraint firstItem="vYo-fY-MzL" firstAttribute="leading" secondItem="Rez-er-UdI" secondAttribute="leading" id="dhX-qu-xop"/>
+                                    <constraint firstAttribute="trailing" secondItem="A50-rm-ZI8" secondAttribute="trailing" id="eSA-re-faJ"/>
+                                    <constraint firstItem="7XL-gG-zEI" firstAttribute="top" secondItem="Rez-er-UdI" secondAttribute="top" id="ezh-XW-QqS"/>
+                                    <constraint firstItem="A50-rm-ZI8" firstAttribute="top" secondItem="vYo-fY-MzL" secondAttribute="bottom" constant="8" id="tGc-5p-2Zz"/>
+                                    <constraint firstAttribute="bottom" secondItem="nYn-1a-MpA" secondAttribute="bottom" id="ujB-5s-cii"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="n1o-yc-0cv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tuB-wF-hrc"/>
-                            <constraint firstItem="n1o-yc-0cv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xwy-Kj-s6G"/>
+                            <constraint firstItem="Rez-er-UdI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="8" id="GiL-gG-1Z6"/>
+                            <constraint firstItem="Rez-er-UdI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="T7L-bX-wyB"/>
+                            <constraint firstAttribute="trailing" secondItem="Rez-er-UdI" secondAttribute="trailing" constant="8" id="ojw-n3-uaw"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="backgroundView" destination="Ze5-6b-2t3" id="hiA-yH-lWf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="50.625" y="373.94366197183098"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CautionIcon" width="64" height="64"/>
+    </resources>
 </document>

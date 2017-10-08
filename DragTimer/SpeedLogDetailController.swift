@@ -68,11 +68,11 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         
         for background in backgrounds {
             background?.layer.cornerRadius = Constants.cornerRadius
-            background?.dropShadow(color: UIColor.black,
-                                   opacity: 0.3,
-                                   offSet: CGSize(),
-                                   radius: 7,
-                                   scale: true)
+//            background?.dropShadow(color: UIColor.black,
+//                                   opacity: 0.3,
+//                                   offSet: CGSize(),
+//                                   radius: 7,
+//                                   scale: true)
             background?.layer.backgroundColor = Constants.interfaceColor.cgColor
         }
         

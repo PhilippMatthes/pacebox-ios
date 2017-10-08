@@ -104,11 +104,11 @@ class SettingsController: UIViewController, GADRewardBasedVideoAdDelegate {
         
         for background in buttonBackgrounds {
             background?.layer.cornerRadius = Constants.cornerRadius
-            background?.dropShadow(color: UIColor.black,
-                                   opacity: 1.0,
-                                   offSet: CGSize(),
-                                   radius: 3,
-                                   scale: true)
+//            background?.dropShadow(color: UIColor.black,
+//                                   opacity: 1.0,
+//                                   offSet: CGSize(),
+//                                   radius: 3,
+//                                   scale: true)
             background?.layer.backgroundColor = Constants.interfaceColor.cgColor
         }
         

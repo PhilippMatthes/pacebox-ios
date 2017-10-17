@@ -1,0 +1,9 @@
+
+/* Class = "UIViewController"; title = "LaunchScreenController"; ObjectID = "01J-lp-oVM"; */
+"01J-lp-oVM.title" = "LaunchScreenController";
+
+/* Class = "UILabel"; text = "Never let this App distract you from traffic. Do not use this App when driving a vehicle. Do not endanger any person or property when using this App. Always adhere to traffic regulations and the given speed limit. Do not provoke or start any races outside a closed race track. The developer and publisher of this App is neither responsible for any damages that were caused nor illegal actions that were done whilst using this App."; ObjectID = "A50-rm-ZI8"; */
+"A50-rm-ZI8.text" = "Never let this App distract you from traffic. Do not use this App when driving a vehicle. Do not endanger any person or property when using this App. Always adhere to traffic regulations and the given speed limit. Do not provoke or start any races outside a closed race track. The developer and publisher of this App is neither responsible for any damages that were caused nor illegal actions that were done whilst using this App.";
+
+/* Class = "UILabel"; text = "Disclaimer"; ObjectID = "vYo-fY-MzL"; */
+"vYo-fY-MzL.text" = "Disclaimer";

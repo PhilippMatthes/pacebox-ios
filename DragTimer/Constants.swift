@@ -17,8 +17,8 @@ struct Constants {
     static let backgroundColor2 = UIColor(rgb: 0x3A6073, alpha: 1.0)
     static let backgroundColorDark1 = UIColor(rgb: 0x000000, alpha: 1.0)
     static let backgroundColorDark2 = UIColor(rgb: 0x000000, alpha: 1.0)
-    static let designColor1 = UIColor(rgb: 0xee0979, alpha: 1.0)
-    static let designColor2 = UIColor(rgb: 0xff6a00, alpha: 1.0)
+    static let designColor1 = UIColor(rgb: 0xFF4E50, alpha: 1.0)
+    static let designColor2 = UIColor(rgb: 0xF9D423, alpha: 1.0)
     static let graphColor = UIColor(rgb: 0xffffff, alpha: 0.25)
     static let interfaceColor = UIColor(rgb: 0xffffff, alpha: 0.75)
     

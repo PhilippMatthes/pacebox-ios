@@ -150,7 +150,7 @@ class SettingsController: UIViewController{
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
         doneToolbar.barStyle       = UIBarStyle.default
         let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
+        let done: UIBarButtonItem  = UIBarButtonItem(title: NSLocalizedString("done", comment: "Done"), style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
         done.tintColor = Constants.designColor1
         
         var items = [UIBarButtonItem]()
@@ -206,7 +206,7 @@ class SettingsController: UIViewController{
         }
         
         self.view.addSubview(navigationBar)
-        let navigationItem = UINavigationItem(title: "Settings")
+        let navigationItem = UINavigationItem(title: NSLocalizedString("settings", comment: "Settings"))
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.closeButtonPressed (_:)))
         doneItem.tintColor = Constants.designColor1
         navigationItem.rightBarButtonItem = doneItem
@@ -344,13 +344,13 @@ class SettingsController: UIViewController{
     
     @IBAction func speedTypeButtonPressed(_ sender: UIButton) {
         let alertController = UIAlertController(
-                    title: "Units selection",
+                    title: NSLocalizedString("unitsSelection", comment: "Units Selection"),
                     message: nil,
                     preferredStyle: UIAlertControllerStyle.actionSheet
                 )
         
                 let speedTypeKphAction = UIAlertAction (
-                    title: "Metric (km/h - kg)",
+                    title: NSLocalizedString("metric", comment: "Metric (km/h - kg)"),
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
@@ -364,7 +364,7 @@ class SettingsController: UIViewController{
                 }
         
                 let speedTypeMphAction = UIAlertAction (
-                    title: "Imperialistic (mph - lbs)",
+                    title: NSLocalizedString("imperialistic", comment: "Imperialistic (mph - lbs)"),
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
@@ -378,7 +378,7 @@ class SettingsController: UIViewController{
                 }
         
                 let speedTypeMpsAction = UIAlertAction (
-                    title: "Native (m/s - kg)",
+                    title: NSLocalizedString("native", comment: "Native (m/s - kg)"),
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
@@ -392,7 +392,7 @@ class SettingsController: UIViewController{
                 }
         
                 let speedTypeKnotsAction = UIAlertAction (
-                    title: "Aeronautical (kn - lbs)",
+                    title: NSLocalizedString("aeronautical", comment: "Aeronautical (kn - lbs)"),
                     style: UIAlertActionStyle.default
                 ) {
                     (action) -> Void in
@@ -410,7 +410,6 @@ class SettingsController: UIViewController{
                     style: UIAlertActionStyle.cancel
                 ) {
                     (action) -> Void in
-                    print("User cancelled action.")
                 }
         
                 alertController.addAction(speedTypeKphAction)

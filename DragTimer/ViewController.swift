@@ -264,14 +264,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         if speed >= 0.0 {
             currentSpeed = speed
             updateGraphs = true
-            fireConnectionNotification(title: "Connection established!",
+            fireConnectionNotification(title: NSLocalizedString("connectionEstablished", comment: "Connection Established!"),
                                        subtitle: nil,
                                        connection: true,
                                        backgroundColor: Constants.designColor1)
         }
         else {
             updateGraphs = false
-            fireConnectionNotification(title: "No GPS Connection!",
+            fireConnectionNotification(title: NSLocalizedString("noGPSConnection", comment: "No GPS Connection!"),
                                        subtitle: nil,
                                        connection: false,
                                        backgroundColor: Constants.designColor2)
@@ -581,7 +581,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func fireNoMeasurementNotification() {
         banner.dismiss()
-        banner = Banner(title: "No time recorded yet.", subtitle: nil, image: UIImage(named: "ListIcon"), backgroundColor: Constants.designColor1)
+        banner = Banner(title: NSLocalizedString("noTimeRecordedYet", comment: "No time recorded yet!"), subtitle: nil, image: UIImage(named: "ListIcon"), backgroundColor: Constants.designColor1)
         banner.titleLabel.font = Constants.font
         banner.dismissesOnTap = true
         banner.position = BannerPosition.top
@@ -590,7 +590,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func fireTimeSavedNotification() {
         banner.dismiss()
-        banner = Banner(title: "Time saved.", subtitle: nil, image: UIImage(named: "CheckIcon"), backgroundColor: Constants.designColor2)
+        banner = Banner(title: NSLocalizedString("timeSaved", comment: "Time saved."), subtitle: nil, image: UIImage(named: "CheckIcon"), backgroundColor: Constants.designColor2)
         banner.titleLabel.font = Constants.font
         banner.dismissesOnTap = true
         banner.position = BannerPosition.top

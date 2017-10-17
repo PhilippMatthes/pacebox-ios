@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-er-UdI">
-                                <rect key="frame" x="8" y="162.5" width="304" height="243.5"/>
+                                <rect key="frame" x="8" y="213.5" width="304" height="142"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A50-rm-ZI8">
                                         <rect key="frame" x="0.0" y="60" width="304" height="82"/>
@@ -49,31 +49,20 @@
                                             <constraint firstAttribute="height" constant="32" id="mdM-8S-5LL"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYn-1a-MpA">
-                                        <rect key="frame" x="0.0" y="150" width="304" height="93.5"/>
-                                        <mutableString key="text">Lassen Sie sich niemals durch diese App vom Verkehr ablenken. Nutzen Sie diese App nicht, wenn Sie ein Fahrzeug steueren. Gefährden Sie niemals Personen oder Sachgut beim Nutzen dieser App. Befolgen Sie immer die Verkehrsregeln und das geltende Geschwindigkeitslimit. Provozieren oder tätigen Sie keine Rennen außerhalb einer Geschlossenen Rennstrecke. Der Entwickler und Herausgeber dieser App ist weder für jegliche Schäden, noch für illegale oder illegitime Aktionen die während der Benutzung dieser App entstehen verantwortlich.</mutableString>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="9"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="A50-rm-ZI8" firstAttribute="top" secondItem="vYo-fY-MzL" secondAttribute="bottom" constant="8" id="4ZX-6h-Pcg"/>
                                     <constraint firstItem="7XL-gG-zEI" firstAttribute="centerX" secondItem="Rez-er-UdI" secondAttribute="centerX" id="7Pm-9L-dRX"/>
-                                    <constraint firstItem="nYn-1a-MpA" firstAttribute="top" secondItem="A50-rm-ZI8" secondAttribute="bottom" constant="8" id="9ge-00-9Hc"/>
                                     <constraint firstAttribute="trailing" secondItem="vYo-fY-MzL" secondAttribute="trailing" id="ACr-Ag-gHO"/>
-                                    <constraint firstItem="nYn-1a-MpA" firstAttribute="leading" secondItem="Rez-er-UdI" secondAttribute="leading" id="Bsc-Pb-nkg"/>
                                     <constraint firstItem="A50-rm-ZI8" firstAttribute="leading" secondItem="Rez-er-UdI" secondAttribute="leading" id="L3N-OA-3Ch"/>
+                                    <constraint firstAttribute="bottom" secondItem="A50-rm-ZI8" secondAttribute="bottom" id="NQW-Sa-n8k"/>
                                     <constraint firstItem="vYo-fY-MzL" firstAttribute="top" secondItem="7XL-gG-zEI" secondAttribute="bottom" constant="8" id="OoL-FT-rkR"/>
-                                    <constraint firstItem="nYn-1a-MpA" firstAttribute="top" secondItem="A50-rm-ZI8" secondAttribute="bottom" constant="8" id="PwG-TF-9fh"/>
                                     <constraint firstItem="vYo-fY-MzL" firstAttribute="top" secondItem="7XL-gG-zEI" secondAttribute="bottom" constant="8" id="Sru-YZ-Gyc"/>
-                                    <constraint firstAttribute="trailing" secondItem="nYn-1a-MpA" secondAttribute="trailing" id="U8i-Db-Pz4"/>
                                     <constraint firstItem="vYo-fY-MzL" firstAttribute="leading" secondItem="Rez-er-UdI" secondAttribute="leading" id="dhX-qu-xop"/>
                                     <constraint firstAttribute="trailing" secondItem="A50-rm-ZI8" secondAttribute="trailing" id="eSA-re-faJ"/>
                                     <constraint firstItem="7XL-gG-zEI" firstAttribute="top" secondItem="Rez-er-UdI" secondAttribute="top" id="ezh-XW-QqS"/>
                                     <constraint firstItem="A50-rm-ZI8" firstAttribute="top" secondItem="vYo-fY-MzL" secondAttribute="bottom" constant="8" id="tGc-5p-2Zz"/>
-                                    <constraint firstAttribute="bottom" secondItem="nYn-1a-MpA" secondAttribute="bottom" id="ujB-5s-cii"/>
                                 </constraints>
                             </view>
                         </subviews>

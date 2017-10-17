@@ -1,0 +1,32 @@
+/* 
+  Localization.strings
+  DragTimer
+
+  Created by Philipp Matthes on 17.10.17.
+  Copyright © 2017 Philipp Matthes. All rights reserved.
+*/
+
+"connectionEstablished" = "Connection Established!";
+"noGPSConnection" = "No GPS Connection!";
+"noTimeRecordedYet" = "No time recorded yet!";
+"timeSaved" = "Time saved!";
+"to" = "to";
+"done" = "Done";
+"settings" = "Settings";
+"unitsSelection" = "Units Selection";
+"metric" = "Metric (km/h - kg)";
+"imperialistic" = "Imperialistic (mph - lbs)";
+"native" = "Native (m/s - kg)";
+"aeronautical" = "Aeronautical (kn - lbs)";
+"detailView" = "Detail View";
+"speedIn" = "Speed in";
+"date" = "Date";
+"speed" = "Speed";
+"time" = "Time";
+"correctedTime" = "Corrected Time";
+"vehicleWeight" = "Vehicle weight";
+"averageAcceleration" = "Average acceleration";
+"maxSpeed" = "Max speed";
+"heightDelta" = "Height delta";
+"savedTimes" = "Saved Times";
+

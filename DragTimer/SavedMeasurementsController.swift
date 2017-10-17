@@ -49,7 +49,7 @@ class SavedMeasurementsController: UITableViewController {
     }
     
     func setUpInterfaceDesign() {
-        let navigationItem = UINavigationItem(title: "Saved Times")
+        let navigationItem = UINavigationItem(title: NSLocalizedString("savedTimes", comment: "Saved Times"))
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.doneButtonPressed (_:)))
         let editItem = editButtonItem
         editItem.tintColor = Constants.designColor1
@@ -83,7 +83,7 @@ class SavedMeasurementsController: UITableViewController {
         let measurement = measurements[indexPath.row]
         
         cell.timeLabel.text = String(describing: measurement.time!) + "s"
-        cell.speedLabel.text = String(describing: measurement.lowSpeed!) + " to " + String(describing: measurement.highSpeed!) + " " + measurement.speedType!
+        cell.speedLabel.text = String(describing: measurement.lowSpeed!) + " " + NSLocalizedString("to", comment: "to") + " " + String(describing: measurement.highSpeed!) + " " + measurement.speedType!
         cell.dateLabel.text = measurement.date!
         
         return cell

@@ -57,7 +57,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     func setUpInterfaceDesign() {
 
         self.view.addSubview(navigationBar)
-        let navigationItem = UINavigationItem(title: "Detail View")
+        let navigationItem = UINavigationItem(title: NSLocalizedString("detailView", comment: "Detail View"))
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector (self.closeButtonPressed (_:)))
         doneItem.tintColor = Constants.designColor1
         navigationItem.rightBarButtonItem = doneItem
@@ -140,7 +140,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
 //        }
         
         
-        let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: "Speed in "+speedType!)
+        let speedLine = LineChartDataSet(values: lineChartEntriesSpeed, label: NSLocalizedString("speedIn", comment: "Speed in")+" "+speedType!)
         speedLine.drawCirclesEnabled = false
         speedLine.mode = LineChartDataSet.Mode.horizontalBezier
         speedLine.lineWidth = 2.0
@@ -148,7 +148,7 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
         speedLine.fill = Fill(CGColor: Constants.designColor1.cgColor as CGColor)
         speedLine.colors = [Constants.designColor1]
         
-        let dragLine = LineChartDataSet(values: lineChartEntriesDrag, label: String(lowSpeed!)+" to "+String(highSpeed!)+" "+speedType!)
+        let dragLine = LineChartDataSet(values: lineChartEntriesDrag, label: String(lowSpeed!)+" "+NSLocalizedString("to", comment: "to")+" "+String(highSpeed!)+" "+speedType!)
         dragLine.drawCirclesEnabled = false
         dragLine.mode = LineChartDataSet.Mode.horizontalBezier
         dragLine.lineWidth = 2.0
@@ -194,23 +194,23 @@ class SpeedLogDetailController: UIViewController, ChartViewDelegate {
     }
     
     func updateLabels() {
-        dateLabel.text = "Date: "+date!
-        speedLabel.text = "Speed: "+String(lowSpeed!)+" to "+String(highSpeed!)+" "+speedType!
-        dragTimeLabel.text = "Time: "+String(time!)+" s"
-        correctedDragTimeLabel.text = "Corrected time: "+String(correctedTime!)+" s"
-        let weightString = "Vehicle weight: "+String(Int(Double(round(100 * weight! * weightTypeCoefficient!)/100))) + " " + weightType!
+        dateLabel.text = NSLocalizedString("date", comment: "Date: ")+date!
+        speedLabel.text = NSLocalizedString("speed", comment: "Speed: ")+String(lowSpeed!)+" to "+String(highSpeed!)+" "+speedType!
+        dragTimeLabel.text = NSLocalizedString("time", comment: "Time: ")+String(time!)+" s"
+        correctedDragTimeLabel.text = NSLocalizedString("correctedTime", comment: "Corrected Time: ")+String(correctedTime!)+" s"
+        let weightString = NSLocalizedString("vehicleWeight", comment: "Vehicle weight: ")+String(Int(Double(round(100 * weight! * weightTypeCoefficient!)/100))) + " " + weightType!
         weightLabel.text = weightString
         var acceleration = 0.0
         for a in accelerationLog {
             acceleration += a.1
         }
-        averageAccelerationLabel.text = "Average Acceleration: "+String(Double(round(100*acceleration/Double(accelerationLog.count))/100))
+        averageAccelerationLabel.text = NSLocalizedString("averageAcceleration", comment: "Average acceleration: ")+String(Double(round(100*acceleration/Double(accelerationLog.count))/100))
         let max = Double(round(100*speedLog.max(by: {$0.1 < $1.1 })!.1)/100)
-        maxSpeedLabel.text = "Maximum Speed: "+String(Double(round(100*max*speedTypeCoefficient!)/100))+" "+speedType!
+        maxSpeedLabel.text = NSLocalizedString("maxSpeed", comment: "Maximum Speed: ")+String(Double(round(100*max*speedTypeCoefficient!)/100))+" "+speedType!
         let h0 = heightLog[0].1
         let h1 = heightLog.popLast()!.1
         let heightDelta = h1 - h0
-        heightDeltaLabel.text = "Height delta: "+String(Double(round(100*heightDelta)/100))+" m"
+        heightDeltaLabel.text = NSLocalizedString("heightDelta", comment: "Height Delta: ")+String(Double(round(100*heightDelta)/100))+" m"
     }
     
     

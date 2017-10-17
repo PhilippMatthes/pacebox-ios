@@ -11,9 +11,9 @@ import Charts
 import CoreLocation
 import CoreMotion
 import BRYXBanner
-import GoogleMobileAds
+//import GoogleMobileAds
 
-class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate, CAAnimationDelegate, UIGestureRecognizerDelegate, GADBannerViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDelegate, CAAnimationDelegate, UIGestureRecognizerDelegate {
     
     
     // MARK: Outlets
@@ -24,11 +24,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     @IBOutlet weak var settingsConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var bannerView: UIView!
     @IBOutlet weak var speedTypeLabel: UILabel!
     @IBOutlet weak var speedometerView: UIView!
-    @IBOutlet weak var lowSpeedField: UITextField!
-    @IBOutlet weak var highSpeedField: UITextField!
     @IBOutlet weak var speedReplacementLabel: UILabel!
     @IBOutlet var background: UIView!
     @IBOutlet weak var maxSpeedLabel: UILabel!
@@ -42,7 +40,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     @IBOutlet weak var timeReplacementLabel: UILabel!
     @IBOutlet weak var savedMeasurementsButtonBackground: UIView!
     @IBOutlet weak var saveButtonBackground: UIView!
-    @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var timeIndicationLabel: UILabel!
     
     // MARK: Variables
@@ -102,23 +99,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         setUpLocationManager()
         setUpInterfaceDesign()
         setUpBackground(frame: self.view.bounds)
-        setUpDoneButton()
         setUpChartView()
         startTimer()
         startSpeedometer()
         setUpMotionManager()
     }
     
-    func shouldShowAds() -> Bool {
-        let showAdsDate = UserDefaults.standard.object(forKey: "showAdsDate") as? Date ?? Date()
-        let timeFromDate = showAdsDate.seconds(from: Date())
-        if timeFromDate > 0 {
-            return false
-        }
-        else {
-            return true
-        }
-    }
+//    func shouldShowAds() -> Bool {
+//        let showAdsDate = UserDefaults.standard.object(forKey: "showAdsDate") as? Date ?? Date()
+//        let timeFromDate = showAdsDate.seconds(from: Date())
+//        if timeFromDate > 0 {
+//            return false
+//        }
+//        else {
+//            return true
+//        }
+//    }
     
     func setUpNoAdView() {
         bannerView.isHidden = true
@@ -127,19 +123,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         accelerationConstraint.constant = 8.0
     }
     
-    func setUpAdView() {
-        accuracyConstraint.constant = 58.0
-        settingsConstraint.constant = 58.0
-        accelerationConstraint.constant = 58.0
-        bannerView.isHidden = false
-        self.view.addSubview(bannerView)
-        bannerView.adUnitID = "ca-app-pub-5941274384378366/3140722486"
-        bannerView.rootViewController = self
-        let requestAd: GADRequest = GADRequest()
-//        requestAd.testDevices = [kGADSimulatorID]
-        bannerView.load(requestAd)
-        
-    }
+//    func setUpAdView() {
+//        accuracyConstraint.constant = 58.0
+//        settingsConstraint.constant = 58.0
+//        accelerationConstraint.constant = 58.0
+//        bannerView.isHidden = false
+//        self.view.addSubview(bannerView)
+//        bannerView.adUnitID = "ca-app-pub-5941274384378366/3140722486"
+//        bannerView.rootViewController = self
+//        let requestAd: GADRequest = GADRequest()
+////        requestAd.testDevices = [kGADSimulatorID]
+//        bannerView.load(requestAd)
+//
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         updateGraphs = false
@@ -149,13 +145,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         updateGraphs = true
-        let showAds = shouldShowAds()
-        if showAds {
-            setUpAdView()
-        }
-        else {
-            setUpNoAdView()
-        }
+//        let showAds = shouldShowAds()
+        setUpNoAdView()
+//        if showAds {
+//            setUpAdView()
+//        }
+//        else {
+//            setUpNoAdView()
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -176,11 +173,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         weightType = UserDefaults.standard.object(forKey: "weightType") as? String ?? "kg"
         weightTypeCoefficient = UserDefaults.standard.object(forKey: "weightTypeCoefficient") as? Double ?? 1.0
         drawRange = UserDefaults.standard.object(forKey: "speedTypeCoefficient") as? Int ?? 120
-        speedTypeLabel.text = speedType
-        lowSpeedField.text = String(lowSpeed)
-        highSpeedField.text = String(highSpeed)
-        weightField.text = String(Int(Double(round(100 * weight * weightTypeCoefficient)/100))) + " " + weightType
-        
+        speedTypeLabel.text = speedType        
     }
     
     func setUpSpeedometer() {
@@ -209,10 +202,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
                            accelerationBackground,
                            timeBackground,
                            savedMeasurementsButtonBackground,
-                           saveButtonBackground,
-                           weightField,
-                           lowSpeedField,
-                           highSpeedField]
+                           saveButtonBackground]
         for background in backgrounds {
             background?.layer.cornerRadius = Constants.cornerRadius
 //            background?.dropShadow(color: UIColor.black,
@@ -226,7 +216,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
 
     func setUpBackground(frame: CGRect) {
         gradientLayer.frame = frame
-        gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor, Constants.backgroundColor2.cgColor as CGColor]
+        gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor, 
+                                Constants.backgroundColor2.cgColor as CGColor]
         gradientLayer.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -331,31 +322,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             refreshAllLabels()
             updateSpeedGraph()
         }
-    }
-    
-    func setUpDoneButton() {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewController.doneButtonAction))
-        done.tintColor = Constants.designColor1
-        
-        var items = [UIBarButtonItem]()
-        items.append(flexSpace)
-        items.append(done)
-        
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        self.lowSpeedField.inputAccessoryView = doneToolbar
-        self.highSpeedField.inputAccessoryView = doneToolbar
-        self.weightField.inputAccessoryView = doneToolbar
-    }
-    
-    @objc func doneButtonAction() {
-        self.lowSpeedField.resignFirstResponder()
-        self.highSpeedField.resignFirstResponder()
-        self.weightField.resignFirstResponder()
     }
     
     @objc func advanceTimer(timer: Timer) {
@@ -740,54 +706,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         background.layer.borderWidth = 0.0
     }
     
-    @IBAction func highSpeedField(_ sender: UITextField) {
-        if let input = Double(sender.text!) {
-            if input > lowSpeed {
-                if input != highSpeed {
-                    correctedDragTime = 0.0
-                    dragTime = 0.0
-                    timeReplacementLabel.text = "n/a (n/a)"
-                    currentMeasurement = nil
-                }
-                highSpeed = input
-            }
-        }
-        animateButtonReleaseOff(background: sender)
-        highSpeedField.text = String(highSpeed)
-        UserDefaults.standard.set(highSpeed, forKey: "highSpeed")
-    }
-    
-    @IBAction func lowSpeedField(_ sender: UITextField) {
-        if let input = Double(sender.text!) {
-            if input < highSpeed {
-                if input != lowSpeed {
-                    correctedDragTime = 0.0
-                    dragTime = 0.0
-                    timeReplacementLabel.text = "n/a (n/a)"
-                    currentMeasurement = nil
-                }
-                lowSpeed = input
-            }
-        }
-        animateButtonReleaseOff(background: sender)
-        lowSpeedField.text = String(lowSpeed)
-        UserDefaults.standard.set(lowSpeed, forKey: "lowSpeed")
-    }
-    
-    @IBAction func weightField(_ sender: UITextField) {
-        if let input = Double(sender.text!) {
-            if input > 0.0 {
-                weight = Double(round(100 * input/weightTypeCoefficient)/100)
-            }
-        }
-        animateButtonReleaseOff(background: sender)
-        UserDefaults.standard.set(weight, forKey: "weight")
-        weightField.text = String(Int(Double(round(100 * weight * weightTypeCoefficient)/100))) + " " + weightType
-    }
-    
-    @IBAction func weightFieldTouchDown(_ sender: UITextField) {
-        animateButtonPressOn(background: sender)
-    }
+
     
     
     
@@ -804,13 +723,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             animateHide(view: timeReplacementLabel)
             animateHide(view: timeIndicationLabel)
             animateHide(view: accelerationLabel)
-            animateHide(view: weightField)
-            animateHide(view: lowSpeedField)
-            animateHide(view: highSpeedField)
             animateHide(view: maxSpeedLabel)
-            if shouldShowAds() {
-                animateHide(view: bannerView)
-            }
+//            if shouldShowAds() {
+//                animateHide(view: bannerView)
+//            }
             var transform = CGAffineTransform.identity
             transform = transform.rotated(by: -CGFloat(Double.pi)/2)
             transform = transform.scaledBy(x: -1, y: 1)
@@ -841,13 +757,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             animateHide(view: timeReplacementLabel)
             animateHide(view: timeIndicationLabel)
             animateHide(view: accelerationLabel)
-            animateHide(view: weightField)
-            animateHide(view: lowSpeedField)
-            animateHide(view: highSpeedField)
             animateHide(view: maxSpeedLabel)
-            if shouldShowAds() {
-                animateHide(view: bannerView)
-            }
+//            if shouldShowAds() {
+//                animateHide(view: bannerView)
+//            }
             var transform = CGAffineTransform.identity
             transform = transform.rotated(by: CGFloat(Double.pi)/2)
             transform = transform.scaledBy(x: -1, y: 1)
@@ -869,9 +782,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
     
     func switchToNormalView() {
         if hudViewActive {
-            if shouldShowAds() {
-                animateShow(view: bannerView)
-            }
+//            if shouldShowAds() {
+//                animateShow(view: bannerView)
+//            }
             animateShow(view: speedLogChart)
             animateShow(view: timeBackground)
             animateShow(view: accuracyBackground)
@@ -883,9 +796,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
             animateShow(view: timeReplacementLabel)
             animateShow(view: timeIndicationLabel)
             animateShow(view: accelerationLabel)
-            animateShow(view: weightField)
-            animateShow(view: lowSpeedField)
-            animateShow(view: highSpeedField)
             animateShow(view: maxSpeedLabel)
             var transform = CGAffineTransform.identity
             transform = transform.rotated(by: 0)
@@ -920,11 +830,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, ChartViewDele
         if segue.identifier == "showSettings" {
             let vc = segue.destination as! SettingsController
             vc.previousViewController = self
-            vc.drawRange = self.drawRange
-            vc.speedTypeCoefficient = self.speedTypeCoefficient
-            vc.speedType = self.speedType
-            vc.weightTypeCoefficient = self.weightTypeCoefficient
-            vc.weightType = self.weightType
         }
         if segue.identifier == "showSavedMeasurements" {
             let vc = segue.destination as! SavedMeasurementsController

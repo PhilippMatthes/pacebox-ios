@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        application.beginBackgroundTask(withName: "showNotification", expirationHandler: nil)
         
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-5941274384378366~3686328024")
+//        GADMobileAds.configure(withApplicationID: "ca-app-pub-5941274384378366~3686328024")
         
         return true
     }

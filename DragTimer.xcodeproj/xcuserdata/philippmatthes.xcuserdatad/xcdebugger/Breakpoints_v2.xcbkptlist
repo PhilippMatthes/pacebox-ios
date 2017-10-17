@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DragTimer/ViewController.swift"
-            timestampString = "529170319.185836"
+            timestampString = "529948280.455308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "ViewController"
             landmarkType = "3">
             <Locations>

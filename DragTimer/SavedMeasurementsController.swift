@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SavedMeasurementsController: UITableViewController {
-        
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     let gradientLayer = CAGradientLayer()
@@ -24,8 +24,8 @@ class SavedMeasurementsController: UITableViewController {
         
         setUpInterfaceDesign()
         
-        self.tableView.separatorStyle = .none
-
+        tableView.separatorStyle = .none
+        
         if let decoded = UserDefaults.standard.object(forKey: "measurements") as? NSData {
             let array = NSKeyedUnarchiver.unarchiveObject(with: decoded as Data) as! [Measurement]
             measurements = array.reversed()
@@ -64,13 +64,16 @@ class SavedMeasurementsController: UITableViewController {
         gradientLayer.frame = frame
         gradientLayer.colors = [Constants.backgroundColor1.cgColor as CGColor, Constants.backgroundColor2.cgColor as CGColor]
         gradientLayer.locations = [0.0, 1.0]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        self.tableView.backgroundView?.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "MeasurementCell"
+        
+//        tableView.register(MeasurementCell.self, forCellReuseIdentifier: cellIdentifier)
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MeasurementCell else {
             fatalError("The dequeued cell is not an instance of MeasurementCell.")
@@ -82,7 +85,6 @@ class SavedMeasurementsController: UITableViewController {
         cell.timeLabel.text = String(describing: measurement.time!) + "s"
         cell.speedLabel.text = String(describing: measurement.lowSpeed!) + " to " + String(describing: measurement.highSpeed!) + " " + measurement.speedType!
         cell.dateLabel.text = measurement.date!
-        cell.backgroundColor = UIColor.white
         
         return cell
     }

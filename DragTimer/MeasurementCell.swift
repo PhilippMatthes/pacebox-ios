@@ -23,6 +23,8 @@ class MeasurementCell: UITableViewCell {
         self.layer.shadowRadius = 10
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.masksToBounds = false
+        self.layer.backgroundColor = UIColor.clear.cgColor
+        self.isHidden = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

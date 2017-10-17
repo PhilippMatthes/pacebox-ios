@@ -6,7 +6,7 @@ target 'DragTimer' do
 use_frameworks!
 pod 'Charts'
 pod 'BRYXBanner'
-pod 'Google-Mobile-Ads-SDK'
+#pod 'Google-Mobile-Ads-SDK'
 
   target 'DragTimerTests' do
     inherit! :search_paths

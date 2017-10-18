@@ -1,0 +1,117 @@
+
+/* Class = "UIViewController"; title = "savedMeasurementDetailViewController"; ObjectID = "08U-Fc-eQa"; */
+"08U-Fc-eQa.title" = "savedMeasurementDetailViewController";
+
+/* Class = "UIViewController"; title = "SettingsController"; ObjectID = "2ZV-Rj-vcP"; */
+"2ZV-Rj-vcP.title" = "SettingsController";
+
+/* Class = "UILabel"; text = "Log size"; ObjectID = "3cO-9e-lEY"; */
+"3cO-9e-lEY.text" = "Log size";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "4p1-Lp-Blb"; */
+"4p1-Lp-Blb.text" = "Tiempo";
+
+/* Class = "UILabel"; text = "n/a"; ObjectID = "508-Yc-Qtf"; */
+"508-Yc-Qtf.text" = "n/a";
+
+/* Class = "UINavigationItem"; title = "Detail View"; ObjectID = "5k6-cn-uFR"; */
+"5k6-cn-uFR.title" = "Detail View";
+
+/* Class = "UILabel"; text = "Real Time (Corrected Time)"; ObjectID = "7QO-TN-KLL"; */
+"7QO-TN-KLL.text" = "Real Time (Corrected Time)";
+
+/* Class = "UILabel"; text = "Height delta: n/a"; ObjectID = "7m0-Ga-19S"; */
+"7m0-Ga-19S.text" = "Height delta: n/a";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "9XY-pI-CPL"; */
+"9XY-pI-CPL.text" = "Date";
+
+/* Class = "UIViewController"; title = "MainViewController"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "MainViewController";
+
+/* Class = "UILabel"; text = "n/a"; ObjectID = "BoM-MW-tkC"; */
+"BoM-MW-tkC.text" = "n/a";
+
+/* Class = "UITextField"; placeholder = "100.0"; ObjectID = "Ext-ah-4bj"; */
+"Ext-ah-4bj.placeholder" = "100.0";
+
+/* Class = "UITextField"; text = "100.0"; ObjectID = "Ext-ah-4bj"; */
+"Ext-ah-4bj.text" = "100.0";
+
+/* Class = "UITextField"; placeholder = "1500"; ObjectID = "Hq1-UU-kKE"; */
+"Hq1-UU-kKE.placeholder" = "1500";
+
+/* Class = "UITextField"; text = "1500 kg"; ObjectID = "Hq1-UU-kKE"; */
+"Hq1-UU-kKE.text" = "1500 kg";
+
+/* Class = "UITableViewController"; title = "SavedMeasurementsView"; ObjectID = "MIT-O3-k5Y"; */
+"MIT-O3-k5Y.title" = "SavedMeasurementsView";
+
+/* Class = "UITextField"; placeholder = "0.0"; ObjectID = "NIQ-V4-ha2"; */
+"NIQ-V4-ha2.placeholder" = "0.0";
+
+/* Class = "UITextField"; text = "0.0"; ObjectID = "NIQ-V4-ha2"; */
+"NIQ-V4-ha2.text" = "0.0";
+
+/* Class = "UILabel"; text = "Waiting for measurement..."; ObjectID = "Owl-bW-2fV"; */
+"Owl-bW-2fV.text" = "Waiting for measurement...";
+
+/* Class = "UILabel"; text = "Vehicle weight"; ObjectID = "P4j-kY-cUg"; */
+"P4j-kY-cUg.text" = "Vehicle weight";
+
+/* Class = "UIButton"; normalTitle = "km/h"; ObjectID = "QRl-if-P9Z"; */
+"QRl-if-P9Z.normalTitle" = "km/h";
+
+/* Class = "UILabel"; text = "This app was developed by Philipp Matthes. For any recommendations or improvements contact dragtimer@philippmatth.es"; ObjectID = "RJl-Zu-jll"; */
+"RJl-Zu-jll.text" = "This app was developed by Philipp Matthes. For any recommendations or improvements contact dragtimer@philippmatth.es";
+
+/* Class = "UILabel"; text = "Measurement range"; ObjectID = "SI6-5g-5Ie"; */
+"SI6-5g-5Ie.text" = "Measurement range";
+
+/* Class = "UILabel"; text = "km/h"; ObjectID = "UOa-i0-YR7"; */
+"UOa-i0-YR7.text" = "km/h";
+
+/* Class = "UILabel"; text = "Units"; ObjectID = "Yy2-gm-sBZ"; */
+"Yy2-gm-sBZ.text" = "Units";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Z6o-hv-lfU"; */
+"Z6o-hv-lfU.title" = "Settings";
+
+/* Class = "UILabel"; text = "All values are estimates and limited by the device's GPS connection or capabilities. Actual values may differ."; ObjectID = "aRe-Qp-G4O"; */
+"aRe-Qp-G4O.text" = "All values are estimates and limited by the device's GPS connection or capabilities. Actual values may differ.";
+
+/* Class = "UINavigationItem"; title = "Detail View"; ObjectID = "bqj-Ou-xAj"; */
+"bqj-Ou-xAj.title" = "Detail View";
+
+/* Class = "UILabel"; text = "Speed: n/a"; ObjectID = "c7j-FR-X1f"; */
+"c7j-FR-X1f.text" = "Speed: n/a";
+
+/* Class = "UILabel"; text = "n/a (n/a)"; ObjectID = "cLJ-bM-sY5"; */
+"cLJ-bM-sY5.text" = "n/a (n/a)";
+
+/* Class = "UILabel"; text = "Time: n/a"; ObjectID = "dJ7-La-SNj"; */
+"dJ7-La-SNj.text" = "Time: n/a";
+
+/* Class = "UILabel"; text = "Vehicle Weight: n/a"; ObjectID = "dRM-FC-9pT"; */
+"dRM-FC-9pT.text" = "Vehicle Weight: n/a";
+
+/* Class = "UILabel"; text = "Date: n/a"; ObjectID = "dfB-7y-1gX"; */
+"dfB-7y-1gX.text" = "Date: n/a";
+
+/* Class = "UILabel"; text = "120"; ObjectID = "hgG-ds-wJQ"; */
+"hgG-ds-wJQ.text" = "120";
+
+/* Class = "UILabel"; text = "Speed"; ObjectID = "qu7-UI-EDu"; */
+"qu7-UI-EDu.text" = "Speed";
+
+/* Class = "UILabel"; text = "n/a"; ObjectID = "wq1-0Z-cOQ"; */
+"wq1-0Z-cOQ.text" = "n/a";
+
+/* Class = "UILabel"; text = "Maximum Speed: n/a"; ObjectID = "wvM-jI-wex"; */
+"wvM-jI-wex.text" = "Maximum Speed: n/a";
+
+/* Class = "UILabel"; text = "Corrected Time: n/a"; ObjectID = "x8s-eE-MSf"; */
+"x8s-eE-MSf.text" = "Corrected Time: n/a";
+
+/* Class = "UILabel"; text = "Average Acceleration: n/a"; ObjectID = "yhU-5Q-d0F"; */
+"yhU-5Q-d0F.text" = "Average Acceleration: n/a";
